@@ -1,11 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Scale, Menu, X, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Scale, Menu, X, ArrowUpRight, LogOut, User, ShieldCheck } from "lucide-react";
 
 export default function Navbar() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("cls_user");
+      if (stored) {
+        try {
+          setCurrentUser(JSON.parse(stored));
+        } catch (e) {}
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cls_token");
+      localStorage.removeItem("cls_admin_token");
+      localStorage.removeItem("cls_user");
+      document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      setCurrentUser(null);
+      router.push("/sign-in");
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/10">
@@ -141,18 +167,52 @@ export default function Navbar() {
 
         {/* Action Buttons (Right) */}
         <div className="hidden sm:flex items-center space-x-3 shrink-0">
-          <Link
-            href="/member"
-            className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-stone-300 hover:text-white border border-white/20 hover:border-white/50 transition-all font-mono"
-          >
-            Member Card
-          </Link>
-          <Link
-            href="/sign-up"
-            className="px-4 py-2 text-[11px] tracking-widest uppercase bg-[#E7E0D3] text-black hover:bg-white transition-all font-mono font-bold rounded-sm shadow-sm"
-          >
-            Get In Touch
-          </Link>
+          {currentUser ? (
+            <>
+              {currentUser.role === "admin" || currentUser.email === "admin@cls.com" ? (
+                <Link
+                  href="/admin"
+                  className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase bg-[#C5A059] text-black font-bold border border-[#C5A059] hover:bg-[#d6b168] transition-all font-mono flex items-center gap-1.5 rounded-sm shadow-sm"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Admin Console</span>
+                </Link>
+              ) : (
+                <Link
+                  href="/member"
+                  className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-stone-200 hover:text-white border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#141414] transition-all font-mono flex items-center gap-1.5 rounded-sm"
+                >
+                  <User className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <span>Advocate Hub</span>
+                </Link>
+              )}
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="px-3 py-1.5 text-[11px] tracking-widest uppercase text-stone-400 hover:text-red-400 border border-white/10 hover:border-red-500/30 transition-all font-mono flex items-center gap-1 rounded-sm"
+                title="Log Out"
+              >
+                <LogOut className="w-3 h-3" />
+                <span>Exit</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/sign-in"
+                className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-stone-300 hover:text-white border border-white/20 hover:border-[#C5A059] transition-all font-mono"
+              >
+                Portal Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                className="px-4 py-2 text-[11px] tracking-widest uppercase bg-[#E7E0D3] text-black hover:bg-white transition-all font-mono font-bold rounded-sm shadow-sm"
+              >
+                Get In Touch
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile menu trigger */}
@@ -191,27 +251,54 @@ export default function Navbar() {
             Inquiries &amp; FAQ
           </Link>
           <div className="pt-4 border-t border-white/10 flex flex-col space-y-2.5">
-            <Link
-              href="/member"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center py-2 border border-white/20 text-white"
-            >
-              Member Portal &amp; Bar Card
-            </Link>
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center py-2 bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40"
-            >
-              Admin Console
-            </Link>
-            <Link
-              href="/sign-up"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center py-2 bg-[#E7E0D3] text-black font-bold"
-            >
-              Get In Touch &bull; Enrol Now
-            </Link>
+            {currentUser ? (
+              <>
+                {currentUser.role === "admin" || currentUser.email === "admin@cls.com" ? (
+                  <Link
+                    href="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-center py-2 bg-[#C5A059] text-black font-bold"
+                  >
+                    Executive Admin Console
+                  </Link>
+                ) : (
+                  <Link
+                    href="/member"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-center py-2 bg-[#1A1A1A] border border-[#C5A059] text-[#C5A059]"
+                  >
+                    Advocate Hub &bull; Bar Library
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    handleLogout();
+                  }}
+                  className="text-center py-2 border border-red-500/40 text-red-400"
+                >
+                  Sign Out of Session
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/sign-in"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center py-2 bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40"
+                >
+                  Portal Sign In
+                </Link>
+                <Link
+                  href="/sign-up"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center py-2 bg-[#E7E0D3] text-black font-bold"
+                >
+                  Get In Touch &bull; Enrol Now
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

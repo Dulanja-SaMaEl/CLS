@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { currentMockMember, CLSEvent } from "@/lib/mockData";
@@ -25,10 +26,12 @@ import {
   Camera,
   Sparkles,
   RefreshCw,
-  Bell
+  Bell,
+  LogOut,
 } from "lucide-react";
 
 export default function MemberDashboardPage() {
+  const router = useRouter();
   const [member, setMember] = useState(currentMockMember);
   const [activeTab, setActiveTab] = useState<"card" | "events" | "history" | "profile">("card");
   const [selectedTicket, setSelectedTicket] = useState<{
@@ -43,6 +46,56 @@ export default function MemberDashboardPage() {
 
   const [renewalSuccess, setRenewalSuccess] = useState(false);
   const [isRenewing, setIsRenewing] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedMemberToken = localStorage.getItem("cls_token");
+      const storedAdminToken = localStorage.getItem("cls_admin_token");
+      const storedUser = localStorage.getItem("cls_user");
+      const hasMemberCookie = document.cookie.includes("cls_member_session=true");
+      const hasAdminCookie = document.cookie.includes("cls_admin_session=true");
+
+      const isAuthed =
+        hasMemberCookie ||
+        hasAdminCookie ||
+        Boolean(storedMemberToken) ||
+        Boolean(storedAdminToken) ||
+        Boolean(storedUser);
+
+      if (!isAuthed) {
+        setIsAuthorized(false);
+        router.replace("/sign-in?redirect=/member");
+      } else {
+        setIsAuthorized(true);
+        if (storedUser) {
+          try {
+            const parsed = JSON.parse(storedUser);
+            if (parsed.name) {
+              setMember((prev) => ({
+                ...prev,
+                name: parsed.name,
+                email: parsed.email || prev.email,
+                sc_en: parsed.sc_en || prev.sc_en,
+                membershipTier: parsed.membershipTier || prev.membershipTier,
+              }));
+            }
+          } catch (e) {}
+        }
+      }
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cls_token");
+      localStorage.removeItem("cls_admin_token");
+      localStorage.removeItem("cls_user");
+      document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      router.push("/sign-in");
+    }
+  };
 
   const handleSimulateRenewal = () => {
     setIsRenewing(true);
@@ -67,6 +120,28 @@ export default function MemberDashboardPage() {
       setTimeout(() => setRenewalSuccess(false), 5000);
     }, 1200);
   };
+
+  if (isAuthorized === null || isAuthorized === false) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center p-6 text-center select-none font-sans">
+        <div className="w-16 h-16 rounded-full border border-[#C5A059]/40 p-2 flex items-center justify-center bg-[#141414] mb-6 shadow-2xl relative">
+          <Scale className="w-8 h-8 text-[#C5A059] animate-pulse" />
+        </div>
+        <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A059] block mb-2">
+          [ HULFTSDORP BAR LIBRARY &bull; ADVOCATE CLEARANCE ]
+        </span>
+        <h2 className="text-xl sm:text-2xl font-display text-white uppercase tracking-wider mb-2">
+          AUTHENTICATING PRACTITIONER SESSION
+        </h2>
+        <p className="text-xs font-mono text-stone-400 max-w-md mb-6">
+          Access to the Bar Library and Advocate Hub requires an active Colombo Law Society membership session. Redirecting to sign in...
+        </p>
+        <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden relative">
+          <div className="w-1/2 h-full bg-[#C5A059] animate-pulse" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#E7E0D3] selection:bg-[#C5A059] selection:text-black">
@@ -119,7 +194,7 @@ export default function MemberDashboardPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={handleSimulateRenewal}
@@ -128,6 +203,16 @@ export default function MemberDashboardPage() {
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${isRenewing ? "animate-spin" : ""}`} />
                 {isRenewing ? "Processing Renewal..." : "Renew 2027 Subscription (LKR 2,000)"}
+              </button>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-red-950/40 hover:bg-red-900/60 border border-red-500/30 text-red-300 font-semibold text-xs uppercase tracking-wider transition rounded"
+                title="End Advocate Session"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
               </button>
             </div>
           </div>

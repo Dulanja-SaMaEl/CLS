@@ -32,27 +32,47 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [adminUser, setAdminUser] = useState<{ email: string; name: string } | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check local session
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("cls_user");
-      if (stored) {
+      const storedToken = localStorage.getItem("cls_admin_token");
+      const storedUser = localStorage.getItem("cls_user");
+      const hasCookie = document.cookie.includes("cls_admin_session=true");
+
+      let userObj: any = null;
+      if (storedUser) {
         try {
-          const parsed = JSON.parse(stored);
-          setAdminUser(parsed);
-        } catch (e) {
-          // ignore
+          userObj = JSON.parse(storedUser);
+        } catch (e) {}
+      }
+
+      const isAdmin =
+        hasCookie ||
+        Boolean(storedToken) ||
+        (userObj && (userObj.role === "admin" || userObj.email === "admin@cls.com"));
+
+      if (!isAdmin) {
+        setIsAuthorized(false);
+        router.replace(`/sign-in?redirect=${encodeURIComponent(pathname)}`);
+      } else {
+        setIsAuthorized(true);
+        if (userObj) {
+          setAdminUser(userObj);
+        } else {
+          setAdminUser({ name: "Chambers Executive Administrator", email: "admin@cls.com" });
         }
       }
     }
-  }, []);
+  }, [pathname, router]);
 
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("cls_admin_token");
+      localStorage.removeItem("cls_token");
       localStorage.removeItem("cls_user");
       document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       router.push("/sign-in");
     }
   };
@@ -65,6 +85,28 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: "Committee Council Editor", href: "/admin/committee", icon: Award },
     { name: "Broadcast Center (SMS/Email)", href: "/admin/broadcast", icon: Radio },
   ];
+
+  if (isAuthorized === null || isAuthorized === false) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center p-6 text-center select-none font-sans">
+        <div className="w-16 h-16 rounded-full border border-[#C5A059]/40 p-2 flex items-center justify-center bg-[#141414] mb-6 shadow-2xl relative">
+          <Scale className="w-8 h-8 text-[#C5A059] animate-pulse" />
+        </div>
+        <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A059] block mb-2">
+          [ HULFTSDORP BAR SECURITY GATEWAY ]
+        </span>
+        <h2 className="text-xl sm:text-2xl font-display text-white uppercase tracking-wider mb-2">
+          VERIFYING CHAMBERS EXECUTIVE CLEARANCE
+        </h2>
+        <p className="text-xs font-mono text-stone-400 max-w-md mb-6">
+          Access to the Colombo Law Society Administration Console requires verified credentials. Redirecting to authorization portal...
+        </p>
+        <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden relative">
+          <div className="w-1/2 h-full bg-[#C5A059] animate-pulse" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-noir-900 text-stone-100 flex flex-col font-sans selection:bg-bronze selection:text-noir-900">
