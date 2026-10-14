@@ -1,67 +1,107 @@
 # Colombo Law Society (CLS) Official Portal
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Next.js](https://img.shields.io/badge/Frontend-Next.js%2014-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Express.js](https://img.shields.io/badge/Backend-Express%20%2F%20Node.js-lightgrey?style=for-the-badge&logo=express)](https://expressjs.com/)
+[![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render)](https://render.com/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
 [![Supabase](https://img.shields.io/badge/Database-Supabase%20%2F%20PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
 
 Official web portal and administrative management platform for the **Colombo Law Society**, established in 1890 and the premier, largest branch association of the Bar Association of Sri Lanka (BASL) since 1975. Located at 129, Hulftsdorp Street, Superior Courts Enclave, Colombo 12.
 
 ---
 
-## ✨ Features
+## 🏛️ Monorepo Architecture
 
-### Public Portal
-- **Monumental Heritage & Bar Identity:** High-craft dark aesthetic (`#0A0A0A`, warm sand `#E7E0D3`, and bronze `#C5A059`) celebrating 50 years of the charter.
-- **Continuing Legal Education & Symposia (`/events`):** Calendar of academic conferences, masterclasses, and annual law dinners.
-- **Event Image Showcase & Gallery (`/gallery`):** Interactive visual archive with fullscreen lightbox, category filtering, and featured highlight badges.
-- **Executive Leadership & Honour Rolls (`/team`, `/past-presidents`, `/vice-presidents`):** Complete historical rolls of past presidents (1975–Present) and executive council officers.
-- **Advocate Bar Portal (`/member`):** Digital Bar Pass, dues status, and member directory access.
+This repository is structured as a production monorepo containing two decoupled services:
 
-### Executive Administration Console (`/admin`)
-- **Executive Overview Dashboard (`/admin`):** High-level metrics, advocate counts, and quick actions.
-- **Google Calendar-Style Event & Meeting Scheduler (`/admin/events`):** Interactive 7x6 month grid, day-click scheduling, ticket pricing, direct poster photo uploads, and virtual courtroom/meeting chambers (Zoom/Teams links).
-- **Event Showcase Media Desk (`/admin/gallery`):** Upload high-resolution photos via drag-and-drop, link photos to scheduled events, and 1-click feature highlights.
-- **Executive Council & Committee Editor (`/admin/committee`):** Customize officers, credentials, portrait photos, and portfolios.
-- **Advocate Directory Manager (`/admin/members`):** Search, manage, and verify Supreme Court enrolment numbers.
-- **Broadcast Dispatch Center (`/admin/broadcast`):** Dispatch SMS and Email announcements to the Bar.
-
----
-
-## 🏗️ Tech Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS + Lucide Icons + Framer Motion
-- **Database:** PostgreSQL / Supabase Relational Database (`supabase-schema.sql`)
-- **API & Uploads:** Native Next.js Route Handlers (`/api/upload`, `/api/events`, `/api/gallery`, `/api/members`, `/api/committee`, `/api/broadcast`, `/api/settings`)
-- **State & Local Persistence:** Persistent JSON/In-Memory database layer in `lib/db.ts`
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/Dulanja-SaMaEl/CLS.git
-cd CLS
+```
+CLS/
+├── frontend/                     # Next.js 14 App Router (Deployed on Vercel)
+│   ├── app/                      # Public portals, /events, /gallery, and /admin
+│   ├── components/               # Navbars, footers, calendar widgets, lightboxes
+│   ├── public/                   # Official Sri Lankan legal imagery & brand crests
+│   ├── package.json
+│   └── README.md                 # Detailed Vercel deployment guide
+│
+├── backend/                      # Node.js + Express + TypeScript (Deployed on Render)
+│   ├── src/
+│   │   ├── config/               # Supabase PostgreSQL connection & fallback
+│   │   ├── controllers/          # Events, gallery, members, committee, broadcasts
+│   │   ├── routes/               # Express REST API routes (/api/...)
+│   │   └── server.ts             # Express entrypoint
+│   ├── render.yaml               # 1-Click Render Blueprint configuration
+│   ├── package.json
+│   └── README.md                 # Detailed Render deployment guide
+│
+├── supabase-schema.sql           # Complete PostgreSQL DDL & Seed Data for Supabase
+└── README.md                     # Monorepo documentation
 ```
 
-### 2. Install dependencies
+---
+
+## 🚀 Cloud Deployment Guide
+
+### 1. Database (Supabase)
+1. Open your [Supabase Dashboard](https://supabase.com) and create a new project.
+2. Go to **SQL Editor** -> **New Query**.
+3. Copy and paste the full contents of `supabase-schema.sql` and click **Run**.
+4. Retrieve your connection string from **Project Settings** -> **Database**.
+
+---
+
+### 2. Backend Service (Render)
+1. In your [Render Dashboard](https://dashboard.render.com), click **New +** -> **Web Service**.
+2. Connect your GitHub repository: `https://github.com/Dulanja-SaMaEl/CLS.git`.
+3. Configure:
+   - **Root Directory:** `backend`
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+4. Set Environment Variables:
+   - `NODE_ENV`: `production`
+   - `PORT`: `10000`
+   - `DATABASE_URL`: Your Supabase connection string.
+   - `FRONTEND_URL`: Your Vercel frontend URL (e.g. `https://cls.vercel.app`).
+   - `JWT_SECRET`: Random secure string.
+
+---
+
+### 3. Frontend Web App (Vercel)
+1. In your [Vercel Dashboard](https://vercel.com), click **Add New...** -> **Project**.
+2. Import `https://github.com/Dulanja-SaMaEl/CLS.git`.
+3. In project settings:
+   - **Framework:** `Next.js`
+   - **Root Directory:** `frontend`
+4. Set Environment Variable:
+   - `NEXT_PUBLIC_API_URL`: Your Render backend URL (e.g. `https://cls-backend.onrender.com`).
+5. Click **Deploy**.
+
+---
+
+## 💻 Local Development
+
+Run both services locally:
+
+### Option A: From root using npm scripts
 ```bash
+# Run Frontend (http://localhost:3000)
+npm run dev:frontend
+
+# In a second terminal, run Backend (http://localhost:5000)
+npm run dev:backend
+```
+
+### Option B: Standalone folders
+```bash
+# Terminal 1: Backend
+cd backend
 npm install
-```
+npm run dev
 
-### 3. Run the development server
-```bash
+# Terminal 2: Frontend
+cd frontend
+npm install
 npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### 4. Database Setup (Supabase / PostgreSQL)
-1. Open your Supabase or PostgreSQL SQL editor.
-2. Execute the queries inside `supabase-schema.sql` to initialize all 7 relational tables, indexes, RLS policies, and seed data.
 
 ---
 

@@ -1,6 +1,6 @@
 # Dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 .yarn/cache
 .yarn/unplugged
@@ -8,13 +8,11 @@
 .yarn/install-state.gz
 .pnp.*
 
-# Next.js build output
-/.next/
-/out/
-
-# Production build artifacts
-/build
-/dist
+# Build outputs
+.next/
+out/
+build/
+dist/
 
 # Debug logs
 npm-debug.log*
@@ -25,9 +23,11 @@ yarn-error.log*
 # Local environment variables
 .env*.local
 .env
+!.env.example
 
-# Vercel
+# Vercel & Render
 .vercel
+.render
 
 # IDE & OS files
 .DS_Store
