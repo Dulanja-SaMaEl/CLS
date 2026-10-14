@@ -36,9 +36,40 @@ export interface DatabaseState {
   committee: typeof executiveCommittee;
   pastPresidents: typeof pastPresidents;
   settings: SocietySettings;
+  deletedIds: {
+    events: number[];
+    gallery: number[];
+    members: number[];
+    committee: number[];
+  };
 }
 
-const DB_FILE = path.join(process.cwd(), "data", "db.json");
+function getDbFilePath(): string {
+  if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+    return path.join("/tmp", "cls-db.json");
+  }
+  return path.join(process.cwd(), "data", "db.json");
+}
+
+export const ADMIN_MEMBER: Member = {
+  id: 999,
+  sc_en: "SC/ADM/1890/001",
+  ba_en: "BASL/ADM/001",
+  name: "Chambers Executive Administrator",
+  email: "admin@cls.com",
+  mobile: "+94 71 192 3531",
+  nic: "198000000000",
+  gender: "Male",
+  city: "Colombo",
+  practiceArea: "Appellate Advocacy & Bar Governance",
+  expertise: ["Bar Council Administration", "Supreme Court Registry Coordination"],
+  membershipTier: "Life",
+  status: "Active",
+  avatarUrl: "/images/branding/cls-crest-gold.png",
+  registeredDate: "01 Jan, 1890",
+  membershipStartDate: "1890-01-01",
+  membershipEndDate: "2125-12-31",
+};
 
 const defaultSettings: SocietySettings = {
   name: "Colombo Law Society",
@@ -57,48 +88,70 @@ const defaultSettings: SocietySettings = {
 let memoryDb: DatabaseState | null = null;
 
 function loadDatabase(): DatabaseState {
-  if (memoryDb) return memoryDb;
+  if (memoryDb) {
+    if (!memoryDb.deletedIds) {
+      memoryDb.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+    }
+    return memoryDb;
+  }
+
+  const primaryPath = getDbFilePath();
+  const seedPath = path.join(process.cwd(), "data", "db.json");
 
   try {
-    if (fs.existsSync(DB_FILE)) {
-      const data = fs.readFileSync(DB_FILE, "utf-8");
+    if (fs.existsSync(primaryPath)) {
+      const data = fs.readFileSync(primaryPath, "utf-8");
       memoryDb = JSON.parse(data);
-      if (memoryDb) {
-        if (!memoryDb.gallery) memoryDb.gallery = initialGalleryImages;
-        if (!memoryDb.settings) memoryDb.settings = defaultSettings;
-        if (!memoryDb.committee) memoryDb.committee = executiveCommittee;
-        if (!memoryDb.pastPresidents) memoryDb.pastPresidents = pastPresidents;
-        return memoryDb;
-      }
+    } else if (fs.existsSync(seedPath)) {
+      const data = fs.readFileSync(seedPath, "utf-8");
+      memoryDb = JSON.parse(data);
     }
   } catch (err) {
     console.error("Error reading db.json, falling back to seed data:", err);
   }
 
-  memoryDb = {
-    members: [...initialMembers],
-    events: [...initialEvents],
-    gallery: [...initialGalleryImages],
-    broadcasts: [...initialBroadcastLogs],
-    committee: [...executiveCommittee],
-    pastPresidents: [...pastPresidents],
-    settings: defaultSettings,
-  };
+  if (!memoryDb) {
+    memoryDb = {
+      members: [...initialMembers],
+      events: [...initialEvents],
+      gallery: [...initialGalleryImages],
+      broadcasts: [...initialBroadcastLogs],
+      committee: [...executiveCommittee],
+      pastPresidents: [...pastPresidents],
+      settings: defaultSettings,
+      deletedIds: { events: [], gallery: [], members: [], committee: [] },
+    };
+  }
 
-  saveDatabase(memoryDb);
+  if (!memoryDb.deletedIds) {
+    memoryDb.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+  }
+  if (!memoryDb.gallery) memoryDb.gallery = [...initialGalleryImages];
+  if (!memoryDb.settings) memoryDb.settings = defaultSettings;
+  if (!memoryDb.committee) memoryDb.committee = [...executiveCommittee];
+  if (!memoryDb.pastPresidents) memoryDb.pastPresidents = [...pastPresidents];
+  if (!memoryDb.events) memoryDb.events = [...initialEvents];
+  if (!memoryDb.members) memoryDb.members = [...initialMembers];
+
   return memoryDb;
 }
 
 function saveDatabase(state: DatabaseState): void {
   memoryDb = state;
+  const targetPath = getDbFilePath();
   try {
-    const dir = path.dirname(DB_FILE);
+    const dir = path.dirname(targetPath);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    fs.writeFileSync(DB_FILE, JSON.stringify(state, null, 2), "utf-8");
+    fs.writeFileSync(targetPath, JSON.stringify(state, null, 2), "utf-8");
   } catch (err) {
-    console.error("Error writing db.json:", err);
+    try {
+      const tmpPath = path.join("/tmp", "cls-db.json");
+      fs.writeFileSync(tmpPath, JSON.stringify(state, null, 2), "utf-8");
+    } catch (tmpErr) {
+      console.error("Error writing db.json fallback:", tmpErr);
+    }
   }
 }
 
@@ -217,6 +270,9 @@ function mapSupabaseSettings(row: any): SocietySettings {
 // EVENTS API HELPERS
 // ============================================================================
 export async function getEvents(): Promise<CLSEvent[]> {
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.events || []);
+
   try {
     const { data, error } = await supabase
       .from("events")
@@ -224,16 +280,33 @@ export async function getEvents(): Promise<CLSEvent[]> {
       .order("start_date_time", { ascending: true });
 
     if (!error && data && data.length > 0) {
-      return data.map(mapSupabaseEvent);
+      const supabaseEvents = data
+        .filter((row: any) => !tombstoneSet.has(row.id))
+        .map(mapSupabaseEvent);
+
+      const supabaseIds = new Set(supabaseEvents.map((e) => e.id));
+      const localOnly = db.events.filter((e) => !tombstoneSet.has(e.id) && !supabaseIds.has(e.id));
+
+      const merged = supabaseEvents.map((sbEvt) => {
+        const localMatch = db.events.find((le) => le.id === sbEvt.id);
+        return localMatch ? { ...sbEvt, ...localMatch } : sbEvt;
+      });
+
+      return [...localOnly, ...merged];
     }
   } catch (err) {
     console.warn("Supabase fetch events failed, using local DB:", err);
   }
-  const db = loadDatabase();
-  return db.events;
+
+  return db.events.filter((e) => !tombstoneSet.has(e.id));
 }
 
 export async function getEventById(id: number): Promise<CLSEvent | null> {
+  const db = loadDatabase();
+  if (db.deletedIds?.events?.includes(id)) {
+    return null;
+  }
+
   try {
     const { data, error } = await supabase
       .from("events")
@@ -242,12 +315,14 @@ export async function getEventById(id: number): Promise<CLSEvent | null> {
       .single();
 
     if (!error && data) {
-      return mapSupabaseEvent(data);
+      const localMatch = db.events.find((e) => e.id === id);
+      const mapped = mapSupabaseEvent(data);
+      return localMatch ? { ...mapped, ...localMatch } : mapped;
     }
   } catch (err) {
     console.warn("Supabase getEventById failed:", err);
   }
-  const db = loadDatabase();
+
   return db.events.find((e) => e.id === id) || null;
 }
 
@@ -299,6 +374,13 @@ export async function createEvent(eventData: Omit<CLSEvent, "id">): Promise<CLSE
 }
 
 export async function updateEvent(id: number, updates: Partial<CLSEvent>): Promise<CLSEvent | null> {
+  const db = loadDatabase();
+  const index = db.events.findIndex((e) => e.id === id);
+  if (index !== -1) {
+    db.events[index] = { ...db.events[index], ...updates };
+    saveDatabase(db);
+  }
+
   try {
     const updatePayload: Record<string, any> = {};
     if (updates.title !== undefined) updatePayload.title = updates.title;
@@ -334,42 +416,37 @@ export async function updateEvent(id: number, updates: Partial<CLSEvent>): Promi
     console.warn("Supabase update event failed:", err);
   }
 
-  const db = loadDatabase();
-  const index = db.events.findIndex((e) => e.id === id);
-  if (index === -1) return null;
-
-  db.events[index] = { ...db.events[index], ...updates };
-  saveDatabase(db);
-  return db.events[index];
+  const updatedIndex = db.events.findIndex((e) => e.id === id);
+  return updatedIndex !== -1 ? db.events[updatedIndex] : null;
 }
 
 export async function deleteEvent(id: number): Promise<boolean> {
+  const db = loadDatabase();
+  if (!db.deletedIds) {
+    db.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+  }
+  if (!db.deletedIds.events.includes(id)) {
+    db.deletedIds.events.push(id);
+  }
+  db.events = db.events.filter((e) => e.id !== id);
+  saveDatabase(db);
+
   try {
-    const { error } = await supabase.from("events").delete().eq("id", id);
-    if (!error) {
-      const db = loadDatabase();
-      db.events = db.events.filter((e) => e.id !== id);
-      saveDatabase(db);
-      return true;
-    }
+    await supabase.from("events").delete().eq("id", id);
   } catch (err) {
-    console.warn("Supabase delete event failed:", err);
+    console.warn("Supabase delete event warning:", err);
   }
 
-  const db = loadDatabase();
-  const initialLen = db.events.length;
-  db.events = db.events.filter((e) => e.id !== id);
-  if (db.events.length !== initialLen) {
-    saveDatabase(db);
-    return true;
-  }
-  return false;
+  return true;
 }
 
 // ============================================================================
 // GALLERY SHOWCASE API HELPERS
 // ============================================================================
 export async function getGalleryImages(category?: string): Promise<GalleryImage[]> {
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.gallery || []);
+
   try {
     let query = supabase.from("event_gallery").select("*").order("id", { ascending: false });
     if (category && category !== "All") {
@@ -377,17 +454,28 @@ export async function getGalleryImages(category?: string): Promise<GalleryImage[
     }
     const { data, error } = await query;
     if (!error && data && data.length > 0) {
-      return data.map(mapSupabaseGallery);
+      const supabaseImages = data
+        .filter((row: any) => !tombstoneSet.has(row.id))
+        .map(mapSupabaseGallery);
+
+      const supabaseIds = new Set(supabaseImages.map((g) => g.id));
+      const localOnly = db.gallery.filter((g) => !tombstoneSet.has(g.id) && !supabaseIds.has(g.id));
+
+      let allImages = [...localOnly, ...supabaseImages];
+      if (category && category !== "All") {
+        allImages = allImages.filter((g) => g.category.toLowerCase() === category.toLowerCase());
+      }
+      return allImages;
     }
   } catch (err) {
     console.warn("Supabase fetch gallery failed:", err);
   }
 
-  const db = loadDatabase();
+  const localList = db.gallery.filter((g) => !tombstoneSet.has(g.id));
   if (category && category !== "All") {
-    return db.gallery.filter((g) => g.category.toLowerCase() === category.toLowerCase());
+    return localList.filter((g) => g.category.toLowerCase() === category.toLowerCase());
   }
-  return db.gallery;
+  return localList;
 }
 
 export async function addGalleryImage(imageData: Omit<GalleryImage, "id">): Promise<GalleryImage> {
@@ -437,29 +525,33 @@ export async function addGalleryImage(imageData: Omit<GalleryImage, "id">): Prom
 }
 
 export async function deleteGalleryImage(id: number): Promise<boolean> {
+  const db = loadDatabase();
+  if (!db.deletedIds) {
+    db.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+  }
+  if (!db.deletedIds.gallery.includes(id)) {
+    db.deletedIds.gallery.push(id);
+  }
+  db.gallery = db.gallery.filter((g) => g.id !== id);
+  saveDatabase(db);
+
   try {
-    const { error } = await supabase.from("event_gallery").delete().eq("id", id);
-    if (!error) {
-      const db = loadDatabase();
-      db.gallery = db.gallery.filter((g) => g.id !== id);
-      saveDatabase(db);
-      return true;
-    }
+    await supabase.from("event_gallery").delete().eq("id", id);
   } catch (err) {
-    console.warn("Supabase delete gallery image failed:", err);
+    console.warn("Supabase delete gallery image warning:", err);
   }
 
-  const db = loadDatabase();
-  const initialLen = db.gallery.length;
-  db.gallery = db.gallery.filter((g) => g.id !== id);
-  if (db.gallery.length !== initialLen) {
-    saveDatabase(db);
-    return true;
-  }
-  return false;
+  return true;
 }
 
 export async function toggleGalleryFeatured(id: number): Promise<GalleryImage | null> {
+  const db = loadDatabase();
+  const img = db.gallery.find((g) => g.id === id);
+  if (img) {
+    img.featured = !img.featured;
+    saveDatabase(db);
+  }
+
   try {
     const { data: current } = await supabase.from("event_gallery").select("featured").eq("id", id).single();
     if (current) {
@@ -477,40 +569,71 @@ export async function toggleGalleryFeatured(id: number): Promise<GalleryImage | 
     console.warn("Supabase toggle gallery featured failed:", err);
   }
 
-  const db = loadDatabase();
-  const img = db.gallery.find((g) => g.id === id);
-  if (!img) return null;
-  img.featured = !img.featured;
-  saveDatabase(db);
-  return img;
+  return img || null;
 }
 
 // ============================================================================
 // MEMBERS API HELPERS
 // ============================================================================
 export async function getMembers(): Promise<Member[]> {
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.members || []);
+
   try {
     const { data, error } = await supabase.from("members").select("*").order("id", { ascending: true });
     if (!error && data && data.length > 0) {
-      return data.map(mapSupabaseMember);
+      const supabaseMembers = data
+        .filter((row: any) => !tombstoneSet.has(row.id))
+        .map(mapSupabaseMember);
+
+      const supabaseIds = new Set(supabaseMembers.map((m) => m.id));
+      const localOnly = db.members.filter((m) => !tombstoneSet.has(m.id) && !supabaseIds.has(m.id));
+
+      const merged = supabaseMembers.map((sbM) => {
+        const localMatch = db.members.find((lm) => lm.id === sbM.id);
+        return localMatch ? { ...sbM, ...localMatch } : sbM;
+      });
+
+      let results = [...localOnly, ...merged];
+      const hasAdmin = results.some((m) => m.email.toLowerCase() === "admin@cls.com");
+      if (!hasAdmin && !tombstoneSet.has(ADMIN_MEMBER.id)) {
+        results.unshift(ADMIN_MEMBER);
+      }
+      return results;
     }
   } catch (err) {
     console.warn("Supabase fetch members failed:", err);
   }
-  const db = loadDatabase();
-  return db.members;
+
+  let localMembers = db.members.filter((m) => !tombstoneSet.has(m.id));
+  const hasAdmin = localMembers.some((m) => m.email.toLowerCase() === "admin@cls.com");
+  if (!hasAdmin && !tombstoneSet.has(ADMIN_MEMBER.id)) {
+    localMembers.unshift(ADMIN_MEMBER);
+  }
+  return localMembers;
 }
 
 export async function getMemberById(id: number): Promise<Member | null> {
+  const db = loadDatabase();
+  if (db.deletedIds?.members?.includes(id)) {
+    return null;
+  }
+
+  if (id === ADMIN_MEMBER.id) {
+    return ADMIN_MEMBER;
+  }
+
   try {
     const { data, error } = await supabase.from("members").select("*").eq("id", id).single();
     if (!error && data) {
-      return mapSupabaseMember(data);
+      const localMatch = db.members.find((m) => m.id === id);
+      const mapped = mapSupabaseMember(data);
+      return localMatch ? { ...mapped, ...localMatch } : mapped;
     }
   } catch (err) {
     console.warn("Supabase getMemberById failed:", err);
   }
-  const db = loadDatabase();
+
   return db.members.find((m) => m.id === id) || null;
 }
 
@@ -558,6 +681,13 @@ export async function createMember(memberData: Omit<Member, "id">): Promise<Memb
 }
 
 export async function updateMember(id: number, updates: Partial<Member>): Promise<Member | null> {
+  const db = loadDatabase();
+  const index = db.members.findIndex((m) => m.id === id);
+  if (index !== -1) {
+    db.members[index] = { ...db.members[index], ...updates };
+    saveDatabase(db);
+  }
+
   try {
     const updatePayload: Record<string, any> = {};
     if (updates.name !== undefined) updatePayload.name = updates.name;
@@ -584,42 +714,37 @@ export async function updateMember(id: number, updates: Partial<Member>): Promis
     console.warn("Supabase update member failed:", err);
   }
 
-  const db = loadDatabase();
-  const index = db.members.findIndex((m) => m.id === id);
-  if (index === -1) return null;
-
-  db.members[index] = { ...db.members[index], ...updates };
-  saveDatabase(db);
-  return db.members[index];
+  const updatedIndex = db.members.findIndex((m) => m.id === id);
+  return updatedIndex !== -1 ? db.members[updatedIndex] : null;
 }
 
 export async function deleteMember(id: number): Promise<boolean> {
+  const db = loadDatabase();
+  if (!db.deletedIds) {
+    db.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+  }
+  if (!db.deletedIds.members.includes(id)) {
+    db.deletedIds.members.push(id);
+  }
+  db.members = db.members.filter((m) => m.id !== id);
+  saveDatabase(db);
+
   try {
-    const { error } = await supabase.from("members").delete().eq("id", id);
-    if (!error) {
-      const db = loadDatabase();
-      db.members = db.members.filter((m) => m.id !== id);
-      saveDatabase(db);
-      return true;
-    }
+    await supabase.from("members").delete().eq("id", id);
   } catch (err) {
-    console.warn("Supabase delete member failed:", err);
+    console.warn("Supabase delete member warning:", err);
   }
 
-  const db = loadDatabase();
-  const initialLen = db.members.length;
-  db.members = db.members.filter((m) => m.id !== id);
-  if (db.members.length !== initialLen) {
-    saveDatabase(db);
-    return true;
-  }
-  return false;
+  return true;
 }
 
 // ============================================================================
 // COMMITTEE & TEAM API HELPERS
 // ============================================================================
 export async function getCommittee() {
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.committee || []);
+
   try {
     const { data, error } = await supabase
       .from("committee_members")
@@ -628,14 +753,25 @@ export async function getCommittee() {
       .order("order_index", { ascending: true });
 
     if (!error && data && data.length > 0) {
-      return data.map(mapSupabaseCommittee);
+      const supabaseCommittee = data
+        .filter((row: any) => !tombstoneSet.has(row.id))
+        .map(mapSupabaseCommittee);
+
+      const supabaseIds = new Set(supabaseCommittee.map((c) => c.id));
+      const localOnly = db.committee.filter((c) => !tombstoneSet.has(c.id) && !supabaseIds.has(c.id));
+
+      const merged = supabaseCommittee.map((sbC) => {
+        const localMatch = db.committee.find((lc) => lc.id === sbC.id);
+        return localMatch ? { ...sbC, ...localMatch } : sbC;
+      });
+
+      return [...localOnly, ...merged];
     }
   } catch (err) {
     console.warn("Supabase fetch committee failed:", err);
   }
 
-  const db = loadDatabase();
-  return db.committee;
+  return db.committee.filter((c) => !tombstoneSet.has(c.id));
 }
 
 export async function addCommitteeMember(memberData: Omit<typeof executiveCommittee[0], "id">) {
@@ -676,6 +812,13 @@ export async function addCommitteeMember(memberData: Omit<typeof executiveCommit
 }
 
 export async function updateCommitteeMember(id: number, updates: Partial<typeof executiveCommittee[0]>) {
+  const db = loadDatabase();
+  const index = db.committee.findIndex((c) => c.id === id);
+  if (index !== -1) {
+    db.committee[index] = { ...db.committee[index], ...updates };
+    saveDatabase(db);
+  }
+
   try {
     const updatePayload: Record<string, any> = {};
     if (updates.name !== undefined) updatePayload.name = updates.name;
@@ -703,36 +846,28 @@ export async function updateCommitteeMember(id: number, updates: Partial<typeof 
     console.warn("Supabase update committee member failed:", err);
   }
 
-  const db = loadDatabase();
-  const index = db.committee.findIndex((c) => c.id === id);
-  if (index === -1) return null;
-
-  db.committee[index] = { ...db.committee[index], ...updates };
-  saveDatabase(db);
-  return db.committee[index];
+  const updatedIndex = db.committee.findIndex((c) => c.id === id);
+  return updatedIndex !== -1 ? db.committee[updatedIndex] : null;
 }
 
 export async function deleteCommitteeMember(id: number): Promise<boolean> {
+  const db = loadDatabase();
+  if (!db.deletedIds) {
+    db.deletedIds = { events: [], gallery: [], members: [], committee: [] };
+  }
+  if (!db.deletedIds.committee.includes(id)) {
+    db.deletedIds.committee.push(id);
+  }
+  db.committee = db.committee.filter((c) => c.id !== id);
+  saveDatabase(db);
+
   try {
-    const { error } = await supabase.from("committee_members").delete().eq("id", id);
-    if (!error) {
-      const db = loadDatabase();
-      db.committee = db.committee.filter((c) => c.id !== id);
-      saveDatabase(db);
-      return true;
-    }
+    await supabase.from("committee_members").delete().eq("id", id);
   } catch (err) {
-    console.warn("Supabase delete committee member failed:", err);
+    console.warn("Supabase delete committee member warning:", err);
   }
 
-  const db = loadDatabase();
-  const initialLen = db.committee.length;
-  db.committee = db.committee.filter((c) => c.id !== id);
-  if (db.committee.length !== initialLen) {
-    saveDatabase(db);
-    return true;
-  }
-  return false;
+  return true;
 }
 
 // ============================================================================

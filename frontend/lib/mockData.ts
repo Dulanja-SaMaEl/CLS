@@ -51,6 +51,25 @@ export interface BroadcastLog {
 
 export const initialMembers: Member[] = [
   {
+    id: 999,
+    sc_en: "SC/ADMIN/001",
+    ba_en: "BASL/ADMIN/001",
+    name: "Chambers Executive Administrator",
+    email: "admin@cls.com",
+    mobile: "+94 71 192 3531",
+    nic: "198000000000",
+    gender: "Male",
+    city: "Colombo 12 (Hulftsdorp / Superior Courts)",
+    practiceArea: "Judicial Administration & Bar Governance",
+    expertise: ["Bar Governance", "Court Administration", "Supreme Court Registry"],
+    membershipTier: "Life",
+    status: "Active",
+    registeredDate: "01 Jan, 2024",
+    membershipStartDate: "01 Jan, 2024",
+    membershipEndDate: "31 Dec, 2125",
+    avatarUrl: "/images/branding/cls-crest-gold.png",
+  },
+  {
     id: 1,
     sc_en: "SC/EN/2012/1042",
     ba_en: "BASL/8492",

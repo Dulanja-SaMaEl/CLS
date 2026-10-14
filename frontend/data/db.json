@@ -1,6 +1,28 @@
 {
   "members": [
     {
+      "id": 999,
+      "sc_en": "SC/ADM/1890/001",
+      "ba_en": "BASL/ADM/001",
+      "name": "Chambers Executive Administrator",
+      "email": "admin@cls.com",
+      "mobile": "+94 71 192 3531",
+      "nic": "198000000000",
+      "gender": "Male",
+      "city": "Colombo",
+      "practiceArea": "Appellate Advocacy & Bar Governance",
+      "expertise": [
+        "Bar Council Administration",
+        "Supreme Court Registry Coordination"
+      ],
+      "membershipTier": "Life",
+      "status": "Active",
+      "registeredDate": "01 Jan, 1890",
+      "membershipStartDate": "1890-01-01",
+      "membershipEndDate": "2125-12-31",
+      "avatarUrl": "/images/branding/cls-crest-gold.png"
+    },
+    {
       "id": 1,
       "sc_en": "SC/EN/2012/1042",
       "ba_en": "BASL/8492",
@@ -606,5 +628,11 @@
     "membershipFeeLife": 5000,
     "totalMembersCount": 1042,
     "superiorCourtEnclave": "Supreme Court & Superior Benches, Hulftsdorp"
+  },
+  "deletedIds": {
+    "events": [],
+    "gallery": [],
+    "members": [],
+    "committee": []
   }
 }
