@@ -1,0 +1,610 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "sc_en": "SC/EN/2012/1042",
+      "ba_en": "BASL/8492",
+      "name": "Dr. Asoka De Silva, PC",
+      "email": "asoka.desilva@lawchambers.lk",
+      "mobile": "+94 77 123 4567",
+      "nic": "196812403921",
+      "gender": "Male",
+      "city": "Colombo 07",
+      "practiceArea": "Constitutional & Fundamental Rights",
+      "expertise": [
+        "Appellate Advocacy",
+        "Judicial Review",
+        "Administrative Law"
+      ],
+      "membershipTier": "Life",
+      "status": "Active",
+      "registeredDate": "12 Jan, 2015",
+      "membershipStartDate": "12 Jan, 2015",
+      "membershipEndDate": "12 Jan, 2114",
+      "avatarUrl": "/images/branding/cls-crest-gold.png"
+    },
+    {
+      "id": 2,
+      "sc_en": "SC/EN/2018/2210",
+      "ba_en": "BASL/11204",
+      "name": "Naveen Shanaka, AAG",
+      "email": "naveen.shanaka@colombolaw.org",
+      "mobile": "+94 71 892 3341",
+      "nic": "198829104422",
+      "gender": "Male",
+      "city": "Colombo 03",
+      "practiceArea": "Commercial & Corporate Law",
+      "expertise": [
+        "Cross-Border Mergers",
+        "Commercial Arbitration",
+        "Banking Litigation"
+      ],
+      "membershipTier": "Ordinary",
+      "status": "Active",
+      "registeredDate": "18 Mar, 2019",
+      "membershipStartDate": "01 Jan, 2026",
+      "membershipEndDate": "31 Dec, 2026",
+      "avatarUrl": "/images/team/naveen-shanaka.jpg"
+    },
+    {
+      "id": 3,
+      "sc_en": "SC/EN/2021/3491",
+      "ba_en": "BASL/14981",
+      "name": "Wardani Karunaratne",
+      "email": "wardani.k@chambers.lk",
+      "mobile": "+94 76 591 7189",
+      "nic": "199468201944",
+      "gender": "Female",
+      "city": "Nugegoda",
+      "practiceArea": "Intellectual Property & IT Law",
+      "expertise": [
+        "Copyright Law",
+        "Fintech Regulation",
+        "Cybercrime Defense"
+      ],
+      "membershipTier": "Ordinary",
+      "status": "Active",
+      "registeredDate": "04 May, 2022",
+      "membershipStartDate": "15 Apr, 2025",
+      "membershipEndDate": "14 Apr, 2026",
+      "avatarUrl": "/images/team/wardani-karunaratne.jpg"
+    },
+    {
+      "id": 4,
+      "sc_en": "SC/EN/2023/4102",
+      "ba_en": "BASL/16290",
+      "name": "Kunchana Samarakoon",
+      "email": "kunchana.samarakoon@gmail.com",
+      "mobile": "+94 70 334 1189",
+      "nic": "199718402219",
+      "gender": "Male",
+      "city": "Dehiwala",
+      "practiceArea": "Criminal Defense & Trial Advocacy",
+      "expertise": [
+        "White Collar Crimes",
+        "High Court Trials",
+        "Forensic Evidence"
+      ],
+      "membershipTier": "None",
+      "status": "Inactive",
+      "registeredDate": "10 Oct, 2025",
+      "membershipStartDate": "-",
+      "membershipEndDate": "-",
+      "avatarUrl": "/images/team/kunchana-samarakoon.jpg"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Annual Law Conference 2026: The Digital Frontiers of Jurisprudence",
+      "category": "Annual Symposium",
+      "venue": "Main Auditorium, Superior Courts Complex",
+      "location": "Hulftsdorp, Colombo 12",
+      "startDateTime": "2026-11-20T09:00:00",
+      "endDateTime": "2026-11-20T17:30:00",
+      "price": 3500,
+      "status": "Upcoming",
+      "description": "The premier gathering of Sri Lanka's Supreme Court bar, exploring AI evidence admissibility, cross-border commercial dispute enforcement, and constitutional protection in the electronic age.",
+      "posterUrl": "/images/events/cls-actual-event.jpg",
+      "speakers": [
+        "Hon. Chief Justice of Sri Lanka",
+        "President of the Court of Appeal",
+        "Senior Counsel Panel"
+      ],
+      "attendeeCount": 184
+    },
+    {
+      "id": 2,
+      "title": "Masterclass: Appellate Brief Crafting & Oral Argumentation",
+      "category": "Continuing Legal Education",
+      "venue": "Law Society Auditorium",
+      "location": "Hulftsdorp St, Colombo 12",
+      "startDateTime": "2026-11-05T14:00:00",
+      "endDateTime": "2026-11-05T18:00:00",
+      "price": 1500,
+      "status": "Upcoming",
+      "description": "A focused, interactive training session designed for junior and mid-career counsel on preparing concise written submissions and handling court questioning during appellate hearings.",
+      "posterUrl": "/images/sri-lanka/hero-old-parliament.jpg",
+      "speakers": [
+        "President's Counsel Faculty"
+      ],
+      "attendeeCount": 96
+    },
+    {
+      "id": 3,
+      "title": "Symposium on Fundamental Rights & Public Interest Litigation",
+      "category": "Constitutional Law",
+      "venue": "BMICH Committee Lounge",
+      "location": "Bauddhaloka Mawatha, Colombo 07",
+      "startDateTime": "2026-10-28T09:30:00",
+      "endDateTime": "2026-10-28T16:00:00",
+      "price": 2500,
+      "status": "Upcoming",
+      "description": "Analyzing recent milestone judgments under Article 126 of the Constitution, environmental justice petitions, and remedies for regulatory inaction.",
+      "posterUrl": "/images/sri-lanka/independence-hall.jpg",
+      "speakers": [
+        "Eminent Human Rights Jurists"
+      ],
+      "attendeeCount": 140
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Supreme Court Ceremonial Enclave Sitting 2026",
+      "category": "Ceremonial Sittings",
+      "imageUrl": "/images/sri-lanka/colombo-colonnade.jpg",
+      "thumbnailUrl": "/images/sri-lanka/colombo-colonnade.jpg",
+      "date": "15 Oct, 2026",
+      "venue": "Supreme Court of Sri Lanka, Hulftsdorp",
+      "description": "Full bench ceremonial sitting welcoming foreign jurists and honorary bench members.",
+      "featured": true,
+      "photographer": "Chambers Press Bureau",
+      "id": 1791994784003
+    },
+    {
+      "id": 1,
+      "title": "50th Golden Jubilee Commemoration & Law Conference",
+      "category": "National Conference",
+      "imageUrl": "/images/events/cls-actual-event.jpg",
+      "date": "12 Oct, 2025",
+      "venue": "Main Auditorium, Superior Courts Complex, Hulftsdorp",
+      "description": "Inaugural plenary session addressed by the Supreme Court bench and executive officers of the Colombo Law Society.",
+      "featured": true,
+      "photographer": "Official Secretariat Media",
+      "eventId": 1
+    },
+    {
+      "id": 2,
+      "title": "Opening of the Legal Year Ceremonial Assembly",
+      "category": "Ceremonial Sittings",
+      "imageUrl": "/images/sri-lanka/hero-old-parliament.jpg",
+      "date": "15 Jan, 2026",
+      "venue": "Ceremonial Courtroom & Hulftsdorp Forecourt",
+      "description": "Annual traditional procession of the Colombo Bar welcoming new practitioners and honoring senior advocates of over 50 years standing.",
+      "featured": true,
+      "photographer": "Chambers Archive"
+    },
+    {
+      "id": 3,
+      "title": "Annual Law Dinner & Bar Excellence Awards Gala",
+      "category": "Annual Law Dinner",
+      "imageUrl": "/images/sri-lanka/colombo-civic-palace.jpg",
+      "date": "28 Nov, 2025",
+      "venue": "The Grand Ballroom, Galle Face Hotel, Colombo",
+      "description": "Gala evening celebrating bar milestones with attendance of judicial officers, legal luminaries, and foreign delegates.",
+      "featured": true,
+      "photographer": "Colombo Society Media"
+    },
+    {
+      "id": 4,
+      "title": "Constitution Day Colloquium & Public Law Review",
+      "category": "CLE Masterclass",
+      "imageUrl": "/images/sri-lanka/independence-hall.jpg",
+      "date": "04 Feb, 2026",
+      "venue": "Independence Memorial Hall, Colombo 07",
+      "description": "Symposium on constitutional guarantees, fundamental rights adjudication, and judicial independence in South Asia.",
+      "featured": false,
+      "photographer": "Constitutional Law Forum"
+    },
+    {
+      "id": 5,
+      "title": "Junior Bar Robing & Professional Induction Seminar",
+      "category": "CLE Masterclass",
+      "imageUrl": "/images/sri-lanka/colombo-colonnade.jpg",
+      "date": "22 Mar, 2026",
+      "venue": "Law Society Auditorium, Hulftsdorp",
+      "description": "Intensive advocacy workshop and ethics induction for newly admitted Attorneys-at-Law entering Colombo chambers.",
+      "featured": false,
+      "photographer": "Junior Bar Committee",
+      "eventId": 2
+    },
+    {
+      "id": 6,
+      "title": "Maritime & Commercial Arbitration International Forum",
+      "category": "National Conference",
+      "imageUrl": "/images/sri-lanka/colombo-skyline.jpg",
+      "date": "18 May, 2026",
+      "venue": "Colombo International Financial Centre Auditorium",
+      "description": "Deliberations on admiralty law enforcement, cross-border corporate arbitration, and international commercial mediation rules.",
+      "featured": true,
+      "photographer": "Commercial Bar Bureau"
+    },
+    {
+      "id": 7,
+      "title": "Executive Committee Annual Induction & Swearing-In",
+      "category": "Ceremonial Sittings",
+      "imageUrl": "/images/team/sandun-nagahawatta.jpg",
+      "date": "05 Apr, 2026",
+      "venue": "Superior Courts Enclave, Colombo 12",
+      "description": "President Sandun Nagahawatta and the 2026/2027 Executive Committee taking official society charge.",
+      "featured": false,
+      "photographer": "Secretariat Records"
+    },
+    {
+      "id": 8,
+      "title": "Golden Jubilee Charter Commemoration Ceremony",
+      "category": "National Conference",
+      "imageUrl": "/images/branding/cls-50th-anniversary.jpg",
+      "date": "1975 – 2025 Celebration",
+      "venue": "Hulftsdorp Judicial Hub, Colombo",
+      "description": "Celebrating 50 years as the premier branch association of the Bar Association of Sri Lanka.",
+      "featured": true,
+      "photographer": "Charter Committee"
+    }
+  ],
+  "broadcasts": [
+    {
+      "id": 101,
+      "title": "Notice of Annual Ordinary Membership Renewal 2026/2027",
+      "content": "Dear Member, This is an official notice that Ordinary Memberships expire on 31 Dec. Kindly complete renewal via the member portal to maintain library & bar privileges.",
+      "channel": "BOTH",
+      "targetTier": "Ordinary Member",
+      "recipientsCount": 428,
+      "sentAt": "10 Oct, 2026 08:30 AM",
+      "status": "Delivered"
+    },
+    {
+      "id": 102,
+      "title": "Urgent: Court Sittings Schedule During Supreme Court Recess",
+      "content": "Notice from the Registrar regarding motion hearings and vacation court rosters available now on the CLS bulletin.",
+      "channel": "EMAIL",
+      "targetTier": "All Members",
+      "recipientsCount": 890,
+      "sentAt": "04 Oct, 2026 11:15 AM",
+      "status": "Delivered"
+    },
+    {
+      "id": 103,
+      "title": "Invitation: Annual Law Dinner & Junior Bar Welcome",
+      "content": "The Colombo Law Society cordially invites members to the 2026 Annual Law Dinner at the Galle Face Hotel.",
+      "channel": "SMS",
+      "targetTier": "All Members",
+      "recipientsCount": 750,
+      "sentAt": "28 Sep, 2026 16:45 PM",
+      "status": "Delivered"
+    }
+  ],
+  "committee": [
+    {
+      "id": 1,
+      "name": "Mr. Sandun Nagahawatta",
+      "title": "President",
+      "credentials": "Attorney-at-Law",
+      "court": "Supreme Court Bar & Hulftsdorp",
+      "image": "/images/team/sandun-nagahawatta.jpg",
+      "bio": "Leading the Colombo Law Society with a vision of judicial modernization, advocate welfare, and constitutional independence of the Bar.",
+      "email": "president@colombolawsociety.com",
+      "phone": "+94 77 123 4567"
+    },
+    {
+      "id": 2,
+      "name": "Mr. Lahiru Welgama",
+      "title": "Secretary",
+      "credentials": "Attorney-at-Law, LL.B (Hons)",
+      "court": "Superior Courts Complex",
+      "image": "/images/team/lahiru-walgama.jpg",
+      "bio": "Coordinating society administration, registrar liaisons, continuing legal education symposia, and Bar Association relations.",
+      "email": "secretary@colombolawsociety.com",
+      "phone": "+94 71 892 3341"
+    },
+    {
+      "id": 3,
+      "name": "Ms. Gamali Amarathunga",
+      "title": "Treasurer",
+      "credentials": "Attorney-at-Law",
+      "court": "Colombo Bar & Commercial Benches",
+      "image": "/images/team/gamali-amarathunga.jpg",
+      "bio": "Managing the Society's fiscal governance, advocate benevolent trusts, member relief endowments, and annual subscriptions.",
+      "email": "treasurer@colombolawsociety.com",
+      "phone": "+94 77 443 2190"
+    },
+    {
+      "id": 4,
+      "name": "Mr. Dilum Jayanath",
+      "title": "Deputy President",
+      "credentials": "Attorney-at-Law",
+      "court": "Appellate & Commercial Courts",
+      "image": "/images/team/dilum-jayanath.jpg",
+      "bio": "Overseeing professional standards, courtroom infrastructure initiatives, and judicial service working committee dialogues.",
+      "email": "deputy.president@colombolawsociety.com",
+      "phone": "+94 76 554 8192"
+    },
+    {
+      "id": 5,
+      "name": "Ms. Wardani Karunaratne",
+      "title": "Assistant Secretary",
+      "credentials": "Attorney-at-Law",
+      "court": "Commercial High Court & IP Tribunals",
+      "image": "/images/team/wardani-karunaratne.jpg",
+      "bio": "Directing junior bar mentorship programs, publications, member communication bulletins, and legal research archives.",
+      "email": "asst.secretary@colombolawsociety.com",
+      "phone": "+94 77 912 3456"
+    },
+    {
+      "id": 6,
+      "name": "Mr. Kunchana Samarakoon",
+      "title": "Assistant Treasurer",
+      "credentials": "Attorney-at-Law",
+      "court": "Trial Advocacy & High Courts",
+      "image": "/images/team/kunchana-samarakoon.jpg",
+      "bio": "Administering member dues reconciliation, conference ticket logistics, and library acquisition endowments.",
+      "email": "asst.treasurer@colombolawsociety.com",
+      "phone": "+94 70 334 1189"
+    },
+    {
+      "id": 7,
+      "name": "Ms. Vindika Subasinghe",
+      "title": "Immediate Past President",
+      "credentials": "Attorney-at-Law, LL.M",
+      "court": "Supreme Court Bar",
+      "image": "/images/team/vindika-subasinghe.jpg",
+      "bio": "Distinguished past president providing senior counsel on constitutional governance, BASL liaison, and Bar welfare.",
+      "email": "vindika.subasinghe@colombolawsociety.com",
+      "phone": "+94 71 223 8899"
+    },
+    {
+      "id": 8,
+      "name": "Mr. Naveen Shanaka",
+      "title": "Past Secretary & Senior Council Member",
+      "credentials": "Attorney-at-Law",
+      "court": "Commercial High Court",
+      "image": "/images/team/naveen-shanaka.jpg",
+      "bio": "Former Secretary and dedicated senior council member directing arbitration symposia and practitioner support.",
+      "email": "naveen.shanaka@colombolawsociety.com",
+      "phone": "+94 71 892 3341"
+    }
+  ],
+  "pastPresidents": [
+    {
+      "year": "2024",
+      "name": "Ms. Vindika Subasinghe",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2024",
+      "highlight": "Digital transformation of the Colombo Law Society & 50th Anniversary initiatives.",
+      "image": "/images/team/vindika-subasinghe.jpg"
+    },
+    {
+      "year": "2022-2023",
+      "name": "Mr. Sanjeewa Dasanayake",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2022 – 2023",
+      "highlight": "Strengthening bar welfare endowments and court accessibility."
+    },
+    {
+      "year": "2020-2021",
+      "name": "Mr. Vijaya Gamage",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2020 – 2021",
+      "highlight": "Guided the Bar through pandemic court closures and remote hearings implementation."
+    },
+    {
+      "year": "2019",
+      "name": "Mr. Tivanka Ekaratne",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2019",
+      "highlight": "Championed junior bar training and appellate masterclasses."
+    },
+    {
+      "year": "2018",
+      "name": "Mr. Jagath Wickramanayake",
+      "credentials": "President's Counsel",
+      "tenure": "2018",
+      "highlight": "Eminent appellate advocate and constitutional law leader."
+    },
+    {
+      "year": "2017",
+      "name": "Mr. Kaushalya Nawaratne",
+      "credentials": "President's Counsel",
+      "tenure": "2017",
+      "highlight": "Later elected President of the Bar Association of Sri Lanka (BASL)."
+    },
+    {
+      "year": "2015-2017",
+      "name": "Mr. Athula Perera",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2015 – 2017",
+      "highlight": "Two-term president leading Hulftsdorp court complex infrastructure improvements."
+    },
+    {
+      "year": "2013-2014",
+      "name": "Mr. Amal Randeniya",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2013 – 2014",
+      "highlight": "Expanded continuing legal education seminars for corporate practitioners."
+    },
+    {
+      "year": "2012",
+      "name": "Mr. Binara Gunasekera",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2012",
+      "highlight": "Reformed the Colombo Law Society Constitution and working committee structure."
+    },
+    {
+      "year": "2010-2011",
+      "name": "Mr. Kamal Goonesinghe",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2010 – 2011",
+      "highlight": "Established the annual National Law Symposium."
+    },
+    {
+      "year": "2008-2009",
+      "name": "Mr. Janaprith Fernando",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2008 – 2009",
+      "highlight": "Fostered international bar associations liaison and human rights awareness."
+    },
+    {
+      "year": "2007",
+      "name": "Mr. Upul Jayasuriya",
+      "credentials": "President's Counsel",
+      "tenure": "2007",
+      "highlight": "Prominent defender of the independence of the Judiciary and later BASL President."
+    },
+    {
+      "year": "2006",
+      "name": "Mr. Mahinda B.K. Lokuge",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2006",
+      "highlight": "Spearheaded advocate welfare funds and judicial service commission liaisons."
+    },
+    {
+      "year": "2005",
+      "name": "Mr. K.S. Ratnavale",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2005",
+      "highlight": "Eminent fundamental rights practitioner and civil liberties advocate."
+    },
+    {
+      "year": "2003-2004",
+      "name": "Mr. Palitha Kumarasinghe",
+      "credentials": "President's Counsel",
+      "tenure": "2003 – 2004",
+      "highlight": "Distinguished appellate jurist and legal scholar."
+    },
+    {
+      "year": "2002",
+      "name": "Mr. Gamini Prematilleke",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2002",
+      "highlight": "Strengthened Colombo Bar Library collections and research support."
+    },
+    {
+      "year": "2000-2001",
+      "name": "Mr. S. Bagirathan",
+      "credentials": "Attorney-at-Law",
+      "tenure": "2000 – 2001",
+      "highlight": "Turn of the millennium legal reforms and electronic court reporting advocacy."
+    },
+    {
+      "year": "1998-1999",
+      "name": "Mr. Nihal Pieris",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1998 – 1999",
+      "highlight": "Pioneered early advocate computerization and court archive programs."
+    },
+    {
+      "year": "1997",
+      "name": "Mrs. Anoma Goonetilleke",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1997",
+      "highlight": "Eminent female bar leader championing gender equality in legal practice."
+    },
+    {
+      "year": "1996",
+      "name": "Mr. K. Jayasekera",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1996",
+      "highlight": "Advanced legal education and trial practice workshops."
+    },
+    {
+      "year": "1995",
+      "name": "Mr. Ajantha Athukorale",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1995",
+      "highlight": "Former Secretary and dedicated champion of practitioner welfare."
+    },
+    {
+      "year": "1993-1994",
+      "name": "Mr. Gamani Jayasinghe",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1993 – 1994",
+      "highlight": "Presided over the expansion of the Hulftsdorp Bar Library."
+    },
+    {
+      "year": "1991-1992",
+      "name": "Mr. G.P. Mahinkanda",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1991 – 1992",
+      "highlight": "Honoris Causa recipient and legendary Bar stalwart."
+    },
+    {
+      "year": "1989-1990",
+      "name": "Mr. W. Dayaratne",
+      "credentials": "President's Counsel",
+      "tenure": "1989 – 1990",
+      "highlight": "Eminent legal luminary and later BASL President."
+    },
+    {
+      "year": "1988",
+      "name": "Mr. Palitha Mathew",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1988",
+      "highlight": "Dedicated advocate for court administration reform."
+    },
+    {
+      "year": "1986-1987",
+      "name": "Mrs. Lena Fernando",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1986 – 1987",
+      "highlight": "Historic first female President of the Colombo Law Society."
+    },
+    {
+      "year": "1985",
+      "name": "Mr. K. Balapatabendi",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1985",
+      "highlight": "High Court trial practitioner and defender of civil justice."
+    },
+    {
+      "year": "1984",
+      "name": "Mr. R.B. Seneviratne",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1984",
+      "highlight": "Fortified the working committee framework of the Society."
+    },
+    {
+      "year": "1979-1983",
+      "name": "Mr. Siva Rajaratnam",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1979 – 1983",
+      "highlight": "Longest-serving early president across four vital formative years."
+    },
+    {
+      "year": "1977-1979",
+      "name": "Mr. Hermon J.C. Perera",
+      "credentials": "Attorney-at-Law",
+      "tenure": "1977 – 1979",
+      "highlight": "Consolidated the Society's membership across the Greater Colombo district."
+    },
+    {
+      "year": "1975-1976",
+      "name": "Mr. Nimal Senanayake",
+      "credentials": "President's Counsel",
+      "tenure": "1975 – 1976",
+      "highlight": "Founding President of the Colombo Law Society; titan of the Sri Lankan Bar."
+    }
+  ],
+  "settings": {
+    "name": "Colombo Law Society",
+    "tagline": "Premier & Largest Branch Association of the Bar Association of Sri Lanka",
+    "establishedYear": 1890,
+    "charterYear": 1975,
+    "address": "129, Hulftsdorp Street, Colombo 12, Sri Lanka",
+    "email": "info@colombolawsociety.com",
+    "phone": "+94 71 192 3531",
+    "membershipFeeOrdinary": 2000,
+    "membershipFeeLife": 5000,
+    "totalMembersCount": 1042,
+    "superiorCourtEnclave": "Supreme Court & Superior Benches, Hulftsdorp"
+  }
+}

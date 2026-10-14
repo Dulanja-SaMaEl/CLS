@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #EDEDED;
+  --sand: #E7E0D3;
+  --bronze: #C5A059;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #C5A059;
+  selection-color: #0A0A0A;
+}
+
+::selection {
+  background-color: #C5A059;
+  color: #0A0A0A;
+}
+
+/* Custom Typography Utilities */
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.font-serif-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Hairline borders matching editorial aesthetic */
+.border-hairline-dark {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.border-hairline-light {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
