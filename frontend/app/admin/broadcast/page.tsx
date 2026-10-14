@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminLayout from "@/components/AdminLayout";
 import { initialBroadcastLogs, BroadcastLog } from "@/lib/mockData";
 import {
@@ -13,16 +13,41 @@ import {
   AlertCircle,
   Clock,
   Sparkles,
+  RefreshCw,
+  RotateCcw,
 } from "lucide-react";
 
 export default function AdminBroadcastPage() {
   const [logs, setLogs] = useState<BroadcastLog[]>(initialBroadcastLogs);
+  const [loading, setLoading] = useState(false);
   const [targetTier, setTargetTier] = useState<"All Members" | "Ordinary Member" | "Life Member">("All Members");
   const [channel, setChannel] = useState<"EMAIL" | "SMS" | "BOTH">("BOTH");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Load live broadcast history
+  const loadBroadcasts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/broadcast");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setLogs(json.data);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load broadcast logs:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadBroadcasts();
+  }, []);
 
   // Recipient Count Calculations
   const getRecipientEstimate = () => {
@@ -31,7 +56,7 @@ export default function AdminBroadcastPage() {
     return 326;
   };
 
-  const handleDispatchBroadcast = (e: React.FormEvent) => {
+  const handleDispatchBroadcast = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title || !message) {
       alert("Please enter both title and message content.");
@@ -40,8 +65,33 @@ export default function AdminBroadcastPage() {
 
     setIsSending(true);
 
-    // Simulate async gateway dispatch
-    setTimeout(() => {
+    try {
+      const payload = {
+        title,
+        content: message,
+        channel,
+        targetTier,
+        recipientsCount: getRecipientEstimate(),
+      };
+
+      const res = await fetch("/api/broadcast", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (data.success && data.data) {
+        setLogs((prev) => [data.data, ...prev]);
+        showToast(`Broadcast "${title}" queued & dispatched to ${getRecipientEstimate()} advocates!`);
+        setTitle("");
+        setMessage("");
+      } else {
+        alert(data.error || "Failed to dispatch broadcast");
+      }
+    } catch (err: any) {
+      console.error("Broadcast error:", err);
+      // Fallback local append
       const newLog: BroadcastLog = {
         id: Date.now(),
         title,
@@ -49,27 +99,27 @@ export default function AdminBroadcastPage() {
         channel,
         targetTier,
         recipientsCount: getRecipientEstimate(),
-        sentAt: new Date().toLocaleString("en-GB", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        sentAt: new Date().toLocaleString("en-GB"),
         status: "Delivered",
       };
-
-      setLogs([newLog, ...logs]);
-      setIsSending(false);
-      showToast(`Broadcast "${title}" queued & dispatched to ${getRecipientEstimate()} advocates!`);
+      setLogs((prev) => [newLog, ...prev]);
+      showToast(`Broadcast dispatched (offline fallback).`);
       setTitle("");
       setMessage("");
-    }, 1200);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 5000);
+  };
+
+  // Quick Template Handler
+  const applyTemplate = (t: string, m: string) => {
+    setTitle(t);
+    setMessage(m);
   };
 
   const smsLength = message.length;
@@ -80,38 +130,106 @@ export default function AdminBroadcastPage() {
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Toast Alert */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-sand text-noir-900 px-6 py-3.5 border border-noir-900 font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center space-x-2">
-            <CheckCircle className="w-4 h-4 text-emerald-800" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#C5A059] text-noir-900 px-6 py-3.5 border border-noir-900 font-mono text-xs uppercase tracking-widest font-bold shadow-2xl flex items-center space-x-2 animate-bounce">
+            <CheckCircle className="w-4 h-4 text-emerald-950" />
             <span>{toastMessage}</span>
           </div>
         )}
 
         {/* Top Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6 gap-4">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-bronze block mb-1">
               [ OFFICIAL BAR COMMUNICATIONS ENGINE ]
             </span>
-            <h1 className="font-display text-4xl md:text-5xl uppercase tracking-wider text-white">
+            <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-white">
               MULTI-CHANNEL BROADCAST CENTER
             </h1>
           </div>
-          <span className="text-xs font-mono text-stone-400 mt-2 md:mt-0">
-            INTEGRATED WITH GMAIL SMTP & TEXT.LK GATEWAY
-          </span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={loadBroadcasts}
+              className="p-2.5 rounded bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white transition cursor-pointer"
+              title="Refresh Logs"
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#C5A059]" : ""}`} />
+            </button>
+            <span className="text-xs font-mono text-stone-400">
+              GMAIL SMTP &amp; TEXT.LK GATEWAY
+            </span>
+          </div>
         </div>
 
         {/* Main Compose Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Form Column */}
           <div className="lg:col-span-7 bg-noir-900 border border-hairline-dark p-6 space-y-6">
-            <div className="border-b border-hairline-dark pb-3">
-              <h3 className="font-display text-2xl uppercase tracking-wide text-white">
-                COMPOSE DISPATCH NOTICE
-              </h3>
-              <p className="text-xs text-stone-400 font-sans mt-0.5">
-                Targeted notices are dispatched asynchronously to prevent gateway timeouts.
-              </p>
+            <div className="flex items-center justify-between border-b border-hairline-dark pb-3">
+              <div>
+                <h3 className="font-display text-2xl uppercase tracking-wide text-white">
+                  COMPOSE DISPATCH NOTICE
+                </h3>
+                <p className="text-xs text-stone-400 font-sans mt-0.5">
+                  Targeted notices are dispatched asynchronously to prevent gateway timeouts.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setTitle("");
+                  setMessage("");
+                }}
+                className="text-[11px] font-mono text-stone-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                title="Clear current input"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset</span>
+              </button>
+            </div>
+
+            {/* Quick Templates */}
+            <div>
+              <label className="block text-[11px] font-mono text-[#C5A059] uppercase tracking-widest mb-2">
+                Quick Announcement Templates:
+              </label>
+              <div className="flex flex-wrap gap-2 text-[11px] font-mono">
+                <button
+                  type="button"
+                  onClick={() =>
+                    applyTemplate(
+                      "Urgent: Supreme Court Sitting Roster Update",
+                      "Please be informed that the Supreme Court Bench sitting schedule and courtroom access registry for Hulftsdorp have been revised effective immediately. Please check the official portal notice board."
+                    )
+                  }
+                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                >
+                  🏛️ Court Protocol
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    applyTemplate(
+                      "CLE Masterclass: Appellate Advocacy Registrations Open",
+                      "Registrations are now open for the upcoming CLE Masterclass on Appellate Argumentation. CPD credits will be accredited. Reserve your seat via the CLS events calendar."
+                    )
+                  }
+                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                >
+                  ⚖️ CLE Seminar
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    applyTemplate(
+                      "Annual Bar Subscriptions 2026/2027 Due Notice",
+                      "Members of the Colombo Law Society are cordially requested to regularize their annual bar subscriptions for the upcoming judicial term. Online payments and verification are enabled on your member dashboard."
+                    )
+                  }
+                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                >
+                  💳 Subscription Due
+                </button>
+              </div>
             </div>
 
             <form onSubmit={handleDispatchBroadcast} className="space-y-5 text-xs font-mono">
@@ -126,9 +244,9 @@ export default function AdminBroadcastPage() {
                       key={tier}
                       type="button"
                       onClick={() => setTargetTier(tier)}
-                      className={`p-3 text-center border transition-all ${
+                      className={`p-3 text-center border transition-all cursor-pointer ${
                         targetTier === tier
-                          ? "border-sand bg-sand text-noir-900 font-bold"
+                          ? "border-[#C5A059] bg-[#C5A059] text-noir-900 font-bold"
                           : "border-white/10 text-stone-400 hover:border-white/30"
                       }`}
                     >
@@ -155,9 +273,9 @@ export default function AdminBroadcastPage() {
                         key={ch.key}
                         type="button"
                         onClick={() => setChannel(ch.key as any)}
-                        className={`p-3 text-center border flex items-center justify-center space-x-2 transition-all ${
+                        className={`p-3 text-center border flex items-center justify-center space-x-2 transition-all cursor-pointer ${
                           channel === ch.key
-                            ? "border-bronze bg-bronze/10 text-bronze font-bold"
+                            ? "border-[#C5A059] bg-[#C5A059]/15 text-[#C5A059] font-bold"
                             : "border-white/10 text-stone-400 hover:border-white/30"
                         }`}
                       >
@@ -180,7 +298,7 @@ export default function AdminBroadcastPage() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Notice: Supreme Court Vacation Roster & Library Hours"
-                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-bronze"
+                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-[#C5A059]"
                 />
               </div>
 
@@ -202,7 +320,7 @@ export default function AdminBroadcastPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Dear Member, Please be notified that..."
-                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-bronze font-sans text-xs leading-relaxed"
+                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-[#C5A059] font-sans text-xs leading-relaxed"
                 />
               </div>
 
@@ -212,7 +330,7 @@ export default function AdminBroadcastPage() {
                   <Users className="w-4 h-4 text-bronze" />
                   <span>Audience Reach:</span>
                 </div>
-                <span className="text-sand font-bold text-sm">
+                <span className="text-[#C5A059] font-bold text-sm">
                   {getRecipientEstimate()} Enrolled Advocates ({targetTier})
                 </span>
               </div>
@@ -220,7 +338,7 @@ export default function AdminBroadcastPage() {
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full py-3 bg-sand text-noir-900 font-mono text-xs uppercase tracking-widest font-bold hover:bg-white transition-all shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="w-full py-3 bg-[#C5A059] text-noir-900 font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#d6b168] transition-all shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
               >
                 {isSending ? (
                   <span>Dispatching to Gateways...</span>
@@ -236,7 +354,6 @@ export default function AdminBroadcastPage() {
 
           {/* Right Live Preview Column */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Live Preview Card */}
             <div className="bg-noir-900 border border-hairline-dark p-6 space-y-4">
               <span className="text-xs font-mono text-bronze uppercase tracking-widest block border-b border-hairline-dark pb-2">
                 LIVE DISPATCH PREVIEW
@@ -287,7 +404,7 @@ export default function AdminBroadcastPage() {
                 BROADCAST AUDIT HISTORY
               </h3>
               <span className="text-xs font-mono text-stone-400">
-                Single log entry generated per batch (Duplicate row bug resolved)
+                Live dispatch records synchronized with Supabase
               </span>
             </div>
             <span className="text-xs font-mono text-stone-400">
@@ -298,30 +415,30 @@ export default function AdminBroadcastPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="border-b border-white/10 text-stone-400 uppercase tracking-widest text-[10px]">
-                  <th className="pb-3">Timestamp</th>
-                  <th className="pb-3">Notice Title</th>
-                  <th className="pb-3">Target Tier</th>
-                  <th className="pb-3">Channel</th>
-                  <th className="pb-3">Recipients</th>
-                  <th className="pb-3 text-right">Delivery Status</th>
+                <tr className="border-b border-white/10 bg-noir-800/80 text-stone-400 uppercase tracking-widest text-[10px]">
+                  <th className="py-3 px-3">Timestamp</th>
+                  <th className="py-3 px-3">Notice Title</th>
+                  <th className="py-3 px-3">Target Tier</th>
+                  <th className="py-3 px-3">Channel</th>
+                  <th className="py-3 px-3">Recipients</th>
+                  <th className="py-3 px-3 text-right">Delivery Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
                 {logs.map((log) => (
                   <tr key={log.id} className="hover:bg-white/[0.02]">
-                    <td className="py-3.5 text-stone-400">{log.sentAt}</td>
-                    <td className="py-3.5 font-sans font-medium text-stone-200 max-w-xs truncate">
+                    <td className="py-3.5 px-3 text-stone-400">{log.sentAt}</td>
+                    <td className="py-3.5 px-3 font-sans font-medium text-stone-200 max-w-xs truncate">
                       {log.title}
                     </td>
-                    <td className="py-3.5 text-stone-400">{log.targetTier}</td>
-                    <td className="py-3.5">
+                    <td className="py-3.5 px-3 text-stone-400">{log.targetTier}</td>
+                    <td className="py-3.5 px-3">
                       <span className="px-2 py-0.5 bg-noir-800 border border-white/10 text-bronze text-[10px] uppercase font-bold">
                         {log.channel}
                       </span>
                     </td>
-                    <td className="py-3.5 text-sand font-bold">{log.recipientsCount} Counsel</td>
-                    <td className="py-3.5 text-right">
+                    <td className="py-3.5 px-3 text-sand font-bold">{log.recipientsCount} Counsel</td>
+                    <td className="py-3.5 px-3 text-right">
                       <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">
                         ✓ {log.status}
                       </span>

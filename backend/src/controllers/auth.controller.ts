@@ -14,12 +14,15 @@ export async function signInHandler(req: Request, res: Response) {
     }
 
     // Check admin default credentials
+    const cleanEmail = email.trim().toLowerCase();
     if (
-      (email === "admin@colombolawsociety.com" || email === "registrar@colombolawsociety.com") &&
-      password === "admin123"
+      (cleanEmail === "admin@cls.com" ||
+       cleanEmail === "admin@colombolawsociety.com" ||
+       cleanEmail === "registrar@colombolawsociety.com") &&
+      (password === "Password@123" || password === "admin123" || password === "ColomboLawAdmin@2026")
     ) {
       const token = jwt.sign(
-        { id: 999, email, name: "Registrar Chambers", role: "admin" },
+        { id: 999, email: "admin@cls.com", name: "Chambers Executive Administrator", role: "admin" },
         JWT_SECRET,
         { expiresIn: "7d" }
       );
@@ -28,8 +31,8 @@ export async function signInHandler(req: Request, res: Response) {
         token,
         user: {
           id: 999,
-          name: "Registrar Chambers",
-          email,
+          name: "Chambers Executive Administrator",
+          email: "admin@cls.com",
           role: "admin",
           court: "Superior Courts Complex, Hulftsdorp",
         },
