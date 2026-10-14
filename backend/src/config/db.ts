@@ -2,6 +2,8 @@ import { Pool } from "pg";
 import fs from "fs";
 import path from "path";
 
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+
 // Initialize PostgreSQL Pool if DATABASE_URL is present
 let pool: Pool | null = null;
 
@@ -15,7 +17,20 @@ if (process.env.DATABASE_URL) {
   console.log("⚠️ DATABASE_URL not set; using local persistent JSON database fallback.");
 }
 
-export { pool };
+// Initialize Supabase JS Client if SUPABASE_URL is present
+let supabase: SupabaseClient | null = null;
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_ANON_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (supabaseUrl && supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+  console.log("⚡ Supabase JS Client initialized for:", supabaseUrl);
+}
+
+export { pool, supabase };
 
 // ============================================================================
 // DATA TYPES
