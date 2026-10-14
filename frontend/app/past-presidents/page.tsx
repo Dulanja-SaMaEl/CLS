@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,12 +19,30 @@ import {
 } from "lucide-react";
 
 export default function PastPresidentsPage() {
+  const [presidentsList, setPresidentsList] = useState<PastPresident[]>(pastPresidents);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDecade, setSelectedDecade] = useState("All");
 
+  useEffect(() => {
+    async function loadPastPresidents() {
+      try {
+        const res = await fetch("/api/past-presidents");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+            setPresidentsList(json.data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load past presidents:", err);
+      }
+    }
+    loadPastPresidents();
+  }, []);
+
   const decades = ["All", "2020s", "2010s", "2000s", "1990s", "1975-1980s"];
 
-  const filteredPresidents = pastPresidents.filter((pres) => {
+  const filteredPresidents = presidentsList.filter((pres) => {
     const matchesSearch =
       pres.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       pres.year.toLowerCase().includes(searchQuery.toLowerCase()) ||

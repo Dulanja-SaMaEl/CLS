@@ -17,13 +17,18 @@ if (process.env.DATABASE_URL) {
   console.log("⚠️ DATABASE_URL not set; using local persistent JSON database fallback.");
 }
 
-// Initialize Supabase JS Client if SUPABASE_URL is present
+// Initialize Supabase JS Client
 let supabase: SupabaseClient | null = null;
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseUrl =
+  process.env.SUPABASE_URL ||
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://soxycakyzkatpfkpcifm.supabase.co";
 const supabaseKey =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
   process.env.SUPABASE_ANON_KEY ||
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNveHljYWt5emthdHBma3BjaWZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5OTI3MzYsImV4cCI6MjEwNzU2ODczNn0.la8TWGQljSixAAFjdti-3GLriIjZ0qjomCRe1HJwX2c";
 
 if (supabaseUrl && supabaseKey) {
   supabase = createClient(supabaseUrl, supabaseKey);
@@ -479,6 +484,107 @@ function saveLocalDB(db: LocalDB) {
 }
 
 // ============================================================================
+// SUPABASE / POSTGRES MAPPERS
+// ============================================================================
+function mapSupabaseEvent(row: any): CLSEvent {
+  return {
+    id: row.id,
+    title: row.title,
+    category: row.category,
+    venue: row.venue,
+    location: row.location || "Hulftsdorp, Colombo 12",
+    startDateTime: row.start_date_time || row.startDateTime,
+    endDateTime: row.end_date_time || row.endDateTime || row.start_date_time || row.startDateTime,
+    price: Number(row.price || 0),
+    status: row.status || "Upcoming",
+    description: row.description || "",
+    posterUrl: row.poster_url || row.posterUrl || "/images/events/cls-actual-event.jpg",
+    speakers: row.speakers || [],
+    attendeeCount: row.attendee_count ?? row.attendeeCount ?? 0,
+    isMeeting: Boolean(row.is_meeting ?? row.isMeeting),
+    meetingLink: row.meeting_link ?? row.meetingLink ?? "",
+    agenda: row.agenda || [],
+    color: row.color || "#C5A059",
+  };
+}
+
+function mapSupabaseGallery(row: any): GalleryImage {
+  return {
+    id: row.id,
+    title: row.title,
+    category: row.category,
+    imageUrl: row.image_url || row.imageUrl,
+    thumbnailUrl: row.thumbnail_url || row.thumbnailUrl || row.image_url || row.imageUrl,
+    date: row.date || "",
+    venue: row.venue || "Superior Courts Complex, Hulftsdorp",
+    description: row.description || "",
+    featured: Boolean(row.featured),
+    photographer: row.photographer || "CLS Secretariat Media",
+    eventId: row.event_id ?? row.eventId,
+  };
+}
+
+function mapSupabaseCommittee(row: any): CommitteeOfficer {
+  return {
+    id: row.id,
+    name: row.name,
+    title: row.title,
+    credentials: row.credentials || "Attorney-at-Law",
+    court: row.court || "Supreme Court Bar & Hulftsdorp",
+    image: row.image_url || row.image || "/images/branding/cls-crest-gold.png",
+    bio: row.bio || "",
+    email: row.email || "",
+    phone: row.phone || "",
+  };
+}
+
+function mapSupabaseMember(row: any): Member {
+  return {
+    id: row.id,
+    sc_en: row.sc_en,
+    ba_en: row.ba_en || undefined,
+    name: row.name,
+    email: row.email,
+    mobile: row.mobile,
+    nic: row.nic || undefined,
+    gender: row.gender || undefined,
+    city: row.city || undefined,
+    practiceArea: row.practice_area || undefined,
+    expertise: row.expertise || [],
+    membershipTier: row.membership_tier || "Ordinary",
+    status: row.status || "Active",
+    avatarUrl: row.avatar_url || undefined,
+    registeredDate: row.registered_date
+      ? new Date(row.registered_date).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        })
+      : undefined,
+    membershipStartDate: row.membership_start_date || undefined,
+    membershipEndDate: row.membership_end_date || undefined,
+    notes: row.notes || undefined,
+  };
+}
+
+function mapSupabaseSettings(row: any): SocietySettings {
+  return {
+    id: row.id || 1,
+    name: row.name || initialSettings.name,
+    tagline: row.tagline || initialSettings.tagline,
+    establishedYear: row.established_year ?? initialSettings.establishedYear,
+    charterYear: row.charter_year ?? initialSettings.charterYear,
+    address: row.address || initialSettings.address,
+    email: row.email || initialSettings.email,
+    phone: row.phone || initialSettings.phone,
+    membershipFeeOrdinary: Number(row.membership_fee_ordinary ?? initialSettings.membershipFeeOrdinary),
+    membershipFeeLife: Number(row.membership_fee_life ?? initialSettings.membershipFeeLife),
+    totalMembersCount: Number(row.total_members_count ?? initialSettings.totalMembersCount),
+    superiorCourtEnclave: row.superior_court_enclave || initialSettings.superiorCourtEnclave,
+  };
+}
+
+// ============================================================================
 // DATA ACCESS HELPERS
 // ============================================================================
 export async function getEvents(): Promise<CLSEvent[]> {
@@ -489,9 +595,24 @@ export async function getEvents(): Promise<CLSEvent[]> {
       );
       if (res.rows.length > 0) return res.rows;
     } catch (err) {
-      console.warn("PostgreSQL query failed, falling back to local DB:", err);
+      console.warn("PostgreSQL query failed, trying Supabase / local DB:", err);
     }
   }
+
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .order("start_date_time", { ascending: true });
+      if (!error && data && data.length > 0) {
+        return data.map(mapSupabaseEvent);
+      }
+    } catch (err) {
+      console.warn("Supabase getEvents failed:", err);
+    }
+  }
+
   return loadLocalDB().events;
 }
 
@@ -600,6 +721,21 @@ export async function getGalleryImages(category?: string): Promise<GalleryImage[
     }
   }
 
+  if (supabase) {
+    try {
+      let query = supabase.from("event_gallery").select("*").order("id", { ascending: false });
+      if (category && category !== "All") {
+        query = query.ilike("category", category);
+      }
+      const { data, error } = await query;
+      if (!error && data && data.length > 0) {
+        return data.map(mapSupabaseGallery);
+      }
+    } catch (err) {
+      console.warn("Supabase getGalleryImages failed:", err);
+    }
+  }
+
   const db = loadLocalDB();
   if (category && category !== "All") {
     return db.gallery.filter((g) => g.category.toLowerCase() === category.toLowerCase());
@@ -665,6 +801,26 @@ export async function deleteGalleryImage(id: number): Promise<boolean> {
 
 // MEMBERS
 export async function getMembers(): Promise<Member[]> {
+  if (pool) {
+    try {
+      const res = await pool.query("SELECT * FROM members ORDER BY id ASC");
+      if (res.rows.length > 0) return res.rows.map(mapSupabaseMember);
+    } catch (err) {
+      console.warn("PostgreSQL members query failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { data, error } = await supabase.from("members").select("*").order("id", { ascending: true });
+      if (!error && data && data.length > 0) {
+        return data.map(mapSupabaseMember);
+      }
+    } catch (err) {
+      console.warn("Supabase getMembers failed:", err);
+    }
+  }
+
   return loadLocalDB().members;
 }
 
@@ -698,6 +854,32 @@ export async function deleteMember(id: number): Promise<boolean> {
 
 // COMMITTEE
 export async function getCommittee(): Promise<CommitteeOfficer[]> {
+  if (pool) {
+    try {
+      const res = await pool.query(
+        "SELECT id, name, title, credentials, court, image_url as image, bio, email, phone FROM committee_members WHERE is_active = true ORDER BY order_index ASC"
+      );
+      if (res.rows.length > 0) return res.rows;
+    } catch (err) {
+      console.warn("PostgreSQL committee query failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from("committee_members")
+        .select("*")
+        .eq("is_active", true)
+        .order("order_index", { ascending: true });
+      if (!error && data && data.length > 0) {
+        return data.map(mapSupabaseCommittee);
+      }
+    } catch (err) {
+      console.warn("Supabase getCommittee failed:", err);
+    }
+  }
+
   return loadLocalDB().committee;
 }
 
@@ -755,6 +937,26 @@ export async function createBroadcast(data: Omit<BroadcastLog, "id" | "sentAt" |
 
 // SETTINGS
 export async function getSettings(): Promise<SocietySettings> {
+  if (pool) {
+    try {
+      const res = await pool.query("SELECT * FROM society_settings LIMIT 1");
+      if (res.rows.length > 0) return mapSupabaseSettings(res.rows[0]);
+    } catch (err) {
+      console.warn("PostgreSQL settings query failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { data, error } = await supabase.from("society_settings").select("*").limit(1).single();
+      if (!error && data) {
+        return mapSupabaseSettings(data);
+      }
+    } catch (err) {
+      console.warn("Supabase getSettings failed:", err);
+    }
+  }
+
   return loadLocalDB().settings;
 }
 
