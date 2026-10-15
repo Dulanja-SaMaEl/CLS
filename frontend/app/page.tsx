@@ -54,8 +54,8 @@ export default function Home() {
       title: "PUBLIC & REGULATORY JURISPRUDENCE",
       description:
         "Advising on state compliance, statutory tribunals, anti-money laundering frameworks, and central bank directives to safeguard institutional continuity.",
-      image: "/images/sri-lanka/colombo-civic-palace.jpg",
-      tag: "STATUTORY TRIBUNALS • COLOMBO",
+      image: "/images/sri-lanka/hulftsdorp-supreme-court.jpg",
+      tag: "SUPREME COURT COMPLEX • HULFTSDORP",
     },
     {
       id: "04",
@@ -63,8 +63,8 @@ export default function Home() {
       title: "INTELLECTUAL PROPERTY & FINTECH",
       description:
         "Defending proprietary technological patents, digital assets, trademarks, and cross-border licensing rights in the Commercial High Court of Sri Lanka.",
-      image: "/images/sri-lanka/colombo-colonnade.jpg",
-      tag: "COMMERCIAL BENCHES • HULFTSDORP",
+      image: "/images/sri-lanka/hulftsdorp-historic-court.jpg",
+      tag: "SUPERIOR COURTS • HULFTSDORP",
     },
   ];
 
@@ -259,7 +259,7 @@ export default function Home() {
                   <div
                     className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700 opacity-90"
                     style={{
-                      backgroundImage: `url('/images/sri-lanka/colombo-civic-palace.jpg')`,
+                      backgroundImage: `url('/images/sri-lanka/hulftsdorp-historic-court.jpg')`,
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -335,34 +335,34 @@ export default function Home() {
             className="mt-16 flex justify-end"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl w-full">
-              {/* Photo 1: Classical archway street */}
+              {/* Photo 1: Historic Hulftsdorp Superior Courts Building */}
               <div className="bg-sand-100 border border-black/20 p-2 group hover:border-black transition duration-500 shadow-md">
                 <div className="relative aspect-[4/3] overflow-hidden bg-stone-300">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     style={{
-                      backgroundImage: `url('/images/sri-lanka/colombo-colonnade.jpg')`,
+                      backgroundImage: `url('/images/sri-lanka/hulftsdorp-historic-court.jpg')`,
                     }}
                   />
                 </div>
                 <div className="flex items-center justify-between text-[10px] font-mono text-stone-700 uppercase mt-2 px-1">
-                  <span>Hulftsdorp Passage</span>
+                  <span>Hulftsdorp Superior Courts</span>
                   <span>002</span>
                 </div>
               </div>
 
-              {/* Photo 2: Neoclassical columns */}
+              {/* Photo 2: Supreme Court Pagoda Complex */}
               <div className="bg-sand-100 border border-black/20 p-2 group hover:border-black transition duration-500 shadow-md">
                 <div className="relative aspect-[4/3] overflow-hidden bg-stone-300">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     style={{
-                      backgroundImage: `url('/images/sri-lanka/hero-old-parliament.jpg')`,
+                      backgroundImage: `url('/images/sri-lanka/hulftsdorp-supreme-court.jpg')`,
                     }}
                   />
                 </div>
                 <div className="flex items-center justify-between text-[10px] font-mono text-stone-700 uppercase mt-2 px-1">
-                  <span>Hulftsdorp Colonnade</span>
+                  <span>Supreme Court Complex</span>
                   <span>003</span>
                 </div>
               </div>
@@ -454,12 +454,12 @@ export default function Home() {
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     style={{
-                      backgroundImage: `url('/images/sri-lanka/colombo-colonnade.jpg')`,
+                      backgroundImage: `url('/images/sri-lanka/hulftsdorp-supreme-court.jpg')`,
                     }}
                   />
                 </div>
                 <div className="flex items-center justify-between text-[10px] font-mono text-stone-600 dark:text-stone-400 uppercase mt-2 px-1">
-                  <span>Colombo Colonnade</span>
+                  <span>Supreme Court Complex</span>
                   <span>004</span>
                 </div>
               </div>
@@ -758,12 +758,12 @@ export default function Home() {
                   <div
                     className="w-full h-full bg-cover bg-center filter contrast-110 group-hover:scale-105 transition-transform duration-700"
                     style={{
-                      backgroundImage: `url('/images/sri-lanka/colombo-civic-palace.jpg')`,
+                      backgroundImage: `url('/images/sri-lanka/hulftsdorp-historic-court.jpg')`,
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] font-bold">
-                      Colombo Civic Palace • Hulftsdorp
+                      Superior Courts Complex &bull; Hulftsdorp
                     </span>
                   </div>
                 </div>

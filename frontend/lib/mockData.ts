@@ -480,13 +480,13 @@ export const practiceDisciplines = [
     number: "03",
     title: "Appellate & High Court Criminal Trial Practice",
     description: "Rigorous defense advocacy in serious fiscal offenses, money laundering tribunals, and Court of Appeal capital revisions.",
-    image: "/images/sri-lanka/colombo-civic-palace.jpg"
+    image: "/images/sri-lanka/hulftsdorp-supreme-court.jpg"
   },
   {
     number: "04",
     title: "Intellectual Property, Fintech & Corporate Governance",
     description: "Defending technological trademarks, digital banking compliance, patents, and enterprise shareholder rights across the Commercial High Court.",
-    image: "/images/sri-lanka/colombo-colonnade.jpg"
+    image: "/images/sri-lanka/hulftsdorp-historic-court.jpg"
   }
 ];
 
@@ -746,7 +746,7 @@ export const initialGalleryImages: GalleryImage[] = [
     id: 5,
     title: "Junior Bar Robing & Professional Induction Seminar",
     category: "CLE Masterclass",
-    imageUrl: "/images/sri-lanka/colombo-colonnade.jpg",
+    imageUrl: "/images/sri-lanka/hulftsdorp-historic-court.jpg",
     date: "22 Mar, 2026",
     venue: "Law Society Auditorium, Hulftsdorp",
     description: "Intensive advocacy workshop and ethics induction for newly admitted Attorneys-at-Law entering Colombo chambers.",
