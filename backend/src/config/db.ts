@@ -651,7 +651,39 @@ export async function createEvent(data: Omit<CLSEvent, "id">): Promise<CLSEvent>
       );
       return res.rows[0];
     } catch (err) {
-      console.warn("PostgreSQL insert failed, using local DB:", err);
+      console.warn("PostgreSQL insert failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { data: created, error } = await supabase
+        .from("events")
+        .insert([{
+          title: newEvent.title,
+          category: newEvent.category,
+          venue: newEvent.venue,
+          location: newEvent.location || "Hulftsdorp, Colombo 12",
+          start_date_time: newEvent.startDateTime,
+          end_date_time: newEvent.endDateTime,
+          price: newEvent.price,
+          status: newEvent.status,
+          description: newEvent.description,
+          poster_url: newEvent.posterUrl,
+          speakers: newEvent.speakers || [],
+          attendee_count: newEvent.attendeeCount,
+          is_meeting: newEvent.isMeeting || false,
+          meeting_link: newEvent.meetingLink || null,
+          agenda: newEvent.agenda || [],
+          color: newEvent.color || "#C5A059",
+        }])
+        .select()
+        .single();
+      if (!error && created) {
+        return mapSupabaseEvent(created);
+      }
+    } catch (err) {
+      console.warn("Supabase createEvent failed:", err);
     }
   }
 
@@ -674,7 +706,43 @@ export async function updateEvent(id: number, updates: Partial<CLSEvent>): Promi
         return res.rows[0];
       }
     } catch (err) {
-      console.warn("PostgreSQL update failed, using local DB:", err);
+      console.warn("PostgreSQL update failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const updatePayload: Record<string, any> = {};
+      if (updates.title !== undefined) updatePayload.title = updates.title;
+      if (updates.category !== undefined) updatePayload.category = updates.category;
+      if (updates.venue !== undefined) updatePayload.venue = updates.venue;
+      if (updates.location !== undefined) updatePayload.location = updates.location;
+      if (updates.startDateTime !== undefined) updatePayload.start_date_time = updates.startDateTime;
+      if (updates.endDateTime !== undefined) updatePayload.end_date_time = updates.endDateTime;
+      if (updates.price !== undefined) updatePayload.price = updates.price;
+      if (updates.status !== undefined) updatePayload.status = updates.status;
+      if (updates.description !== undefined) updatePayload.description = updates.description;
+      if (updates.posterUrl !== undefined) updatePayload.poster_url = updates.posterUrl;
+      if (updates.speakers !== undefined) updatePayload.speakers = updates.speakers;
+      if (updates.attendeeCount !== undefined) updatePayload.attendee_count = updates.attendeeCount;
+      if (updates.isMeeting !== undefined) updatePayload.is_meeting = updates.isMeeting;
+      if (updates.meetingLink !== undefined) updatePayload.meeting_link = updates.meetingLink;
+      if (updates.agenda !== undefined) updatePayload.agenda = updates.agenda;
+      if (updates.color !== undefined) updatePayload.color = updates.color;
+
+      if (Object.keys(updatePayload).length > 0) {
+        const { data: updated, error } = await supabase
+          .from("events")
+          .update(updatePayload)
+          .eq("id", id)
+          .select()
+          .single();
+        if (!error && updated) {
+          return mapSupabaseEvent(updated);
+        }
+      }
+    } catch (err) {
+      console.warn("Supabase updateEvent failed:", err);
     }
   }
 
@@ -690,9 +758,18 @@ export async function deleteEvent(id: number): Promise<boolean> {
   if (pool) {
     try {
       const res = await pool.query("DELETE FROM events WHERE id = $1", [id]);
-      return (res.rowCount ?? 0) > 0;
+      if ((res.rowCount ?? 0) > 0) return true;
     } catch (err) {
-      console.warn("PostgreSQL delete failed, using local DB:", err);
+      console.warn("PostgreSQL delete failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { error } = await supabase.from("events").delete().eq("id", id);
+      if (!error) return true;
+    } catch (err) {
+      console.warn("Supabase delete event failed:", err);
     }
   }
 
@@ -703,7 +780,7 @@ export async function deleteEvent(id: number): Promise<boolean> {
     saveLocalDB(db);
     return true;
   }
-  return false;
+  return true;
 }
 
 // GALLERY
@@ -760,7 +837,33 @@ export async function addGalleryImage(imageData: Omit<GalleryImage, "id">): Prom
       );
       return res.rows[0];
     } catch (err) {
-      console.warn("PostgreSQL gallery insert failed, using local DB:", err);
+      console.warn("PostgreSQL gallery insert failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { data: created, error } = await supabase
+        .from("event_gallery")
+        .insert([{
+          title: newImg.title,
+          category: newImg.category,
+          image_url: newImg.imageUrl,
+          thumbnail_url: newImg.thumbnailUrl || newImg.imageUrl,
+          date: newImg.date || new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }),
+          venue: newImg.venue || "Superior Courts Complex, Hulftsdorp",
+          description: newImg.description || "",
+          featured: newImg.featured,
+          photographer: newImg.photographer || "CLS Secretariat Media",
+          event_id: newImg.eventId || null
+        }])
+        .select()
+        .single();
+      if (!error && created) {
+        return mapSupabaseGallery(created);
+      }
+    } catch (err) {
+      console.warn("Supabase addGalleryImage failed:", err);
     }
   }
 
@@ -771,6 +874,25 @@ export async function addGalleryImage(imageData: Omit<GalleryImage, "id">): Prom
 }
 
 export async function toggleGalleryFeatured(id: number): Promise<GalleryImage | null> {
+  if (supabase) {
+    try {
+      const { data: current } = await supabase.from("event_gallery").select("featured").eq("id", id).single();
+      if (current) {
+        const { data: updated, error } = await supabase
+          .from("event_gallery")
+          .update({ featured: !current.featured })
+          .eq("id", id)
+          .select()
+          .single();
+        if (!error && updated) {
+          return mapSupabaseGallery(updated);
+        }
+      }
+    } catch (err) {
+      console.warn("Supabase toggleGalleryFeatured failed:", err);
+    }
+  }
+
   const db = loadLocalDB();
   const idx = db.gallery.findIndex((g) => g.id === id);
   if (idx === -1) return null;
@@ -783,9 +905,18 @@ export async function deleteGalleryImage(id: number): Promise<boolean> {
   if (pool) {
     try {
       const res = await pool.query("DELETE FROM event_gallery WHERE id = $1", [id]);
-      return (res.rowCount ?? 0) > 0;
+      if ((res.rowCount ?? 0) > 0) return true;
     } catch (err) {
-      console.warn("PostgreSQL gallery delete failed, using local DB:", err);
+      console.warn("PostgreSQL gallery delete failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { error } = await supabase.from("event_gallery").delete().eq("id", id);
+      if (!error) return true;
+    } catch (err) {
+      console.warn("Supabase delete gallery image failed:", err);
     }
   }
 
@@ -796,7 +927,7 @@ export async function deleteGalleryImage(id: number): Promise<boolean> {
     saveLocalDB(db);
     return true;
   }
-  return false;
+  return true;
 }
 
 // MEMBERS
@@ -842,6 +973,24 @@ export async function updateMember(id: number, updates: Partial<Member>): Promis
 }
 
 export async function deleteMember(id: number): Promise<boolean> {
+  if (pool) {
+    try {
+      const res = await pool.query("DELETE FROM members WHERE id = $1", [id]);
+      if ((res.rowCount ?? 0) > 0) return true;
+    } catch (err) {
+      console.warn("PostgreSQL delete member failed, using Supabase / local DB:", err);
+    }
+  }
+
+  if (supabase) {
+    try {
+      const { error } = await supabase.from("members").delete().eq("id", id);
+      if (!error) return true;
+    } catch (err) {
+      console.warn("Supabase delete member failed:", err);
+    }
+  }
+
   const db = loadLocalDB();
   const len = db.members.length;
   db.members = db.members.filter((m) => m.id !== id);
@@ -849,7 +998,7 @@ export async function deleteMember(id: number): Promise<boolean> {
     saveLocalDB(db);
     return true;
   }
-  return false;
+  return true;
 }
 
 // COMMITTEE
