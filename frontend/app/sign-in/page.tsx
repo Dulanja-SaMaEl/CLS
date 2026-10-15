@@ -200,11 +200,11 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#E7E0D3] selection:bg-[#C5A059] selection:text-black">
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0A0A0A] text-stone-900 dark:text-[#E7E0D3] selection:bg-[#C5A059] selection:text-black transition-colors duration-200">
       <Navbar />
 
       {/* Hero Header matching SignUp Page DNA */}
-      <section className="relative pt-36 pb-16 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section className="relative pt-36 pb-16 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-10 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
@@ -213,17 +213,17 @@ export default function SignInPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#1A1A1A] border border-[#C5A059]/30 rounded-full text-[10px] tracking-widest uppercase text-[#C5A059] mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-stone-100 dark:bg-[#1A1A1A] border border-[#9E7D3B]/30 dark:border-[#C5A059]/30 rounded-full text-[10px] tracking-widest uppercase text-[#9E7D3B] dark:text-[#C5A059] mb-4 shadow-sm">
                 <Scale className="w-3 h-3" />
                 Hulftsdorp Bar Portal &bull; Secure Authorization
               </div>
-              <h1 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-none">
+              <h1 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-stone-900 dark:text-white leading-none">
                 ADVOCATE &amp; CHAMBERS <br />
-                <span className="font-serif italic font-normal text-[#C5A059] lowercase text-5xl sm:text-7xl">
+                <span className="font-serif italic font-normal text-[#9E7D3B] dark:text-[#C5A059] lowercase text-5xl sm:text-7xl">
                   portal authorization
                 </span>
               </h1>
-              <p className="mt-4 text-sm text-[#A0A0A0] leading-relaxed">
+              <p className="mt-4 text-sm text-stone-600 dark:text-[#A0A0A0] leading-relaxed">
                 Single unified access point for all Colombo Law Society members, Supreme Court practitioners, and executive bar administration.
               </p>
             </div>
@@ -233,17 +233,17 @@ export default function SignInPage() {
               <button
                 type="button"
                 onClick={handleFillAdmin}
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#C5A059]/10 hover:bg-[#C5A059]/20 border border-[#C5A059]/40 text-xs font-semibold uppercase tracking-wider text-[#C5A059] transition rounded cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#9E7D3B]/10 hover:bg-[#9E7D3B]/20 dark:bg-[#C5A059]/10 dark:hover:bg-[#C5A059]/20 border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 text-xs font-semibold uppercase tracking-wider text-[#9E7D3B] dark:text-[#C5A059] transition rounded cursor-pointer shadow-sm"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
                 Autofill Admin (admin@cls.com)
               </button>
               <button
                 type="button"
                 onClick={handleFillMember}
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1F1F1F] hover:bg-[#2A2A2A] border border-white/20 text-xs font-semibold uppercase tracking-wider text-[#E7E0D3] transition rounded cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-stone-100 hover:bg-stone-200 dark:bg-[#1F1F1F] dark:hover:bg-[#2A2A2A] border border-stone-300 dark:border-white/20 text-xs font-semibold uppercase tracking-wider text-stone-800 dark:text-[#E7E0D3] transition rounded cursor-pointer shadow-sm"
               >
-                <Sparkles className="w-3.5 h-3.5 text-stone-400" />
+                <Sparkles className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-stone-400" />
                 Autofill Member Advocate
               </button>
             </div>
@@ -255,48 +255,48 @@ export default function SignInPage() {
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Sign In Card */}
-          <div className="lg:col-span-7 bg-[#141414] border border-white/10 p-8 sm:p-10 rounded-lg shadow-2xl relative">
-            <div className="mb-8 border-b border-white/10 pb-6">
-              <span className="text-[10px] font-mono text-[#C5A059] uppercase tracking-widest block mb-1">
+          <div className="lg:col-span-7 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-8 sm:p-10 rounded-lg shadow-sm dark:shadow-2xl relative">
+            <div className="mb-8 border-b border-stone-200 dark:border-white/10 pb-6">
+              <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-widest block mb-1 font-bold">
                 SECURE ACCESS CONSOLE
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-white">
+              <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-stone-900 dark:text-white">
                 Enter Your Credentials
               </h2>
-              <p className="text-xs text-stone-400 mt-1">
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
                 Administrators will be redirected to the executive console; advocates will be routed to their member profile.
               </p>
             </div>
 
             {/* Error Message Box */}
             {errorMessage && (
-              <div className="mb-6 p-4 bg-red-950/70 border border-red-500/50 text-red-200 text-xs font-mono flex items-center space-x-2 rounded">
-                <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+              <div className="mb-6 p-4 bg-red-100 dark:bg-red-950/70 border border-red-300 dark:border-red-500/50 text-red-700 dark:text-red-200 text-xs font-mono flex items-center space-x-2 rounded">
+                <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6 text-xs font-mono">
               <div>
-                <label className="block text-stone-300 uppercase tracking-widest mb-2 font-semibold">
+                <label className="block text-stone-700 dark:text-stone-300 uppercase tracking-widest mb-2 font-semibold">
                   Official Email or SC Enrolment Number *
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@cls.com or counsel@bar.lk"
-                    className="w-full pl-11 pr-4 py-3 bg-[#1A1A1A] border border-white/10 text-stone-100 placeholder-stone-600 focus:outline-none focus:border-[#C5A059] rounded"
+                    className="w-full pl-11 pr-4 py-3 bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] rounded"
                   />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="block text-stone-300 uppercase tracking-widest font-semibold">
+                  <label className="block text-stone-700 dark:text-stone-300 uppercase tracking-widest font-semibold">
                     Portal Password *
                   </label>
                   <Link
@@ -305,49 +305,49 @@ export default function SignInPage() {
                       e.preventDefault();
                       alert("Password reset instructions: For administrators, consult Secretariat Chambers. For members, dispatch instructions have been forwarded to your registered Supreme Court bar address.");
                     }}
-                    className="text-[10px] text-[#C5A059] hover:underline"
+                    className="text-[10px] text-[#9E7D3B] dark:text-[#C5A059] hover:underline font-bold"
                   >
                     Forgot Password?
                   </Link>
                 </div>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4 h-4 text-stone-400 dark:text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full pl-11 pr-4 py-3 bg-[#1A1A1A] border border-white/10 text-stone-100 placeholder-stone-600 focus:outline-none focus:border-[#C5A059] rounded"
+                    className="w-full pl-11 pr-4 py-3 bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] rounded"
                   />
                 </div>
               </div>
 
               {/* Verified Credentials Notice */}
-              <div className="p-4 bg-[#1A1A1A] border border-white/10 rounded space-y-2 text-[11px]">
-                <div className="flex items-center justify-between text-stone-400">
+              <div className="p-4 bg-stone-50 dark:bg-[#1A1A1A] border border-stone-200 dark:border-white/10 rounded space-y-2 text-[11px]">
+                <div className="flex items-center justify-between text-stone-600 dark:text-stone-400">
                   <span>Executive Admin Login:</span>
-                  <span className="text-[#C5A059] font-bold">admin@cls.com (Use &apos;Autofill Admin&apos; above)</span>
+                  <span className="text-[#9E7D3B] dark:text-[#C5A059] font-bold">admin@cls.com (Use &apos;Autofill Admin&apos; above)</span>
                 </div>
-                <div className="flex items-center justify-between text-stone-400">
+                <div className="flex items-center justify-between text-stone-600 dark:text-stone-400">
                   <span>Member Advocate Login:</span>
-                  <span className="text-stone-200">asoka.desilva@lawchambers.lk (Use &apos;Autofill Member&apos; above)</span>
+                  <span className="text-stone-900 dark:text-stone-200 font-medium">asoka.desilva@lawchambers.lk (Use &apos;Autofill Member&apos; above)</span>
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 bg-[#C5A059] text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#d6b168] transition-all shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer rounded"
+                className="w-full py-3.5 bg-[#C5A059] text-black font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#d6b168] transition-all shadow-md dark:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer rounded"
               >
                 <span>{isLoading ? "Authenticating Session..." : "Authorize Portal Entry"}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
 
-            <div className="mt-8 pt-6 border-t border-white/10 text-center text-xs font-mono text-stone-400">
+            <div className="mt-8 pt-6 border-t border-stone-200 dark:border-white/10 text-center text-xs font-mono text-stone-500 dark:text-stone-400">
               <span>Not yet admitted to the society? </span>
-              <Link href="/sign-up" className="text-[#C5A059] font-bold hover:underline">
+              <Link href="/sign-up" className="text-[#9E7D3B] dark:text-[#C5A059] font-bold hover:underline">
                 Enrol as an Advocate &rarr;
               </Link>
             </div>
@@ -355,20 +355,20 @@ export default function SignInPage() {
 
           {/* Right Column: Information Highlights */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 bg-[#141414] border border-white/10 rounded-lg space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 border border-[#C5A059]/30 flex items-center justify-center text-[#C5A059]">
+            <div className="p-6 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-lg space-y-4 shadow-sm">
+              <div className="w-10 h-10 rounded-full bg-stone-100 dark:bg-[#C5A059]/10 border border-[#9E7D3B]/30 dark:border-[#C5A059]/30 flex items-center justify-center text-[#9E7D3B] dark:text-[#C5A059]">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-xl uppercase tracking-wider text-white">
+              <h3 className="font-display text-xl uppercase tracking-wider text-stone-900 dark:text-white">
                 Hulftsdorp Bar Library &amp; Member Hub
               </h3>
-              <p className="text-xs text-stone-400 leading-relaxed font-sans">
+              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-sans">
                 Logging in with your advocate enrolment unlocks your official digital Smart Bar Credential with QR verification, CLE symposium ticketing passes, and digitized Supreme Court archive subscriptions.
               </p>
               <div className="pt-2">
                 <Link
                   href="/member"
-                  className="text-xs font-mono uppercase tracking-wider text-[#C5A059] hover:underline flex items-center gap-1"
+                  className="text-xs font-mono uppercase tracking-wider text-[#9E7D3B] dark:text-[#C5A059] hover:underline flex items-center gap-1 font-bold"
                 >
                   <span>Preview Advocate Hub</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -376,20 +376,20 @@ export default function SignInPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-[#141414] border border-white/10 rounded-lg space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 border border-[#C5A059]/30 flex items-center justify-center text-[#C5A059]">
+            <div className="p-6 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-lg space-y-4 shadow-sm">
+              <div className="w-10 h-10 rounded-full bg-stone-100 dark:bg-[#C5A059]/10 border border-[#9E7D3B]/30 dark:border-[#C5A059]/30 flex items-center justify-center text-[#9E7D3B] dark:text-[#C5A059]">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-xl uppercase tracking-wider text-white">
+              <h3 className="font-display text-xl uppercase tracking-wider text-stone-900 dark:text-white">
                 Executive Secretariat Administration
               </h3>
-              <p className="text-xs text-stone-400 leading-relaxed font-sans">
+              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-sans">
                 Chambers administrators gain complete real-time governance: interactive Google Calendar scheduling, official event image showcase curation, member tier renewals, and SMS/Email notification broadcasts.
               </p>
             </div>
 
-            <div className="p-4 bg-[#141414] border border-white/10 rounded-lg flex items-center gap-3 text-xs font-mono text-stone-400">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="p-4 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-lg flex items-center gap-3 text-xs font-mono text-stone-600 dark:text-stone-400 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>TLS 1.3 encrypted authentication protocol &bull; Hulftsdorp Superior Courts Enclave</span>
             </div>
           </div>

@@ -242,16 +242,16 @@ export default function AdminGalleryPage() {
     <AdminLayout activeTab="gallery">
       <div className="space-y-6">
         {/* Top Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414] border border-white/10 p-6 rounded-lg shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-6 rounded-lg shadow-sm transition-colors">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-1">
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-wider mb-1 font-semibold">
               <Camera className="w-3.5 h-3.5" />
               <span>Event Photo Archive &bull; Hulftsdorp</span>
             </div>
-            <h1 className="text-2xl font-display uppercase tracking-wide text-white">
+            <h1 className="text-2xl font-display uppercase tracking-wide text-stone-900 dark:text-white">
               Event Image Showcase Manager
             </h1>
-            <p className="text-xs text-stone-400 mt-1 max-w-xl">
+            <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 max-w-xl">
               Upload, catalog, and curate high-resolution photographs from CLS symposiums, law dinners, and judicial ceremonials for public display on the official showcase portal.
             </p>
           </div>
@@ -259,7 +259,7 @@ export default function AdminGalleryPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={loadData}
-              className="p-2.5 rounded bg-[#1A1A1A] border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white transition"
+              className="p-2.5 rounded bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition"
               title="Refresh Showcase"
             >
               <RefreshCw className="w-4 h-4" />
@@ -268,7 +268,7 @@ export default function AdminGalleryPage() {
               href="/gallery"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded bg-[#1A1A1A] border border-white/10 hover:border-white/30 text-stone-300 hover:text-white text-xs font-mono uppercase tracking-wider transition flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 hover:border-stone-400 dark:hover:border-white/30 text-stone-800 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white text-xs font-mono uppercase tracking-wider transition flex items-center gap-1.5 font-medium"
             >
               <span>View Public Page</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -278,7 +278,7 @@ export default function AdminGalleryPage() {
                 setIsUploadOpen(true);
                 setFeedback(null);
               }}
-              className="px-5 py-2.5 rounded bg-[#C5A059] hover:bg-[#d6b168] text-black text-xs font-mono uppercase tracking-widest font-bold transition flex items-center gap-2 shadow-md"
+              className="px-5 py-2.5 rounded bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-black text-xs font-mono uppercase tracking-widest font-bold transition flex items-center gap-2 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Upload New Photo</span>
@@ -288,11 +288,11 @@ export default function AdminGalleryPage() {
 
         {/* Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div className="bg-[#141414] border border-white/10 p-4 rounded-lg">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-lg shadow-sm">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 block">
               Total Showcase Photos
             </span>
-            <span className="text-2xl font-display text-white mt-1 block">
+            <span className="text-2xl font-display text-stone-900 dark:text-white mt-1 block">
               {images.length}
             </span>
             <span className="text-[10px] text-stone-500 font-mono mt-0.5 block">
@@ -300,12 +300,12 @@ export default function AdminGalleryPage() {
             </span>
           </div>
 
-          <div className="bg-[#141414] border border-white/10 p-4 rounded-lg">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#C5A059] block">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-lg shadow-sm">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#9E7D3B] dark:text-[#C5A059] block font-semibold">
               Featured Highlights
             </span>
-            <span className="text-2xl font-display text-amber-400 mt-1 block flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-[#C5A059]" />
+            <span className="text-2xl font-display text-[#9E7D3B] dark:text-amber-400 mt-1 block flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#9E7D3B] dark:text-[#C5A059]" />
               {images.filter((i) => i.featured).length}
             </span>
             <span className="text-[10px] text-stone-500 font-mono mt-0.5 block">
@@ -313,11 +313,11 @@ export default function AdminGalleryPage() {
             </span>
           </div>
 
-          <div className="bg-[#141414] border border-white/10 p-4 rounded-lg">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-lg shadow-sm">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 block">
               Calendar Events Linked
             </span>
-            <span className="text-2xl font-display text-white mt-1 block">
+            <span className="text-2xl font-display text-stone-900 dark:text-white mt-1 block">
               {images.filter((i) => i.eventId).length}
             </span>
             <span className="text-[10px] text-stone-500 font-mono mt-0.5 block">
@@ -325,11 +325,11 @@ export default function AdminGalleryPage() {
             </span>
           </div>
 
-          <div className="bg-[#141414] border border-white/10 p-4 rounded-lg">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-lg shadow-sm">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 block">
               Archive Domains
             </span>
-            <span className="text-2xl font-display text-white mt-1 block">
+            <span className="text-2xl font-display text-stone-900 dark:text-white mt-1 block">
               {new Set(images.map((i) => i.category)).size || 4}
             </span>
             <span className="text-[10px] text-stone-500 font-mono mt-0.5 block">
@@ -339,7 +339,7 @@ export default function AdminGalleryPage() {
         </div>
 
         {/* Filter and Search Bar */}
-        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between bg-[#141414] border border-white/10 p-4 rounded-lg">
+        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-lg shadow-sm">
           <div className="relative flex-1 max-w-md">
             <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -347,7 +347,7 @@ export default function AdminGalleryPage() {
               placeholder="Filter by photo title, venue, or caption..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#1A1A1A] border border-white/10 pl-9 pr-4 py-2 rounded text-xs text-white placeholder-stone-500 focus:border-[#C5A059] focus:outline-none"
+              className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 pl-9 pr-4 py-2 rounded text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-stone-500 focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
             />
           </div>
 
@@ -358,8 +358,8 @@ export default function AdminGalleryPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 rounded text-xs font-mono uppercase tracking-wider transition whitespace-nowrap ${
                   selectedCategory === cat
-                    ? "bg-[#C5A059] text-black font-bold shadow-sm"
-                    : "bg-[#1A1A1A] border border-white/10 text-stone-400 hover:text-white"
+                    ? "bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-black font-bold shadow-sm"
+                    : "bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
                 }`}
               >
                 {cat}
@@ -371,19 +371,19 @@ export default function AdminGalleryPage() {
         {/* Photos Grid */}
         {loading ? (
           <div className="py-20 text-center text-stone-500 font-mono text-xs">
-            <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#C5A059]" />
+            <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#9E7D3B] dark:text-[#C5A059]" />
             Loading Hulftsdorp Event Showcase...
           </div>
         ) : filteredImages.length === 0 ? (
-          <div className="bg-[#141414] border border-white/10 rounded-lg p-12 text-center">
-            <ImageIcon className="w-12 h-12 text-stone-600 mx-auto mb-3" />
-            <h3 className="text-base font-display uppercase tracking-wider text-white">No Photographs Found</h3>
-            <p className="text-xs text-stone-400 mt-1 max-w-sm mx-auto">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-lg p-12 text-center shadow-sm">
+            <ImageIcon className="w-12 h-12 text-stone-400 dark:text-stone-600 mx-auto mb-3" />
+            <h3 className="text-base font-display uppercase tracking-wider text-stone-900 dark:text-white">No Photographs Found</h3>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-sm mx-auto">
               There are no event photos matching your search query or selected category filter.
             </p>
             <button
               onClick={() => setIsUploadOpen(true)}
-              className="mt-4 px-4 py-2 bg-[#C5A059] text-black text-xs font-mono uppercase font-bold rounded"
+              className="mt-4 px-4 py-2 bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-black text-xs font-mono uppercase font-bold rounded shadow-sm"
             >
               Upload First Photo
             </button>
@@ -393,10 +393,10 @@ export default function AdminGalleryPage() {
             {filteredImages.map((image) => (
               <div
                 key={image.id}
-                className="bg-[#141414] border border-white/10 rounded-lg overflow-hidden flex flex-col group hover:border-[#C5A059]/50 transition-all duration-200"
+                className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-lg overflow-hidden flex flex-col group hover:border-[#9E7D3B]/50 dark:hover:border-[#C5A059]/50 transition-all duration-200 shadow-sm"
               >
                 {/* Image Frame */}
-                <div className="relative aspect-[16/10] bg-black overflow-hidden">
+                <div className="relative aspect-[16/10] bg-stone-100 dark:bg-black overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={image.imageUrl}
@@ -441,30 +441,30 @@ export default function AdminGalleryPage() {
                 {/* Content */}
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-display text-sm tracking-wide uppercase text-white line-clamp-1 leading-snug">
+                    <h3 className="font-display text-sm tracking-wide uppercase text-stone-900 dark:text-white line-clamp-1 leading-snug">
                       {image.title}
                     </h3>
-                    <p className="mt-1 text-[11px] text-stone-400 line-clamp-2 leading-relaxed font-sans">
+                    <p className="mt-1 text-[11px] text-stone-600 dark:text-stone-400 line-clamp-2 leading-relaxed font-sans">
                       {image.description || "Archived legal assembly photograph."}
                     </p>
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-white/5 space-y-1 text-[10px] font-mono text-stone-400">
+                  <div className="mt-3 pt-3 border-t border-stone-200 dark:border-white/5 space-y-1 text-[10px] font-mono text-stone-500 dark:text-stone-400">
                     <div className="flex items-center gap-1.5 truncate">
-                      <Calendar className="w-3 h-3 text-[#C5A059] shrink-0" />
+                      <Calendar className="w-3 h-3 text-[#9E7D3B] dark:text-[#C5A059] shrink-0" />
                       <span className="truncate">{image.date}</span>
                     </div>
                     <div className="flex items-center gap-1.5 truncate">
-                      <MapPin className="w-3 h-3 text-[#C5A059] shrink-0" />
+                      <MapPin className="w-3 h-3 text-[#9E7D3B] dark:text-[#C5A059] shrink-0" />
                       <span className="truncate">{image.venue}</span>
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+                  <div className="mt-4 pt-3 border-t border-stone-200 dark:border-white/10 flex items-center justify-between gap-2">
                     <button
                       onClick={() => setInspectImage(image)}
-                      className="px-2.5 py-1 rounded bg-[#1A1A1A] hover:bg-stone-800 text-stone-300 hover:text-white text-[10px] font-mono uppercase tracking-wider flex items-center gap-1 transition"
+                      className="px-2.5 py-1 rounded bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white text-[10px] font-mono uppercase tracking-wider flex items-center gap-1 transition"
                     >
                       <Eye className="w-3 h-3" />
                       <span>Inspect</span>
@@ -474,8 +474,8 @@ export default function AdminGalleryPage() {
                       onClick={() => handleToggleFeatured(image.id)}
                       className={`px-2 py-1 rounded text-[10px] font-mono uppercase tracking-wider transition ${
                         image.featured
-                          ? "bg-amber-400/20 text-amber-300 border border-amber-400/40"
-                          : "bg-[#1A1A1A] text-stone-400 hover:text-white"
+                          ? "bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/40"
+                          : "bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
                       }`}
                     >
                       {image.featured ? "★ Featured" : "☆ Feature"}
@@ -483,7 +483,7 @@ export default function AdminGalleryPage() {
 
                     <button
                       onClick={() => handleDeleteImage(image.id, image.title)}
-                      className="p-1 rounded text-stone-500 hover:text-rose-400 hover:bg-rose-950/30 transition"
+                      className="p-1 rounded text-stone-400 hover:text-rose-600 dark:text-stone-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition"
                       title="Delete from showcase"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -498,25 +498,25 @@ export default function AdminGalleryPage() {
         {/* Upload Modal */}
         {isUploadOpen && (
           <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-[#141414] border border-white/20 rounded-lg max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 sm:p-8">
+            <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/20 rounded-lg max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 sm:p-8">
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-white/10 pb-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/30">
+                  <div className="p-2.5 rounded bg-[#9E7D3B]/10 dark:bg-[#C5A059]/10 text-[#9E7D3B] dark:text-[#C5A059] border border-[#9E7D3B]/30 dark:border-[#C5A059]/30">
                     <Upload className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="font-display text-xl uppercase tracking-wide text-white">
+                    <h2 className="font-display text-xl uppercase tracking-wide text-stone-900 dark:text-white">
                       Upload to Event Showcase
                     </h2>
-                    <p className="text-xs text-stone-400 font-mono">
+                    <p className="text-xs text-stone-500 dark:text-stone-400 font-mono">
                       Add a new photograph with metadata to the public Hulftsdorp gallery.
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsUploadOpen(false)}
-                  className="p-2 rounded-full hover:bg-white/10 text-stone-400 hover:text-white transition"
+                  className="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-white/10 text-stone-400 hover:text-stone-900 dark:hover:text-white transition"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -527,8 +527,8 @@ export default function AdminGalleryPage() {
                 <div
                   className={`p-3.5 rounded text-xs font-mono mb-6 flex items-center gap-2 ${
                     feedback.type === "success"
-                      ? "bg-emerald-950/60 border border-emerald-500/40 text-emerald-300"
-                      : "bg-rose-950/60 border border-rose-500/40 text-rose-300"
+                      ? "bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-300"
+                      : "bg-rose-50 dark:bg-rose-950/60 border border-rose-300 dark:border-rose-500/40 text-rose-800 dark:text-rose-300"
                   }`}
                 >
                   {feedback.type === "success" ? (
@@ -543,11 +543,11 @@ export default function AdminGalleryPage() {
               <form onSubmit={handleSaveImage} className="space-y-5">
                 {/* File Dropzone & Direct Upload */}
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-2">
-                    Event Photograph File <span className="text-[#C5A059]">*</span>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-2 font-medium">
+                    Event Photograph File <span className="text-[#9E7D3B] dark:text-[#C5A059]">*</span>
                   </label>
 
-                  <div className="border-2 border-dashed border-white/20 hover:border-[#C5A059]/60 rounded-lg p-5 text-center transition bg-[#1A1A1A]/50">
+                  <div className="border-2 border-dashed border-stone-300 dark:border-white/20 hover:border-[#9E7D3B]/60 dark:hover:border-[#C5A059]/60 rounded-lg p-5 text-center transition bg-stone-50 dark:bg-[#1A1A1A]/50">
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -562,21 +562,21 @@ export default function AdminGalleryPage() {
                         <img
                           src={imageUrl}
                           alt="Upload preview"
-                          className="max-h-48 mx-auto rounded border border-white/20 object-contain bg-black"
+                          className="max-h-48 mx-auto rounded border border-stone-300 dark:border-white/20 object-contain bg-black"
                         />
                         <div className="flex items-center justify-center gap-3">
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="text-xs font-mono text-[#C5A059] hover:underline"
+                            className="text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] font-semibold hover:underline"
                           >
                             Replace Image
                           </button>
-                          <span className="text-white/20">|</span>
+                          <span className="text-stone-300 dark:text-white/20">|</span>
                           <button
                             type="button"
                             onClick={() => setImageUrl("")}
-                            className="text-xs font-mono text-rose-400 hover:underline"
+                            className="text-xs font-mono text-rose-500 hover:underline"
                           >
                             Remove
                           </button>
@@ -587,17 +587,17 @@ export default function AdminGalleryPage() {
                         onClick={() => fileInputRef.current?.click()}
                         className="cursor-pointer py-4 flex flex-col items-center justify-center"
                       >
-                        <div className="w-12 h-12 rounded-full bg-[#141414] border border-white/10 flex items-center justify-center text-[#C5A059] mb-3">
+                        <div className="w-12 h-12 rounded-full bg-stone-100 dark:bg-[#141414] border border-stone-300 dark:border-white/10 flex items-center justify-center text-[#9E7D3B] dark:text-[#C5A059] mb-3">
                           {uploadingFile ? (
                             <RefreshCw className="w-5 h-5 animate-spin" />
                           ) : (
                             <Upload className="w-5 h-5" />
                           )}
                         </div>
-                        <span className="text-xs font-mono font-semibold text-white block">
+                        <span className="text-xs font-mono font-semibold text-stone-900 dark:text-white block">
                           {uploadingFile ? "Uploading to Server..." : "Click to select or drag photo here"}
                         </span>
-                        <span className="text-[10px] text-stone-400 font-mono mt-1 block">
+                        <span className="text-[10px] text-stone-500 dark:text-stone-400 font-mono mt-1 block">
                           JPEG, PNG, WEBP up to 10MB (Saves directly to public/uploads)
                         </span>
                       </div>
@@ -611,15 +611,15 @@ export default function AdminGalleryPage() {
                       placeholder="Or enter existing image path (e.g., /images/sri-lanka/hero-old-parliament.jpg)"
                       value={imageUrl}
                       onChange={(e) => setImageUrl(e.target.value)}
-                      className="w-full bg-[#1A1A1A] border border-white/10 px-3 py-1.5 rounded text-xs text-white placeholder-stone-500 font-mono focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3 py-1.5 rounded text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-stone-500 font-mono focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Title */}
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
-                    Photograph Title / Caption <span className="text-[#C5A059]">*</span>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
+                    Photograph Title / Caption <span className="text-[#9E7D3B] dark:text-[#C5A059]">*</span>
                   </label>
                   <input
                     type="text"
@@ -627,20 +627,20 @@ export default function AdminGalleryPage() {
                     placeholder="e.g. 50th Golden Jubilee Law Conference Plenary Session"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white placeholder-stone-500 focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-stone-500 focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                   />
                 </div>
 
                 {/* Category & Associated Calendar Event */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                       Category
                     </label>
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     >
                       <option value="National Conference">National Conference</option>
                       <option value="Annual Law Dinner">Annual Law Dinner</option>
@@ -657,19 +657,19 @@ export default function AdminGalleryPage() {
                         placeholder="Enter custom category name..."
                         value={customCategory}
                         onChange={(e) => setCustomCategory(e.target.value)}
-                        className="mt-2 w-full bg-[#1A1A1A] border border-white/10 px-3 py-1.5 rounded text-xs text-white"
+                        className="mt-2 w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3 py-1.5 rounded text-xs text-stone-900 dark:text-white"
                       />
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                       Link with Scheduled Event
                     </label>
                     <select
                       value={selectedEventId}
                       onChange={(e) => setSelectedEventId(e.target.value)}
-                      className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     >
                       <option value="">None (Independent Showcase Image)</option>
                       {events.map((ev) => (
@@ -684,7 +684,7 @@ export default function AdminGalleryPage() {
                 {/* Date & Venue */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                       Date Captured
                     </label>
                     <input
@@ -692,12 +692,12 @@ export default function AdminGalleryPage() {
                       placeholder="e.g. 15 Oct, 2026"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white focus:border-[#C5A059] focus:outline-none font-mono"
+                      className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none font-mono"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                       Venue / Chamber Location
                     </label>
                     <input
@@ -705,14 +705,14 @@ export default function AdminGalleryPage() {
                       placeholder="e.g. Superior Courts Complex, Hulftsdorp"
                       value={venue}
                       onChange={(e) => setVenue(e.target.value)}
-                      className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Photographer Attribution */}
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                     Photographer / Media Attribution
                   </label>
                   <input
@@ -720,13 +720,13 @@ export default function AdminGalleryPage() {
                     placeholder="e.g. CLS Secretariat Media Desk / Hulftsdorp Press"
                     value={photographer}
                     onChange={(e) => setPhotographer(e.target.value)}
-                    className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                   />
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-300 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1.5 font-medium">
                     Description &amp; Historical Context
                   </label>
                   <textarea
@@ -734,43 +734,43 @@ export default function AdminGalleryPage() {
                     placeholder="Provide details about the session, key dignitaries, speeches, or resolution passed..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full bg-[#1A1A1A] border border-white/10 px-3.5 py-2.5 rounded text-xs text-white placeholder-stone-500 focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/10 px-3.5 py-2.5 rounded text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-stone-500 focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                   />
                 </div>
 
                 {/* Featured Checkbox */}
-                <div className="flex items-center gap-3 p-3 bg-[#1A1A1A] rounded border border-white/10">
+                <div className="flex items-center gap-3 p-3 bg-stone-50 dark:bg-[#1A1A1A] rounded border border-stone-200 dark:border-white/10">
                   <input
                     type="checkbox"
                     id="featuredToggle"
                     checked={featured}
                     onChange={(e) => setFeatured(e.target.checked)}
-                    className="w-4 h-4 accent-[#C5A059] rounded"
+                    className="w-4 h-4 accent-[#9E7D3B] dark:accent-[#C5A059] rounded"
                   />
-                  <label htmlFor="featuredToggle" className="text-xs text-white font-mono cursor-pointer">
-                    <span className="font-bold text-amber-300 flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <label htmlFor="featuredToggle" className="text-xs text-stone-900 dark:text-white font-mono cursor-pointer">
+                    <span className="font-bold text-[#9E7D3B] dark:text-amber-300 flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
                       Feature in Public Showcase Highlights
                     </span>
-                    <span className="text-[10px] text-stone-400 block mt-0.5">
+                    <span className="text-[10px] text-stone-500 dark:text-stone-400 block mt-0.5">
                       Featured images will be prioritized at the top of the public gallery and shown on key portals.
                     </span>
                   </label>
                 </div>
 
                 {/* Form Buttons */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+                <div className="pt-4 border-t border-stone-200 dark:border-white/10 flex items-center justify-end gap-3">
                   <button
                     type="button"
                     onClick={() => setIsUploadOpen(false)}
-                    className="px-5 py-2.5 rounded bg-transparent border border-white/20 text-xs font-mono uppercase tracking-wider text-stone-300 hover:text-white hover:border-white/40 transition"
+                    className="px-5 py-2.5 rounded bg-stone-100 hover:bg-stone-200 dark:bg-transparent border border-stone-300 dark:border-white/20 text-xs font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submitting || !imageUrl || !title}
-                    className="px-6 py-2.5 rounded bg-[#C5A059] hover:bg-[#d6b168] disabled:opacity-50 text-black text-xs font-mono uppercase tracking-widest font-bold transition flex items-center gap-2 shadow-lg"
+                    className="px-6 py-2.5 rounded bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] disabled:opacity-50 text-white dark:text-black text-xs font-mono uppercase tracking-widest font-bold transition flex items-center gap-2 shadow-md shadow-[#9E7D3B]/20 dark:shadow-none"
                   >
                     {submitting ? (
                       <>
@@ -793,9 +793,9 @@ export default function AdminGalleryPage() {
         {/* Inspect Modal */}
         {inspectImage && (
           <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-[#141414] border border-white/20 rounded-lg max-w-3xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/20 rounded-lg max-w-3xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row">
               {/* Image Preview */}
-              <div className="md:w-1/2 bg-black flex items-center justify-center p-2">
+              <div className="md:w-1/2 bg-stone-100 dark:bg-black flex items-center justify-center p-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={inspectImage.imageUrl}
@@ -808,52 +808,52 @@ export default function AdminGalleryPage() {
               <div className="md:w-1/2 p-6 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="px-2 py-0.5 bg-[#C5A059]/20 text-[#C5A059] text-[9px] font-mono uppercase tracking-wider rounded">
+                    <span className="px-2 py-0.5 bg-[#9E7D3B]/10 dark:bg-[#C5A059]/20 text-[#9E7D3B] dark:text-[#C5A059] text-[9px] font-mono uppercase tracking-wider rounded font-medium">
                       {inspectImage.category}
                     </span>
                     <button
                       onClick={() => setInspectImage(null)}
-                      className="text-stone-400 hover:text-white p-1"
+                      className="text-stone-400 hover:text-stone-900 dark:hover:text-white p-1"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
 
-                  <h3 className="font-display text-lg uppercase tracking-wide text-white mt-3 leading-snug">
+                  <h3 className="font-display text-lg uppercase tracking-wide text-stone-900 dark:text-white mt-3 leading-snug">
                     {inspectImage.title}
                   </h3>
 
-                  <p className="mt-2 text-xs text-stone-300 leading-relaxed font-sans">
+                  <p className="mt-2 text-xs text-stone-600 dark:text-stone-300 leading-relaxed font-sans">
                     {inspectImage.description}
                   </p>
 
-                  <div className="mt-4 space-y-2 text-[11px] font-mono text-stone-400 border-t border-white/10 pt-4">
+                  <div className="mt-4 space-y-2 text-[11px] font-mono text-stone-600 dark:text-stone-400 border-t border-stone-200 dark:border-white/10 pt-4">
                     <div>
-                      <span className="text-stone-500 uppercase block text-[9px]">Date</span>
-                      <span className="text-white">{inspectImage.date}</span>
+                      <span className="text-stone-400 dark:text-stone-500 uppercase block text-[9px]">Date</span>
+                      <span className="text-stone-900 dark:text-white font-medium">{inspectImage.date}</span>
                     </div>
                     <div>
-                      <span className="text-stone-500 uppercase block text-[9px]">Venue</span>
-                      <span className="text-white">{inspectImage.venue}</span>
+                      <span className="text-stone-400 dark:text-stone-500 uppercase block text-[9px]">Venue</span>
+                      <span className="text-stone-900 dark:text-white font-medium">{inspectImage.venue}</span>
                     </div>
                     {inspectImage.photographer && (
                       <div>
-                        <span className="text-stone-500 uppercase block text-[9px]">Attribution</span>
-                        <span className="text-white">{inspectImage.photographer}</span>
+                        <span className="text-stone-400 dark:text-stone-500 uppercase block text-[9px]">Attribution</span>
+                        <span className="text-stone-900 dark:text-white font-medium">{inspectImage.photographer}</span>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-6 pt-4 border-t border-stone-200 dark:border-white/10 flex items-center justify-between">
                   <a
                     href={inspectImage.imageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-mono text-[#C5A059] hover:underline flex items-center gap-1"
+                    className="text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] hover:underline flex items-center gap-1 font-semibold"
                   >
                     <span>Full High-Res</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
 
                   <button
@@ -863,8 +863,8 @@ export default function AdminGalleryPage() {
                     }}
                     className={`px-3 py-1.5 rounded text-xs font-mono uppercase tracking-wider font-semibold ${
                       inspectImage.featured
-                        ? "bg-amber-400 text-black"
-                        : "bg-[#1A1A1A] border border-white/20 text-white"
+                        ? "bg-[#9E7D3B] dark:bg-amber-400 text-white dark:text-black"
+                        : "bg-stone-100 hover:bg-stone-200 dark:bg-[#1A1A1A] border border-stone-300 dark:border-white/20 text-stone-800 dark:text-white"
                     }`}
                   >
                     {inspectImage.featured ? "★ Featured" : "☆ Mark Featured"}

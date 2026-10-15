@@ -370,28 +370,28 @@ export default function AdminEventsCalendarPage() {
         )}
 
         {/* Top Header & Console Title */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between border-b border-white/10 pb-6 gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between border-b border-stone-200 dark:border-white/10 pb-6 gap-4">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#C5A059] font-bold block mb-1">
-              [ CONTINUING LEGAL EDUCATION & COUNCIL SCHEDULING ]
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] font-bold block mb-1">
+              [ CONTINUING LEGAL EDUCATION &amp; COUNCIL SCHEDULING ]
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl uppercase tracking-wider text-white">
+            <h1 className="font-display text-4xl sm:text-5xl uppercase tracking-wider text-stone-900 dark:text-white">
               EVENT &amp; MEETING CALENDAR
             </h1>
-            <p className="text-xs text-stone-400 font-sans mt-1">
+            <p className="text-xs text-stone-500 dark:text-stone-400 font-sans mt-1">
               Google Calendar-style scheduler for Supreme Court Bar symposiums, executive council meetings, and CLE masterclasses.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {/* View Mode Switcher */}
-            <div className="bg-[#141414] border border-white/10 p-1 rounded-sm flex items-center text-xs font-mono uppercase">
+            <div className="bg-stone-100 dark:bg-[#141414] border border-stone-300 dark:border-white/10 p-1 rounded-sm flex items-center text-xs font-mono uppercase">
               <button
                 onClick={() => setViewMode("month")}
                 className={`px-3 py-1.5 rounded-sm transition ${
                   viewMode === "month"
-                    ? "bg-[#C5A059] text-black font-bold"
-                    : "text-stone-400 hover:text-white"
+                    ? "bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-black font-bold shadow-sm"
+                    : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
                 }`}
               >
                 Month View
@@ -400,8 +400,8 @@ export default function AdminEventsCalendarPage() {
                 onClick={() => setViewMode("agenda")}
                 className={`px-3 py-1.5 rounded-sm transition ${
                   viewMode === "agenda"
-                    ? "bg-[#C5A059] text-black font-bold"
-                    : "text-stone-400 hover:text-white"
+                    ? "bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-black font-bold shadow-sm"
+                    : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
                 }`}
               >
                 Schedule List
@@ -410,7 +410,7 @@ export default function AdminEventsCalendarPage() {
 
             <button
               onClick={() => openCreateModal()}
-              className="px-5 py-2.5 bg-[#C5A059] hover:bg-[#b08e4d] text-black font-mono text-xs uppercase tracking-widest font-bold transition rounded-sm flex items-center space-x-2 shadow-lg"
+              className="px-5 py-2.5 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#b08e4d] text-white dark:text-black font-mono text-xs uppercase tracking-widest font-bold transition rounded-sm flex items-center space-x-2 shadow-lg"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Schedule Event / Meeting</span>
@@ -419,30 +419,30 @@ export default function AdminEventsCalendarPage() {
         </div>
 
         {/* Calendar Controls & Navigation Bar */}
-        <div className="bg-[#141414] border border-white/10 p-4 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 p-4 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
           {/* Month / Period Navigation */}
           <div className="flex items-center space-x-3">
-            <h2 className="font-display text-2xl tracking-wider text-white min-w-[200px]">
+            <h2 className="font-display text-2xl tracking-wider text-stone-900 dark:text-white min-w-[200px]">
               {monthYearLabel}
             </h2>
             <div className="flex items-center space-x-1">
               <button
                 onClick={prevMonth}
                 title="Previous Month"
-                className="p-2 bg-black border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded-sm transition"
+                className="p-2 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded-sm transition"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={goToToday}
-                className="px-3 py-1.5 bg-black border border-white/10 hover:border-[#C5A059] text-xs font-mono uppercase text-stone-300 hover:text-white rounded-sm transition"
+                className="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-xs font-mono uppercase text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded-sm transition font-medium"
               >
                 Today
               </button>
               <button
                 onClick={nextMonth}
                 title="Next Month"
-                className="p-2 bg-black border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded-sm transition"
+                className="p-2 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded-sm transition"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -458,8 +458,8 @@ export default function AdminEventsCalendarPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-sm border uppercase text-[10px] tracking-wider transition ${
                     selectedCategory === cat
-                      ? "bg-white text-black border-white font-bold"
-                      : "bg-black/60 text-stone-400 border-white/10 hover:border-white/30 hover:text-white"
+                      ? "bg-stone-900 text-white border-stone-900 dark:bg-white dark:text-black dark:border-white font-bold"
+                      : "bg-stone-100 dark:bg-black/60 text-stone-600 dark:text-stone-400 border-stone-300 dark:border-white/10 hover:border-stone-400 dark:hover:border-white/30 hover:text-stone-900 dark:hover:text-white"
                   }`}
                 >
                   {cat === "Continuing Legal Education" ? "CLE" : cat}
@@ -473,9 +473,9 @@ export default function AdminEventsCalendarPage() {
         {/* CALENDAR VIEW: MONTH GRID                                                */}
         {/* ========================================================================= */}
         {viewMode === "month" && (
-          <div className="bg-[#141414] border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-sm overflow-hidden shadow-sm dark:shadow-2xl">
             {/* Weekday Header Row */}
-            <div className="grid grid-cols-7 border-b border-white/10 bg-black/60 text-center text-xs font-mono tracking-widest text-[#C5A059] py-3">
+            <div className="grid grid-cols-7 border-b border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-black/60 text-center text-xs font-mono tracking-widest text-[#9E7D3B] dark:text-[#C5A059] py-3">
               {weekDayNames.map((d) => (
                 <div key={d} className="font-bold">
                   {d}
@@ -484,7 +484,7 @@ export default function AdminEventsCalendarPage() {
             </div>
 
             {/* 7-column Calendar Days Grid */}
-            <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-white/10">
+            <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-stone-200 dark:divide-white/10">
               {calendarGrid.map((dayObj, index) => {
                 const isToday =
                   new Date().toISOString().slice(0, 10) === dayObj.dateStr;
@@ -495,25 +495,25 @@ export default function AdminEventsCalendarPage() {
                     onClick={() => openCreateModal(dayObj.dateStr)}
                     className={`min-h-[120px] sm:min-h-[140px] p-2 flex flex-col justify-between transition-colors cursor-pointer group relative ${
                       dayObj.isCurrentMonth
-                        ? "bg-[#141414] hover:bg-[#1C1C1C]"
-                        : "bg-black/40 text-stone-600 hover:bg-black/60"
-                    } ${isToday ? "ring-1 ring-[#C5A059] ring-inset" : ""}`}
+                        ? "bg-white hover:bg-stone-50 dark:bg-[#141414] dark:hover:bg-[#1C1C1C]"
+                        : "bg-stone-50/60 text-stone-400 hover:bg-stone-100 dark:bg-black/40 dark:text-stone-600 dark:hover:bg-black/60"
+                    } ${isToday ? "ring-1 ring-[#9E7D3B] dark:ring-[#C5A059] ring-inset" : ""}`}
                   >
                     {/* Top Row: Day Number + Add Pill */}
                     <div className="flex items-center justify-between mb-1">
                       <span
                         className={`text-xs font-mono font-bold ${
                           isToday
-                            ? "w-6 h-6 rounded-full bg-[#C5A059] text-black flex items-center justify-center font-bold"
+                            ? "w-6 h-6 rounded-full bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-black flex items-center justify-center font-bold"
                             : dayObj.isCurrentMonth
-                            ? "text-stone-300"
-                            : "text-stone-600"
+                            ? "text-stone-800 dark:text-stone-300"
+                            : "text-stone-400 dark:text-stone-600"
                         }`}
                       >
                         {dayObj.dayNum}
                       </span>
 
-                      <span className="opacity-0 group-hover:opacity-100 text-[9px] font-mono text-[#C5A059] transition uppercase">
+                      <span className="opacity-0 group-hover:opacity-100 text-[9px] font-mono text-[#9E7D3B] dark:text-[#C5A059] transition uppercase font-semibold">
                         + Add
                       </span>
                     </div>
@@ -528,20 +528,20 @@ export default function AdminEventsCalendarPage() {
                             setSelectedEventDetails(evt);
                           }}
                           style={{
-                            borderLeftColor: evt.color || "#C5A059",
+                            borderLeftColor: evt.color || "#9E7D3B",
                           }}
-                          className="px-2 py-1 bg-black/80 hover:bg-stone-900 border border-white/10 border-l-4 rounded-sm text-[10px] font-mono text-stone-200 transition-all flex items-center justify-between group/evt truncate shadow"
+                          className="px-2 py-1 bg-stone-100 hover:bg-stone-200 dark:bg-black/80 dark:hover:bg-stone-900 border border-stone-200 dark:border-white/10 border-l-4 rounded-sm text-[10px] font-mono text-stone-900 dark:text-stone-200 transition-all flex items-center justify-between group/evt truncate shadow-sm"
                           title={`${evt.title} (${evt.venue})`}
                         >
                           <div className="truncate flex-1">
-                            <span className="font-bold text-[#C5A059] mr-1">
+                            <span className="font-bold text-[#9E7D3B] dark:text-[#C5A059] mr-1">
                               {evt.startDateTime.slice(11, 16)}
                             </span>
                             <span className="truncate">{evt.title}</span>
                           </div>
 
                           {evt.isMeeting && (
-                            <Video className="w-3 h-3 text-emerald-400 shrink-0 ml-1" />
+                            <Video className="w-3 h-3 text-emerald-500 dark:text-emerald-400 shrink-0 ml-1" />
                           )}
                         </div>
                       ))}
@@ -557,7 +557,7 @@ export default function AdminEventsCalendarPage() {
         {/* AGENDA / SCHEDULE LIST VIEW                                               */}
         {/* ========================================================================= */}
         {viewMode === "agenda" && (
-          <div className="bg-[#141414] border border-white/10 rounded-sm divide-y divide-white/10 shadow-xl">
+          <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-sm divide-y divide-stone-200 dark:divide-white/10 shadow-sm dark:shadow-xl">
             {filteredEvents.length === 0 ? (
               <div className="p-12 text-center text-stone-500 font-mono text-sm">
                 No events scheduled for the selected criteria.
@@ -566,11 +566,11 @@ export default function AdminEventsCalendarPage() {
               filteredEvents.map((evt) => (
                 <div
                   key={evt.id}
-                  className="p-6 hover:bg-[#1A1A1A] transition flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+                  className="p-6 hover:bg-stone-50 dark:hover:bg-[#1A1A1A] transition flex flex-col lg:flex-row lg:items-center justify-between gap-6"
                 >
                   <div className="flex items-start space-x-4">
                     {/* Event Poster Thumbnail */}
-                    <div className="w-20 h-20 rounded-sm bg-black border border-white/10 overflow-hidden shrink-0 relative">
+                    <div className="w-20 h-20 rounded-sm bg-stone-100 dark:bg-black border border-stone-200 dark:border-white/10 overflow-hidden shrink-0 relative shadow-sm">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={evt.posterUrl}
@@ -582,28 +582,28 @@ export default function AdminEventsCalendarPage() {
                     <div className="space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <span
-                          style={{ backgroundColor: evt.color || "#C5A059" }}
-                          className="text-[9px] font-mono uppercase font-bold text-black px-2 py-0.5 rounded-xs"
+                          style={{ backgroundColor: evt.color || "#9E7D3B" }}
+                          className="text-[9px] font-mono uppercase font-bold text-white dark:text-black px-2 py-0.5 rounded-xs shadow-xs"
                         >
                           {evt.category}
                         </span>
                         {evt.isMeeting && (
-                          <span className="bg-emerald-900/60 text-emerald-400 border border-emerald-500/30 text-[9px] font-mono uppercase px-2 py-0.5 rounded-xs flex items-center gap-1">
+                          <span className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/30 text-[9px] font-mono uppercase px-2 py-0.5 rounded-xs flex items-center gap-1">
                             <Video className="w-3 h-3" />
                             Virtual Meeting
                           </span>
                         )}
-                        <span className="text-[10px] font-mono text-stone-400 uppercase">
+                        <span className="text-[10px] font-mono text-stone-500 dark:text-stone-400 uppercase">
                           Status: {evt.status}
                         </span>
                       </div>
 
-                      <h3 className="font-display text-2xl uppercase tracking-wide text-white">
+                      <h3 className="font-display text-2xl uppercase tracking-wide text-stone-900 dark:text-white">
                         {evt.title}
                       </h3>
 
-                      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-400 pt-1">
-                        <span className="flex items-center space-x-1 text-[#C5A059]">
+                      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-600 dark:text-stone-400 pt-1">
+                        <span className="flex items-center space-x-1 text-[#9E7D3B] dark:text-[#C5A059] font-medium">
                           <Clock className="w-3.5 h-3.5" />
                           <span>
                             {new Date(evt.startDateTime).toLocaleDateString("en-US", {
@@ -616,10 +616,10 @@ export default function AdminEventsCalendarPage() {
                           </span>
                         </span>
                         <span className="flex items-center space-x-1">
-                          <MapPin className="w-3.5 h-3.5 text-stone-500" />
+                          <MapPin className="w-3.5 h-3.5 text-stone-400 dark:text-stone-500" />
                           <span>{evt.venue}</span>
                         </span>
-                        <span className="flex items-center space-x-1 text-emerald-400">
+                        <span className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-semibold">
                           <DollarSign className="w-3.5 h-3.5" />
                           <span>{evt.price > 0 ? `LKR ${evt.price.toLocaleString()}` : "Complimentary"}</span>
                         </span>
@@ -630,21 +630,21 @@ export default function AdminEventsCalendarPage() {
                   <div className="flex items-center space-x-3 shrink-0 self-end lg:self-center">
                     <button
                       onClick={() => setSelectedEventDetails(evt)}
-                      className="px-3 py-1.5 bg-black border border-white/20 hover:border-white text-xs font-mono uppercase text-white rounded-sm flex items-center space-x-1 transition"
+                      className="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/20 hover:border-stone-400 dark:hover:border-white text-xs font-mono uppercase text-stone-900 dark:text-white rounded-sm flex items-center space-x-1 transition shadow-xs"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       <span>Details</span>
                     </button>
                     <button
                       onClick={() => openEditModal(evt)}
-                      className="px-3 py-1.5 bg-black border border-white/20 hover:border-[#C5A059] text-xs font-mono uppercase text-[#C5A059] rounded-sm flex items-center space-x-1 transition"
+                      className="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/20 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-xs font-mono uppercase text-[#9E7D3B] dark:text-[#C5A059] rounded-sm flex items-center space-x-1 transition shadow-xs"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                       <span>Edit</span>
                     </button>
                     <button
                       onClick={() => handleDeleteEvent(evt.id)}
-                      className="p-2 text-stone-500 hover:text-red-400 transition"
+                      className="p-2 text-stone-400 hover:text-red-500 dark:text-stone-500 dark:hover:text-red-400 transition"
                       title="Delete Event"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -661,9 +661,9 @@ export default function AdminEventsCalendarPage() {
         {/* ========================================================================= */}
         {selectedEventDetails && (
           <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-[#141414] border border-[#C5A059]/40 w-full max-w-xl rounded-sm overflow-hidden shadow-2xl space-y-6">
+            <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-[#C5A059]/40 w-full max-w-xl rounded-sm overflow-hidden shadow-2xl space-y-6">
               {/* Header Image */}
-              <div className="relative aspect-[16/7] bg-black">
+              <div className="relative aspect-[16/7] bg-stone-100 dark:bg-black">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={selectedEventDetails.posterUrl}
@@ -672,14 +672,14 @@ export default function AdminEventsCalendarPage() {
                 />
                 <button
                   onClick={() => setSelectedEventDetails(null)}
-                  className="absolute top-3 right-3 p-1.5 bg-black/80 rounded-full text-white hover:text-red-400 transition"
+                  className="absolute top-3 right-3 p-1.5 bg-black/70 hover:bg-black rounded-full text-white hover:text-red-400 transition"
                 >
                   <X className="w-4 h-4" />
                 </button>
                 <div className="absolute bottom-3 left-4">
                   <span
-                    style={{ backgroundColor: selectedEventDetails.color || "#C5A059" }}
-                    className="text-[10px] font-mono font-bold text-black px-2.5 py-0.5 uppercase tracking-wider"
+                    style={{ backgroundColor: selectedEventDetails.color || "#9E7D3B" }}
+                    className="text-[10px] font-mono font-bold text-white dark:text-black px-2.5 py-0.5 uppercase tracking-wider"
                   >
                     {selectedEventDetails.category}
                   </span>
@@ -687,33 +687,33 @@ export default function AdminEventsCalendarPage() {
               </div>
 
               <div className="p-6 pt-0 space-y-4">
-                <h3 className="font-display text-2xl uppercase tracking-wide text-white leading-snug">
+                <h3 className="font-display text-2xl uppercase tracking-wide text-stone-900 dark:text-white leading-snug">
                   {selectedEventDetails.title}
                 </h3>
 
-                <div className="grid grid-cols-2 gap-4 border-y border-white/10 py-3 text-xs font-mono">
+                <div className="grid grid-cols-2 gap-4 border-y border-stone-200 dark:border-white/10 py-3 text-xs font-mono">
                   <div>
                     <span className="text-stone-500 block uppercase text-[10px]">Start Date &amp; Time</span>
-                    <span className="text-white font-bold">{selectedEventDetails.startDateTime.replace("T", " • ")}</span>
+                    <span className="text-stone-900 dark:text-white font-bold">{selectedEventDetails.startDateTime.replace("T", " • ")}</span>
                   </div>
                   <div>
                     <span className="text-stone-500 block uppercase text-[10px]">Fee / Pass</span>
-                    <span className="text-emerald-400 font-bold">
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">
                       {selectedEventDetails.price > 0 ? `LKR ${selectedEventDetails.price.toLocaleString()}` : "Complimentary"}
                     </span>
                   </div>
                   <div className="col-span-2">
                     <span className="text-stone-500 block uppercase text-[10px]">Venue</span>
-                    <span className="text-stone-200">{selectedEventDetails.venue}</span>
+                    <span className="text-stone-800 dark:text-stone-200">{selectedEventDetails.venue}</span>
                   </div>
                   {selectedEventDetails.isMeeting && selectedEventDetails.meetingLink && (
-                    <div className="col-span-2 bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-sm">
-                      <span className="text-emerald-400 block uppercase text-[10px] font-bold">Virtual Chamber Link</span>
+                    <div className="col-span-2 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 p-2.5 rounded-sm">
+                      <span className="text-emerald-800 dark:text-emerald-400 block uppercase text-[10px] font-bold">Virtual Chamber Link</span>
                       <a
                         href={selectedEventDetails.meetingLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-white underline hover:text-emerald-300 break-all text-xs"
+                        className="text-emerald-700 dark:text-white underline hover:text-emerald-900 dark:hover:text-emerald-300 break-all text-xs"
                       >
                         {selectedEventDetails.meetingLink}
                       </a>
@@ -721,18 +721,18 @@ export default function AdminEventsCalendarPage() {
                   )}
                 </div>
 
-                <p className="text-xs text-stone-300 font-sans leading-relaxed">
+                <p className="text-xs text-stone-700 dark:text-stone-300 font-sans leading-relaxed">
                   {selectedEventDetails.description}
                 </p>
 
                 {selectedEventDetails.speakers && selectedEventDetails.speakers.length > 0 && (
                   <div>
-                    <span className="text-[10px] font-mono text-[#C5A059] uppercase block mb-1 font-bold">
+                    <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase block mb-1 font-bold">
                       Panelists &amp; Speakers:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedEventDetails.speakers.map((spk, idx) => (
-                        <span key={idx} className="px-2 py-0.5 bg-black border border-white/10 text-[11px] font-mono text-stone-300">
+                        <span key={idx} className="px-2 py-0.5 bg-stone-100 dark:bg-black border border-stone-200 dark:border-white/10 text-[11px] font-mono text-stone-800 dark:text-stone-300">
                           {spk}
                         </span>
                       ))}
@@ -740,10 +740,10 @@ export default function AdminEventsCalendarPage() {
                   </div>
                 )}
 
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-4 border-t border-stone-200 dark:border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => handleDeleteEvent(selectedEventDetails.id)}
-                    className="text-xs font-mono text-red-400 hover:text-red-300 transition flex items-center gap-1 uppercase"
+                    className="text-xs font-mono text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition flex items-center gap-1 uppercase font-semibold"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Delete Event</span>
@@ -752,13 +752,13 @@ export default function AdminEventsCalendarPage() {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => openEditModal(selectedEventDetails)}
-                      className="px-4 py-2 bg-[#C5A059] hover:bg-[#b08e4d] text-black font-mono text-xs uppercase tracking-wider font-bold transition rounded-sm"
+                      className="px-4 py-2 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#b08e4d] text-white dark:text-black font-mono text-xs uppercase tracking-wider font-bold transition rounded-sm shadow-sm"
                     >
                       Edit Details
                     </button>
                     <button
                       onClick={() => setSelectedEventDetails(null)}
-                      className="px-4 py-2 bg-black border border-white/20 hover:border-white text-xs font-mono uppercase text-white transition rounded-sm"
+                      className="px-4 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/20 text-stone-800 dark:text-white text-xs font-mono uppercase transition rounded-sm"
                     >
                       Close
                     </button>
@@ -773,20 +773,20 @@ export default function AdminEventsCalendarPage() {
         {/* SCHEDULE / EDIT EVENT MODAL                                               */}
         {/* ========================================================================= */}
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-[#141414] border border-[#C5A059] w-full max-w-2xl rounded-sm p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+            <div className="bg-white dark:bg-[#141414] border border-[#9E7D3B] dark:border-[#C5A059] w-full max-w-2xl rounded-sm p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-white/10 pb-4">
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059] font-bold">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] font-bold">
                     [ CALENDAR SCHEDULING CONSOLE ]
                   </span>
-                  <h2 className="font-display text-3xl uppercase tracking-wider text-white">
+                  <h2 className="font-display text-3xl uppercase tracking-wider text-stone-900 dark:text-white">
                     {editingEventId ? "EDIT CALENDAR ENTRY" : "SCHEDULE EVENT OR MEETING"}
                   </h2>
                 </div>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="p-1.5 text-stone-400 hover:text-white transition"
+                  className="p-1.5 text-stone-400 hover:text-stone-900 dark:hover:text-white transition"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -794,25 +794,25 @@ export default function AdminEventsCalendarPage() {
 
               <form onSubmit={handleSaveEvent} className="space-y-4 text-xs font-mono">
                 {/* Event Type & Meeting Toggle */}
-                <div className="flex items-center justify-between p-3 bg-black border border-white/10 rounded-sm">
+                <div className="flex items-center justify-between p-3 bg-stone-50 dark:bg-black border border-stone-200 dark:border-white/10 rounded-sm">
                   <div className="flex items-center gap-3">
-                    <Video className={`w-4 h-4 ${isMeeting ? "text-emerald-400" : "text-stone-500"}`} />
+                    <Video className={`w-4 h-4 ${isMeeting ? "text-emerald-500 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500"}`} />
                     <div>
-                      <span className="text-white font-bold block">Council Meeting / Virtual Session</span>
-                      <span className="text-[10px] text-stone-400">Toggle on if this is an internal meeting or online session</span>
+                      <span className="text-stone-900 dark:text-white font-bold block">Council Meeting / Virtual Session</span>
+                      <span className="text-[10px] text-stone-500 dark:text-stone-400">Toggle on if this is an internal meeting or online session</span>
                     </div>
                   </div>
                   <input
                     type="checkbox"
                     checked={isMeeting}
                     onChange={(e) => setIsMeeting(e.target.checked)}
-                    className="w-4 h-4 accent-[#C5A059] cursor-pointer"
+                    className="w-4 h-4 accent-[#9E7D3B] dark:accent-[#C5A059] cursor-pointer"
                   />
                 </div>
 
                 {/* Title */}
                 <div>
-                  <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                  <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                     Event / Meeting Title *
                   </label>
                   <input
@@ -821,20 +821,20 @@ export default function AdminEventsCalendarPage() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Masterclass on Commercial Appellate Arguments"
-                    className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none placeholder-stone-400 dark:placeholder-white/30"
                   />
                 </div>
 
                 {/* Category & Status */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       Category
                     </label>
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     >
                       <option value="Continuing Legal Education">Continuing Legal Education</option>
                       <option value="Annual Symposium">Annual Symposium</option>
@@ -846,13 +846,13 @@ export default function AdminEventsCalendarPage() {
                   </div>
 
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       Status
                     </label>
                     <select
                       value={status}
                       onChange={(e) => setStatus(e.target.value as CLSEvent["status"])}
-                      className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     >
                       <option value="Upcoming">Upcoming</option>
                       <option value="Ongoing">Ongoing</option>
@@ -865,7 +865,7 @@ export default function AdminEventsCalendarPage() {
                 {/* Date & Time (Start & End) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       Start Date &amp; Time *
                     </label>
                     <input
@@ -873,26 +873,26 @@ export default function AdminEventsCalendarPage() {
                       required
                       value={startDateTime}
                       onChange={(e) => setStartDateTime(e.target.value)}
-                      className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       End Date &amp; Time
                     </label>
                     <input
                       type="datetime-local"
                       value={endDateTime}
                       onChange={(e) => setEndDateTime(e.target.value)}
-                      className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Venue & Location */}
                 <div>
-                  <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                  <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                     Venue / Meeting Room
                   </label>
                   <input
@@ -900,7 +900,7 @@ export default function AdminEventsCalendarPage() {
                     value={venue}
                     onChange={(e) => setVenue(e.target.value)}
                     placeholder="e.g. Main Auditorium, Superior Courts Complex"
-                    className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none placeholder-stone-400 dark:placeholder-white/30"
                   />
                   {/* Preset Venue Pills */}
                   <div className="flex flex-wrap gap-1 mt-1.5">
@@ -909,7 +909,7 @@ export default function AdminEventsCalendarPage() {
                         key={i}
                         type="button"
                         onClick={() => setVenue(v)}
-                        className="text-[9px] px-2 py-0.5 bg-black border border-white/10 text-stone-400 hover:text-white hover:border-[#C5A059] rounded-xs"
+                        className="text-[9px] px-2 py-0.5 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/10 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:border-[#9E7D3B] dark:hover:border-[#C5A059] rounded-xs transition"
                       >
                         {v.split(",")[0]}
                       </button>
@@ -920,7 +920,7 @@ export default function AdminEventsCalendarPage() {
                 {/* Meeting Link (if isMeeting is checked) */}
                 {isMeeting && (
                   <div>
-                    <label className="text-emerald-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-emerald-700 dark:text-emerald-400 block mb-1 uppercase tracking-wider font-semibold">
                       Virtual Chamber / Zoom / Google Meet Link
                     </label>
                     <input
@@ -928,7 +928,7 @@ export default function AdminEventsCalendarPage() {
                       value={meetingLink}
                       onChange={(e) => setMeetingLink(e.target.value)}
                       placeholder="https://zoom.us/j/123456789 or https://meet.google.com/..."
-                      className="w-full bg-black border border-emerald-500/40 p-2.5 rounded text-white focus:border-emerald-400 focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-emerald-400 dark:border-emerald-500/40 p-2.5 rounded text-stone-900 dark:text-white focus:border-emerald-500 dark:focus:border-emerald-400 focus:outline-none"
                     />
                   </div>
                 )}
@@ -936,19 +936,19 @@ export default function AdminEventsCalendarPage() {
                 {/* Price & Color */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       Registration Fee (LKR, 0 = Free)
                     </label>
                     <input
                       type="number"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
-                      className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                      className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                    <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                       Calendar Badge Color
                     </label>
                     <div className="flex items-center gap-2 mt-1">
@@ -959,7 +959,7 @@ export default function AdminEventsCalendarPage() {
                           onClick={() => setColor(cp.hex)}
                           style={{ backgroundColor: cp.hex }}
                           className={`w-6 h-6 rounded-full border-2 transition ${
-                            color === cp.hex ? "border-white scale-110" : "border-transparent opacity-70"
+                            color === cp.hex ? "border-stone-900 dark:border-white scale-110 shadow-sm" : "border-transparent opacity-70"
                           }`}
                           title={cp.label}
                         />
@@ -970,7 +970,7 @@ export default function AdminEventsCalendarPage() {
 
                 {/* Speakers */}
                 <div>
-                  <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                  <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                     Key Speakers / Panelists (comma-separated)
                   </label>
                   <input
@@ -978,17 +978,17 @@ export default function AdminEventsCalendarPage() {
                     value={speakersInput}
                     onChange={(e) => setSpeakersInput(e.target.value)}
                     placeholder="e.g. Hon. Chief Justice, President Sandun Nagahawatta, Mr. K. Kanag-Iswaran PC"
-                    className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none placeholder-stone-400 dark:placeholder-white/30"
                   />
                 </div>
 
                 {/* Event Photo / Poster Upload */}
                 <div>
-                  <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                  <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                     Event Photo / Poster
                   </label>
-                  <div className="border border-dashed border-white/20 hover:border-[#C5A059] p-4 rounded bg-black/60 flex flex-col sm:flex-row items-center gap-4 transition">
-                    <div className="w-24 h-24 rounded bg-black border border-white/10 overflow-hidden shrink-0 relative">
+                  <div className="border border-dashed border-stone-300 dark:border-white/20 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] p-4 rounded bg-stone-50 dark:bg-black/60 flex flex-col sm:flex-row items-center gap-4 transition">
+                    <div className="w-24 h-24 rounded bg-stone-100 dark:bg-black border border-stone-200 dark:border-white/10 overflow-hidden shrink-0 relative shadow-sm">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={posterUrl}
@@ -999,7 +999,7 @@ export default function AdminEventsCalendarPage() {
 
                     <div className="space-y-2 flex-1 text-center sm:text-left">
                       <div className="flex items-center gap-2 justify-center sm:justify-start">
-                        <label className="cursor-pointer px-3 py-1.5 bg-[#C5A059] hover:bg-[#b08e4d] text-black font-bold uppercase text-[10px] rounded-sm transition flex items-center gap-1.5 shadow">
+                        <label className="cursor-pointer px-3 py-1.5 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#b08e4d] text-white dark:text-black font-bold uppercase text-[10px] rounded-sm transition flex items-center gap-1.5 shadow-sm">
                           <Upload className="w-3.5 h-3.5" />
                           <span>{uploading ? "Uploading..." : "Upload Photo"}</span>
                           <input
@@ -1016,7 +1016,7 @@ export default function AdminEventsCalendarPage() {
                         value={posterUrl}
                         onChange={(e) => setPosterUrl(e.target.value)}
                         placeholder="Or enter image URL"
-                        className="w-full bg-black border border-white/10 p-1.5 rounded text-[11px] text-stone-300"
+                        className="w-full bg-white dark:bg-black border border-stone-300 dark:border-white/10 p-1.5 rounded text-[11px] text-stone-800 dark:text-stone-300"
                       />
                     </div>
                   </div>
@@ -1024,7 +1024,7 @@ export default function AdminEventsCalendarPage() {
 
                 {/* Description */}
                 <div>
-                  <label className="text-stone-400 block mb-1 uppercase tracking-wider">
+                  <label className="text-stone-600 dark:text-stone-400 block mb-1 uppercase tracking-wider font-medium">
                     Event Overview &amp; Agenda Details
                   </label>
                   <textarea
@@ -1032,22 +1032,22 @@ export default function AdminEventsCalendarPage() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Enter detailed syllabus, session objectives, or council agenda notes..."
-                    className="w-full bg-black border border-white/20 p-2.5 rounded text-white focus:border-[#C5A059] focus:outline-none"
+                    className="w-full bg-stone-50 dark:bg-black border border-stone-300 dark:border-white/20 p-2.5 rounded text-stone-900 dark:text-white focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none placeholder-stone-400 dark:placeholder-white/30"
                   />
                 </div>
 
                 {/* Actions */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-end space-x-3">
+                <div className="pt-4 border-t border-stone-200 dark:border-white/10 flex items-center justify-end space-x-3">
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="px-5 py-2.5 bg-black border border-white/20 hover:border-white text-stone-300 hover:text-white uppercase font-bold text-xs rounded-sm transition"
+                    className="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 dark:bg-black border border-stone-300 dark:border-white/20 text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white uppercase font-bold text-xs rounded-sm transition"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 bg-[#C5A059] hover:bg-[#b08e4d] text-black uppercase font-bold text-xs rounded-sm transition shadow-lg"
+                    className="px-6 py-2.5 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#b08e4d] text-white dark:text-black uppercase font-bold text-xs rounded-sm transition shadow-lg shadow-[#9E7D3B]/20 dark:shadow-[#C5A059]/20"
                   >
                     {editingEventId ? "Save Changes" : "Publish to Calendar"}
                   </button>

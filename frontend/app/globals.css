@@ -5,10 +5,25 @@
 @tailwind utilities;
 
 :root {
+  --background: #FDFBF7;
+  --foreground: #12141A;
+  --sand: #E7E0D3;
+  --bronze: #9E7D3B;
+  --card: #FFFFFF;
+  --card-border: #E5E0D8;
+  --hairline-dark: rgba(0, 0, 0, 0.12);
+  --hairline-light: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
   --background: #0A0A0A;
   --foreground: #EDEDED;
   --sand: #E7E0D3;
   --bronze: #C5A059;
+  --card: #121212;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --hairline-dark: rgba(255, 255, 255, 0.12);
+  --hairline-light: rgba(255, 255, 255, 0.08);
 }
 
 body {
@@ -16,8 +31,7 @@ body {
   background: var(--background);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  selection-background-color: #C5A059;
-  selection-color: #0A0A0A;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 ::selection {
@@ -39,11 +53,11 @@ body {
 
 /* Hairline borders matching editorial aesthetic */
 .border-hairline-dark {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--hairline-dark);
 }
 
 .border-hairline-light {
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: var(--hairline-light);
 }
 
 /* Smooth custom scrollbar */
@@ -51,11 +65,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2A2A2A;
+  background: #A0A0A0;
   border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C5A059;

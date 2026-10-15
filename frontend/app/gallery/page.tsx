@@ -111,50 +111,50 @@ export default function PublicGalleryPage() {
   }, [activeImageIndex, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#E7E0D3] selection:bg-[#C5A059] selection:text-black">
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0A0A0A] text-stone-900 dark:text-[#E7E0D3] selection:bg-[#C5A059] selection:text-black transition-colors duration-200">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-36 pb-20 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section className="relative pt-36 pb-20 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="absolute inset-0 pointer-events-none opacity-25">
           <div className="absolute top-1/4 right-10 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl" />
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#141414] border border-[#C5A059]/30 rounded-full text-[10px] tracking-widest uppercase text-[#C5A059] mb-4 font-mono">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-stone-100 dark:bg-[#141414] border border-[#9E7D3B]/30 dark:border-[#C5A059]/30 rounded-full text-[10px] tracking-widest uppercase text-[#9E7D3B] dark:text-[#C5A059] mb-4 font-mono shadow-sm">
             <Camera className="w-3 h-3" />
             Hulftsdorp Judicial Archives &bull; Historical &amp; Event Showcase
           </div>
 
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-white leading-none">
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-stone-900 dark:text-white leading-none">
             COLOMBO LAW SOCIETY <br />
-            <span className="font-serif italic font-normal text-[#C5A059] lowercase text-5xl sm:text-7xl md:text-8xl">
+            <span className="font-serif italic font-normal text-[#9E7D3B] dark:text-[#C5A059] lowercase text-5xl sm:text-7xl md:text-8xl">
               event showcase &amp; gallery
             </span>
           </h1>
 
-          <p className="mt-5 text-sm sm:text-base text-stone-400 max-w-2xl leading-relaxed font-sans">
+          <p className="mt-5 text-sm sm:text-base text-stone-600 dark:text-stone-400 max-w-2xl leading-relaxed font-sans">
             A visual retrospective of the Colombo Law Society. From landmark Golden Jubilee convocations and ceremonial court welcomes to continuing legal education masterclasses and the annual Hulftsdorp Bar dinners.
           </p>
 
           {/* Quick Stats Banner */}
-          <div className="mt-8 flex flex-wrap items-center gap-6 text-xs font-mono text-stone-400 border-t border-white/10 pt-6">
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-xs font-mono text-stone-500 dark:text-stone-400 border-t border-stone-200 dark:border-white/10 pt-6">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-white font-semibold">{images.length}</span> Total Archived Photos
+              <span className="text-stone-900 dark:text-white font-semibold">{images.length}</span> Total Archived Photos
             </div>
             <div className="flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-              <span className="text-white font-semibold">{images.filter(i => i.featured).length}</span> Curated Highlights
+              <Sparkles className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
+              <span className="text-stone-900 dark:text-white font-semibold">{images.filter(i => i.featured).length}</span> Curated Highlights
             </div>
             <div className="flex items-center gap-2">
-              <Award className="w-3.5 h-3.5 text-[#C5A059]" />
+              <Award className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
               <span>BASL Hulftsdorp Bar Historical Records</span>
             </div>
             <Link
               href="/admin/gallery"
-              className="ml-auto inline-flex items-center gap-1.5 text-xs text-[#C5A059] hover:underline font-mono"
+              className="ml-auto inline-flex items-center gap-1.5 text-xs text-[#9E7D3B] dark:text-[#C5A059] hover:underline font-mono font-semibold"
             >
               <span>Secretariat Media Desk Upload</span>
               <ArrowRight className="w-3 h-3" />
@@ -171,12 +171,12 @@ export default function PublicGalleryPage() {
                 placeholder="Search by event title, hall, or photographer..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#141414] border border-white/20 pl-10 pr-4 py-2.5 rounded text-xs text-white placeholder-stone-500 focus:border-[#C5A059] focus:outline-none transition-colors"
+                className="w-full bg-white dark:bg-[#141414] border border-stone-300 dark:border-white/20 pl-10 pr-4 py-2.5 rounded text-xs text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-stone-500 focus:border-[#9E7D3B] dark:focus:border-[#C5A059] focus:outline-none transition-colors shadow-sm dark:shadow-none"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-white text-xs"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-900 dark:hover:text-white text-xs"
                 >
                   ✕
                 </button>
@@ -192,7 +192,7 @@ export default function PublicGalleryPage() {
                   className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition font-mono ${
                     selectedCategory === cat
                       ? "bg-[#C5A059] text-black shadow-md shadow-[#C5A059]/20"
-                      : "bg-[#141414] border border-white/10 text-stone-400 hover:text-white hover:border-white/30"
+                      : "bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:border-stone-400 dark:hover:border-white/30"
                   }`}
                 >
                   {cat}
@@ -204,7 +204,7 @@ export default function PublicGalleryPage() {
                 className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition font-mono flex items-center gap-1.5 ${
                   featuredOnly
                     ? "bg-amber-400 text-black shadow-md"
-                    : "bg-[#141414] border border-white/10 text-stone-400 hover:text-white hover:border-white/30"
+                    : "bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:border-stone-400 dark:hover:border-white/30"
                 }`}
               >
                 <Sparkles className="w-3 h-3" />
@@ -218,10 +218,10 @@ export default function PublicGalleryPage() {
       {/* Main Gallery Grid */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         {filteredImages.length === 0 ? (
-          <div className="text-center py-24 bg-[#141414] rounded-lg border border-white/10">
-            <Camera className="w-12 h-12 text-stone-500 mx-auto mb-4" />
-            <h3 className="text-lg font-display uppercase tracking-wider text-white">No Event Photographs Found</h3>
-            <p className="text-xs text-stone-400 mt-1 max-w-sm mx-auto">
+          <div className="text-center py-24 bg-white dark:bg-[#141414] rounded-lg border border-stone-200 dark:border-white/10 shadow-sm">
+            <Camera className="w-12 h-12 text-stone-400 dark:text-stone-500 mx-auto mb-4" />
+            <h3 className="text-lg font-display uppercase tracking-wider text-stone-900 dark:text-white">No Event Photographs Found</h3>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-sm mx-auto">
               No images match your current search &apos;{searchQuery}&apos; or filter category.
             </p>
             <button
@@ -244,7 +244,7 @@ export default function PublicGalleryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.04 }}
                 onClick={() => setActiveImageIndex(idx)}
-                className="group relative bg-[#141414] border border-white/10 rounded overflow-hidden cursor-pointer hover:border-[#C5A059]/60 transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl"
+                className="group relative bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded overflow-hidden cursor-pointer hover:border-[#9E7D3B]/60 dark:hover:border-[#C5A059]/60 transition-all duration-300 flex flex-col shadow-sm hover:shadow-md dark:shadow-lg dark:hover:shadow-2xl"
               >
                 {/* Image Container with 16:10 Aspect */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-black">
@@ -259,11 +259,11 @@ export default function PublicGalleryPage() {
                   />
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-black/30 opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-60 group-hover:opacity-40 transition-opacity" />
 
                   {/* Category Badge */}
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="px-2.5 py-1 bg-black/80 backdrop-blur-md text-[10px] font-mono tracking-widest uppercase text-[#C5A059] border border-[#C5A059]/40 rounded-sm">
+                    <span className="px-2.5 py-1 bg-black/80 backdrop-blur-md text-[10px] font-mono tracking-widest uppercase text-[#C5A059] border border-[#C5A059]/40 rounded-sm font-semibold">
                       {image.category}
                     </span>
                   </div>
@@ -289,28 +289,28 @@ export default function PublicGalleryPage() {
                 {/* Content Details */}
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-display text-lg tracking-wide uppercase text-white group-hover:text-[#C5A059] transition-colors leading-snug">
+                    <h3 className="font-display text-lg tracking-wide uppercase text-stone-900 dark:text-white group-hover:text-[#9E7D3B] dark:group-hover:text-[#C5A059] transition-colors leading-snug">
                       {image.title}
                     </h3>
-                    <p className="mt-2 text-xs text-stone-400 line-clamp-2 leading-relaxed">
+                    <p className="mt-2 text-xs text-stone-600 dark:text-stone-400 line-clamp-2 leading-relaxed">
                       {image.description}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-white/5 flex flex-col gap-1.5 text-[11px] font-mono text-stone-400">
+                  <div className="mt-4 pt-3 border-t border-stone-100 dark:border-white/5 flex flex-col gap-1.5 text-[11px] font-mono text-stone-500 dark:text-stone-400">
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-stone-300">
-                        <Calendar className="w-3 h-3 text-[#C5A059]" />
+                      <span className="flex items-center gap-1.5 text-stone-700 dark:text-stone-300">
+                        <Calendar className="w-3 h-3 text-[#9E7D3B] dark:text-[#C5A059]" />
                         {image.date}
                       </span>
                       {image.photographer && (
-                        <span className="text-[10px] text-stone-500 uppercase">
+                        <span className="text-[10px] text-stone-400 dark:text-stone-500 uppercase">
                           {image.photographer}
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-1.5 text-stone-400 truncate">
-                      <MapPin className="w-3 h-3 text-[#C5A059] shrink-0" />
+                    <div className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400 truncate">
+                      <MapPin className="w-3 h-3 text-[#9E7D3B] dark:text-[#C5A059] shrink-0" />
                       <span className="truncate">{image.venue}</span>
                     </div>
                   </div>
@@ -322,15 +322,15 @@ export default function PublicGalleryPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-white/10 bg-[#141414] py-16">
+      <section className="border-t border-stone-200 dark:border-white/10 bg-stone-100 dark:bg-[#141414] py-16 transition-colors">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A059] block mb-2">
+          <span className="text-[10px] font-mono tracking-widest uppercase text-[#9E7D3B] dark:text-[#C5A059] block mb-2 font-semibold">
             Hulftsdorp Bar Archives &bull; Historical Record Division
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl uppercase text-stone-900 dark:text-white tracking-tight">
             Have Photographs of CLS Convocations or Court Ceremonials?
           </h2>
-          <p className="mt-3 text-sm text-stone-400 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 text-sm text-stone-600 dark:text-stone-400 max-w-xl mx-auto leading-relaxed">
             The Bar Secretariat welcomes high-resolution submissions from Senior Advocates, Junior Bar members, and court correspondents to preserve our collective legal heritage.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
@@ -342,7 +342,7 @@ export default function PublicGalleryPage() {
             </Link>
             <Link
               href="/events"
-              className="px-6 py-3 border border-white/20 text-white hover:border-[#C5A059] text-xs font-mono uppercase tracking-widest transition rounded"
+              className="px-6 py-3 border border-stone-300 dark:border-white/20 text-stone-800 dark:text-white hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-xs font-mono uppercase tracking-widest transition rounded"
             >
               View Upcoming Events
             </Link>
@@ -393,7 +393,7 @@ export default function PublicGalleryPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl w-full max-h-[90vh] bg-[#141414] border border-white/20 rounded-lg overflow-hidden flex flex-col lg:flex-row shadow-2xl"
+              className="relative max-w-5xl w-full max-h-[90vh] bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/20 rounded-lg overflow-hidden flex flex-col lg:flex-row shadow-2xl"
             >
               {/* Large Image Frame */}
               <div className="relative flex-1 bg-black flex items-center justify-center min-h-[300px] lg:min-h-[500px] p-2">
@@ -409,49 +409,49 @@ export default function PublicGalleryPage() {
               </div>
 
               {/* Sidebar Details */}
-              <div className="w-full lg:w-96 p-6 sm:p-8 flex flex-col justify-between bg-[#141414] border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto max-h-[40vh] lg:max-h-[75vh]">
+              <div className="w-full lg:w-96 p-6 sm:p-8 flex flex-col justify-between bg-white dark:bg-[#141414] border-t lg:border-t-0 lg:border-l border-stone-200 dark:border-white/10 overflow-y-auto max-h-[40vh] lg:max-h-[75vh]">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="px-2.5 py-1 bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40 text-[10px] font-mono uppercase tracking-widest rounded-sm">
+                    <span className="px-2.5 py-1 bg-[#9E7D3B]/10 dark:bg-[#C5A059]/20 text-[#9E7D3B] dark:text-[#C5A059] border border-[#9E7D3B]/30 dark:border-[#C5A059]/40 text-[10px] font-mono uppercase tracking-widest rounded-sm font-semibold">
                       {activeImage.category}
                     </span>
                     {activeImage.featured && (
-                      <span className="text-[10px] font-mono text-amber-400 flex items-center gap-1">
+                      <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 flex items-center gap-1 font-semibold">
                         <Sparkles className="w-3 h-3" /> Featured
                       </span>
                     )}
                   </div>
 
-                  <h2 className="font-display text-2xl uppercase tracking-wide text-white leading-tight">
+                  <h2 className="font-display text-2xl uppercase tracking-wide text-stone-900 dark:text-white leading-tight">
                     {activeImage.title}
                   </h2>
 
-                  <p className="mt-4 text-xs sm:text-sm text-stone-300 leading-relaxed font-sans">
+                  <p className="mt-4 text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-sans">
                     {activeImage.description}
                   </p>
 
-                  <div className="mt-6 space-y-3 pt-6 border-t border-white/10 text-xs font-mono text-stone-300">
+                  <div className="mt-6 space-y-3 pt-6 border-t border-stone-200 dark:border-white/10 text-xs font-mono text-stone-600 dark:text-stone-300">
                     <div className="flex items-start gap-2.5">
-                      <Calendar className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
+                      <Calendar className="w-4 h-4 text-[#9E7D3B] dark:text-[#C5A059] shrink-0 mt-0.5" />
                       <div>
-                        <span className="text-stone-500 block text-[10px] uppercase">Date of Event</span>
+                        <span className="text-stone-500 block text-[10px] uppercase font-semibold">Date of Event</span>
                         <span>{activeImage.date}</span>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-2.5">
-                      <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
+                      <MapPin className="w-4 h-4 text-[#9E7D3B] dark:text-[#C5A059] shrink-0 mt-0.5" />
                       <div>
-                        <span className="text-stone-500 block text-[10px] uppercase">Venue &amp; Location</span>
+                        <span className="text-stone-500 block text-[10px] uppercase font-semibold">Venue &amp; Location</span>
                         <span>{activeImage.venue}</span>
                       </div>
                     </div>
 
                     {activeImage.photographer && (
                       <div className="flex items-start gap-2.5">
-                        <Camera className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
+                        <Camera className="w-4 h-4 text-[#9E7D3B] dark:text-[#C5A059] shrink-0 mt-0.5" />
                         <div>
-                          <span className="text-stone-500 block text-[10px] uppercase">Photographer / Media</span>
+                          <span className="text-stone-500 block text-[10px] uppercase font-semibold">Photographer / Media</span>
                           <span>{activeImage.photographer}</span>
                         </div>
                       </div>
@@ -460,12 +460,12 @@ export default function PublicGalleryPage() {
                 </div>
 
                 {/* Bottom Actions */}
-                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                <div className="mt-8 pt-4 border-t border-stone-200 dark:border-white/10 flex items-center justify-between gap-3">
                   <a
                     href={activeImage.imageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#C5A059] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#9E7D3B] dark:text-[#C5A059] hover:underline font-semibold"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     Open Original

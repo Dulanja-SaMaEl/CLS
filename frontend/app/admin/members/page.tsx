@@ -264,12 +264,12 @@ export default function MemberDirectoryPage() {
         )}
 
         {/* Page Title & Top Actions */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-200 dark:border-hairline-dark pb-6 gap-4">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#C5A059] block mb-1">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] block mb-1 font-semibold">
               Supreme Court Bar Directory &bull; Hulftsdorp
             </span>
-            <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-white">
+            <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-stone-900 dark:text-white">
               PRACTITIONER DIRECTORY &amp; TIERS
             </h1>
           </div>
@@ -277,15 +277,15 @@ export default function MemberDirectoryPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={loadMembers}
-              className="p-2.5 rounded bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white transition cursor-pointer"
+              className="p-2.5 rounded bg-stone-100 hover:bg-stone-200 dark:bg-noir-800 border border-stone-300 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition cursor-pointer"
               title="Refresh Registry"
             >
-              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#C5A059]" : ""}`} />
+              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#9E7D3B] dark:text-[#C5A059]" : ""}`} />
             </button>
 
             <button
               onClick={() => setEnrollModalOpen(true)}
-              className="px-4 py-2.5 bg-[#C5A059] text-black text-xs font-mono uppercase tracking-widest font-bold hover:bg-[#d6b168] transition-all flex items-center space-x-2 shadow cursor-pointer"
+              className="px-4 py-2.5 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-black text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-2 shadow cursor-pointer"
             >
               <UserPlus className="w-4 h-4" />
               <span>Enroll New Advocate</span>
@@ -294,16 +294,16 @@ export default function MemberDirectoryPage() {
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="p-4 bg-noir-900 border border-hairline-dark grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div className="p-4 bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark grid grid-cols-1 md:grid-cols-12 gap-4 items-center shadow-sm">
           {/* Search Box */}
           <div className="md:col-span-6 relative">
-            <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search by Name, SC Enrolment, BA Enrolment, NIC, Mobile..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-noir-800 border border-white/10 text-xs font-mono text-stone-200 placeholder-stone-500 focus:outline-none focus:border-bronze"
+              className="w-full pl-10 pr-4 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-xs font-mono text-stone-900 dark:text-stone-200 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-bronze"
             />
           </div>
 
@@ -312,7 +312,7 @@ export default function MemberDirectoryPage() {
             <select
               value={tierFilter}
               onChange={(e) => setTierFilter(e.target.value)}
-              className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-xs font-mono text-stone-200 focus:outline-none focus:border-bronze uppercase tracking-wider cursor-pointer"
+              className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-xs font-mono text-stone-900 dark:text-stone-200 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-bronze uppercase tracking-wider cursor-pointer"
             >
               <option value="ALL">All Membership Tiers</option>
               <option value="Ordinary">Ordinary (Annual)</option>
@@ -326,7 +326,7 @@ export default function MemberDirectoryPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-xs font-mono text-stone-200 focus:outline-none focus:border-bronze uppercase tracking-wider cursor-pointer"
+              className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-xs font-mono text-stone-900 dark:text-stone-200 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-bronze uppercase tracking-wider cursor-pointer"
             >
               <option value="ALL">All Statuses</option>
               <option value="Active">Active Advocates</option>
@@ -336,11 +336,11 @@ export default function MemberDirectoryPage() {
         </div>
 
         {/* Table of Members */}
-        <div className="bg-noir-900 border border-hairline-dark overflow-hidden">
+        <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="border-b border-white/10 bg-noir-800/80 text-stone-400 uppercase tracking-widest text-[10px]">
+                <tr className="border-b border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-noir-800/80 text-stone-500 dark:text-stone-400 uppercase tracking-widest text-[10px]">
                   <th className="py-3 px-4">Counsel</th>
                   <th className="py-3 px-4">Enrolment</th>
                   <th className="py-3 px-4">Contact</th>
@@ -350,25 +350,25 @@ export default function MemberDirectoryPage() {
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-stone-200 dark:divide-white/5">
                 {filteredMembers.map((m) => (
-                  <tr key={m.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="py-4 px-4 font-sans font-semibold text-stone-100">
+                  <tr key={m.id} className="hover:bg-stone-50 dark:hover:bg-white/[0.02] transition-colors">
+                    <td className="py-4 px-4 font-sans font-semibold text-stone-900 dark:text-stone-100">
                       {m.name}
                     </td>
 
                     <td className="py-4 px-4">
-                      <span className="block text-stone-300 font-semibold">{m.sc_en}</span>
+                      <span className="block text-stone-800 dark:text-stone-300 font-semibold">{m.sc_en}</span>
                       <span className="text-[10px] text-stone-500">{m.ba_en || "BASL/---"}</span>
                     </td>
 
                     <td className="py-4 px-4">
-                      <span className="block text-stone-300">{m.email}</span>
+                      <span className="block text-stone-800 dark:text-stone-300">{m.email}</span>
                       <span className="text-[10px] text-stone-500">{m.mobile}</span>
                     </td>
 
                     <td className="py-4 px-4 max-w-[200px]">
-                      <span className="text-stone-300 block truncate">{m.practiceArea}</span>
+                      <span className="text-stone-800 dark:text-stone-300 block truncate">{m.practiceArea}</span>
                     </td>
 
                     <td className="py-4 px-4">
@@ -376,10 +376,10 @@ export default function MemberDirectoryPage() {
                         <span
                           className={`px-2 py-0.5 text-[10px] uppercase font-bold tracking-wider ${
                             m.membershipTier === "Life"
-                              ? "bg-amber-500/10 text-amber-300 border border-amber-500/30"
+                              ? "bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30"
                               : m.membershipTier === "Ordinary"
-                              ? "bg-blue-500/10 text-blue-300 border border-blue-500/30"
-                              : "bg-stone-800 text-stone-400 border border-stone-700"
+                              ? "bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/30"
+                              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 border border-stone-300 dark:border-stone-700"
                           }`}
                         >
                           {m.membershipTier} Member
@@ -396,14 +396,14 @@ export default function MemberDirectoryPage() {
                         onClick={() => handleToggleStatus(m.id)}
                         className={`inline-flex items-center space-x-1.5 text-[10px] font-bold tracking-wider uppercase px-2 py-1 border transition-all cursor-pointer ${
                           m.status === "Active"
-                            ? "border-emerald-500/30 text-emerald-400 bg-emerald-500/5 hover:bg-emerald-500/10"
-                            : "border-stone-700 text-stone-500 bg-stone-900 hover:border-stone-500"
+                            ? "border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 hover:bg-emerald-500/10"
+                            : "border-stone-300 dark:border-stone-700 text-stone-500 bg-stone-100 dark:bg-stone-900 hover:border-stone-400 dark:hover:border-stone-500"
                         }`}
                         title="Click to toggle status"
                       >
                         <span
                           className={`w-1.5 h-1.5 rounded-full ${
-                            m.status === "Active" ? "bg-emerald-400" : "bg-stone-600"
+                            m.status === "Active" ? "bg-emerald-500 dark:bg-emerald-400" : "bg-stone-400 dark:bg-stone-600"
                           }`}
                         />
                         <span>{m.status}</span>
@@ -417,7 +417,7 @@ export default function MemberDirectoryPage() {
                           setSelectedMember(m);
                           setUpgradeModalOpen(true);
                         }}
-                        className="px-2.5 py-1.5 border border-bronze/40 text-bronze hover:bg-bronze hover:text-noir-900 text-[10px] uppercase tracking-wider font-bold transition-all cursor-pointer"
+                        className="px-2.5 py-1.5 border border-[#9E7D3B]/40 dark:border-bronze/40 text-[#9E7D3B] dark:text-bronze hover:bg-[#9E7D3B] hover:text-white dark:hover:bg-bronze dark:hover:text-noir-900 text-[10px] uppercase tracking-wider font-bold transition-all cursor-pointer"
                         title="Renew or Upgrade Membership Tier"
                       >
                         Tier Manage
@@ -426,7 +426,7 @@ export default function MemberDirectoryPage() {
                       <button
                         type="button"
                         onClick={() => handleDeleteMember(m.id, m.name)}
-                        className="p-1.5 border border-red-500/30 text-red-400 hover:bg-red-500/10 text-[10px] transition cursor-pointer"
+                        className="p-1.5 border border-red-500/30 text-red-500 hover:bg-red-500/10 text-[10px] transition cursor-pointer"
                         title="Remove member"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -442,20 +442,20 @@ export default function MemberDirectoryPage() {
         {/* Modal: Enroll New Advocate */}
         {enrollModalOpen && (
           <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-noir-900 border border-hairline-dark max-w-lg w-full p-6 space-y-6 shadow-2xl my-8">
-              <div className="flex items-center justify-between border-b border-hairline-dark pb-4">
+            <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark max-w-lg w-full p-6 space-y-6 shadow-2xl my-8 rounded">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-4">
                 <div>
-                  <span className="text-[10px] font-mono text-[#C5A059] uppercase tracking-widest block">
+                  <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-widest block font-semibold">
                     SUPREME COURT ENROLMENT
                   </span>
-                  <h3 className="font-display text-2xl uppercase text-white">
+                  <h3 className="font-display text-2xl uppercase text-stone-900 dark:text-white">
                     Enroll New Advocate
                   </h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => setEnrollModalOpen(false)}
-                  className="text-stone-400 hover:text-white cursor-pointer"
+                  className="text-stone-400 hover:text-stone-900 dark:hover:text-white cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -463,83 +463,83 @@ export default function MemberDirectoryPage() {
 
               <form onSubmit={handleEnrollSubmit} className="space-y-4 text-xs font-mono">
                 <div>
-                  <label className="block text-stone-300 uppercase mb-1">Advocate Full Name *</label>
+                  <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">Advocate Full Name *</label>
                   <input
                     type="text"
                     required
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
                     placeholder="e.g. Mr. Kanchana Senanayake, PC"
-                    className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">SC Enrolment No *</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">SC Enrolment No *</label>
                     <input
                       type="text"
                       required
                       value={newScEn}
                       onChange={(e) => setNewScEn(e.target.value)}
                       placeholder="SC/EN/2026/..."
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                     />
                   </div>
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">BASL Enrolment</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">BASL Enrolment</label>
                     <input
                       type="text"
                       value={newBaEn}
                       onChange={(e) => setNewBaEn(e.target.value)}
                       placeholder="BASL/18492"
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">Official Email *</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">Official Email *</label>
                     <input
                       type="email"
                       required
                       value={newEmail}
                       onChange={(e) => setNewEmail(e.target.value)}
                       placeholder="counsel@bar.lk"
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                     />
                   </div>
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">Mobile Phone *</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">Mobile Phone *</label>
                     <input
                       type="text"
                       required
                       value={newMobile}
                       onChange={(e) => setNewMobile(e.target.value)}
                       placeholder="+94 77 000 0000"
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">City / Region</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">City / Region</label>
                     <input
                       type="text"
                       value={newCity}
                       onChange={(e) => setNewCity(e.target.value)}
                       placeholder="Colombo"
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059]"
                     />
                   </div>
                   <div>
-                    <label className="block text-stone-300 uppercase mb-1">Membership Tier</label>
+                    <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">Membership Tier</label>
                     <select
                       value={newTier}
                       onChange={(e) => setNewTier(e.target.value as any)}
-                      className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059] cursor-pointer"
+                      className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] cursor-pointer"
                     >
                       <option value="Ordinary">Ordinary Member (LKR 2,000/yr)</option>
                       <option value="Life">Life Member (LKR 5,000 lifetime)</option>
@@ -548,28 +548,28 @@ export default function MemberDirectoryPage() {
                 </div>
 
                 <div>
-                  <label className="block text-stone-300 uppercase mb-1">Primary Practice Area</label>
+                  <label className="block text-stone-700 dark:text-stone-300 uppercase mb-1 font-medium">Primary Practice Area</label>
                   <input
                     type="text"
                     value={newPracticeArea}
                     onChange={(e) => setNewPracticeArea(e.target.value)}
                     placeholder="e.g. Commercial & Appellate Litigation"
-                    className="w-full px-3 py-2 bg-noir-800 border border-white/10 text-white focus:outline-none focus:border-[#C5A059]"
+                    className="w-full px-3 py-2 bg-stone-50 dark:bg-noir-800 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] placeholder-stone-400 dark:placeholder-white/30"
                   />
                 </div>
 
-                <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+                <div className="flex justify-end gap-3 pt-4 border-t border-stone-200 dark:border-white/10">
                   <button
                     type="button"
                     onClick={() => setEnrollModalOpen(false)}
-                    className="px-4 py-2 border border-white/20 text-stone-300 hover:text-white cursor-pointer"
+                    className="px-4 py-2 border border-stone-300 dark:border-white/20 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-white/10 cursor-pointer rounded"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submittingEnroll}
-                    className="px-5 py-2 bg-[#C5A059] text-black font-bold uppercase hover:bg-[#d6b168] cursor-pointer disabled:opacity-50"
+                    className="px-5 py-2 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-black font-bold uppercase cursor-pointer disabled:opacity-50 rounded shadow-sm"
                   >
                     {submittingEnroll ? "Enrolling..." : "Complete Enrolment"}
                   </button>
@@ -582,84 +582,84 @@ export default function MemberDirectoryPage() {
         {/* Modal: Tier Management & Renewal */}
         {upgradeModalOpen && selectedMember && (
           <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-noir-900 border border-hairline-dark max-w-lg w-full p-6 space-y-6 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-hairline-dark pb-4">
+            <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark max-w-lg w-full p-6 space-y-6 shadow-2xl rounded">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-4">
                 <div>
-                  <span className="text-[10px] font-mono text-bronze uppercase tracking-widest block">
+                  <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-bronze uppercase tracking-widest block font-semibold">
                     MEMBERSHIP TIER RENEWAL
                   </span>
-                  <h3 className="font-display text-2xl uppercase text-white">
+                  <h3 className="font-display text-2xl uppercase text-stone-900 dark:text-white">
                     {selectedMember.name}
                   </h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => setUpgradeModalOpen(false)}
-                  className="text-stone-400 hover:text-white cursor-pointer"
+                  className="text-stone-400 hover:text-stone-900 dark:hover:text-white cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Current details */}
-              <div className="p-3 bg-noir-800 border border-white/5 space-y-2 text-xs font-mono">
-                <div className="flex justify-between text-stone-400">
+              <div className="p-3 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/5 space-y-2 text-xs font-mono rounded">
+                <div className="flex justify-between text-stone-600 dark:text-stone-400">
                   <span>Supreme Court Enrolment:</span>
-                  <span className="text-white font-bold">{selectedMember.sc_en}</span>
+                  <span className="text-stone-900 dark:text-white font-bold">{selectedMember.sc_en}</span>
                 </div>
-                <div className="flex justify-between text-stone-400">
+                <div className="flex justify-between text-stone-600 dark:text-stone-400">
                   <span>Current Tier:</span>
-                  <span className="text-bronze font-bold">{selectedMember.membershipTier} Member</span>
+                  <span className="text-[#9E7D3B] dark:text-bronze font-bold">{selectedMember.membershipTier} Member</span>
                 </div>
               </div>
 
               {/* Select Upgrade Tier */}
               <div className="space-y-3 font-mono text-xs">
-                <label className="block text-stone-300 uppercase tracking-widest">
+                <label className="block text-stone-700 dark:text-stone-300 uppercase tracking-widest font-medium">
                   Target Membership Level
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <div
                     onClick={() => setSelectedTierToUpgrade("Ordinary")}
-                    className={`p-4 border cursor-pointer transition-all ${
+                    className={`p-4 border cursor-pointer transition-all rounded ${
                       selectedTierToUpgrade === "Ordinary"
-                        ? "border-[#C5A059] bg-[#C5A059]/10"
-                        : "border-white/10 hover:border-white/30"
+                        ? "border-[#9E7D3B] bg-[#9E7D3B]/10 dark:border-[#C5A059] dark:bg-[#C5A059]/10"
+                        : "border-stone-200 hover:border-stone-400 dark:border-white/10 dark:hover:border-white/30 bg-stone-50/50 dark:bg-transparent"
                     }`}
                   >
-                    <div className="font-bold text-white mb-1">Ordinary Annual</div>
-                    <div className="text-stone-400 text-[11px]">Renew through Dec 2027</div>
-                    <div className="text-bronze font-bold mt-2">LKR 2,000</div>
+                    <div className="font-bold text-stone-900 dark:text-white mb-1">Ordinary Annual</div>
+                    <div className="text-stone-600 dark:text-stone-400 text-[11px]">Renew through Dec 2027</div>
+                    <div className="text-[#9E7D3B] dark:text-bronze font-bold mt-2">LKR 2,000</div>
                   </div>
 
                   <div
                     onClick={() => setSelectedTierToUpgrade("Life")}
-                    className={`p-4 border cursor-pointer transition-all ${
+                    className={`p-4 border cursor-pointer transition-all rounded ${
                       selectedTierToUpgrade === "Life"
-                        ? "border-[#C5A059] bg-[#C5A059]/10"
-                        : "border-white/10 hover:border-white/30"
+                        ? "border-[#9E7D3B] bg-[#9E7D3B]/10 dark:border-[#C5A059] dark:bg-[#C5A059]/10"
+                        : "border-stone-200 hover:border-stone-400 dark:border-white/10 dark:hover:border-white/30 bg-stone-50/50 dark:bg-transparent"
                     }`}
                   >
-                    <div className="font-bold text-white mb-1">Permanent Life</div>
-                    <div className="text-stone-400 text-[11px]">Lifetime Hulftsdorp Bar</div>
-                    <div className="text-amber-400 font-bold mt-2">LKR 5,000</div>
+                    <div className="font-bold text-stone-900 dark:text-white mb-1">Permanent Life</div>
+                    <div className="text-stone-600 dark:text-stone-400 text-[11px]">Lifetime Hulftsdorp Bar</div>
+                    <div className="text-amber-600 dark:text-amber-400 font-bold mt-2">LKR 5,000</div>
                   </div>
                 </div>
               </div>
 
               {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-hairline-dark">
+              <div className="flex justify-end space-x-3 pt-4 border-t border-stone-200 dark:border-hairline-dark">
                 <button
                   type="button"
                   onClick={() => setUpgradeModalOpen(false)}
-                  className="px-4 py-2 border border-white/10 text-stone-400 hover:text-white uppercase font-mono text-xs cursor-pointer"
+                  className="px-4 py-2 border border-stone-300 dark:border-white/10 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10 uppercase font-mono text-xs cursor-pointer rounded"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleApplyMembershipUpdate}
-                  className="px-5 py-2 bg-[#C5A059] text-noir-900 font-bold uppercase font-mono text-xs hover:bg-[#d6b168] transition cursor-pointer"
+                  className="px-5 py-2 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-noir-900 font-bold uppercase font-mono text-xs transition cursor-pointer rounded shadow-sm"
                 >
                   Apply Renewal
                 </button>

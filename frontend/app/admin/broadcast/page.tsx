@@ -137,24 +137,24 @@ export default function AdminBroadcastPage() {
         )}
 
         {/* Top Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-200 dark:border-hairline-dark pb-6 gap-4">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-bronze block mb-1">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-bronze block mb-1">
               [ OFFICIAL BAR COMMUNICATIONS ENGINE ]
             </span>
-            <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-white">
+            <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-stone-900 dark:text-white">
               MULTI-CHANNEL BROADCAST CENTER
             </h1>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={loadBroadcasts}
-              className="p-2.5 rounded bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white transition cursor-pointer"
+              className="p-2.5 rounded bg-white dark:bg-noir-800 border border-stone-200 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition cursor-pointer shadow-sm"
               title="Refresh Logs"
             >
-              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#C5A059]" : ""}`} />
+              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#9E7D3B] dark:text-[#C5A059]" : ""}`} />
             </button>
-            <span className="text-xs font-mono text-[#C5A059] uppercase tracking-wider">
+            <span className="text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-wider font-semibold">
               SMS &amp; Email Dispatch
             </span>
           </div>
@@ -163,13 +163,13 @@ export default function AdminBroadcastPage() {
         {/* Main Compose Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-noir-900 border border-hairline-dark p-6 space-y-6">
-            <div className="flex items-center justify-between border-b border-hairline-dark pb-3">
+          <div className="lg:col-span-7 bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 space-y-6 shadow-sm">
+            <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-3">
               <div>
-                <h3 className="font-display text-2xl uppercase tracking-wide text-white">
+                <h3 className="font-display text-2xl uppercase tracking-wide text-stone-900 dark:text-white">
                   COMPOSE DISPATCH NOTICE
                 </h3>
-                <p className="text-xs text-stone-400 font-sans mt-0.5">
+                <p className="text-xs text-stone-500 dark:text-stone-400 font-sans mt-0.5">
                   Official notices and circulars dispatched directly to registered advocates.
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function AdminBroadcastPage() {
                   setTitle("");
                   setMessage("");
                 }}
-                className="text-[11px] font-mono text-stone-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                className="text-[11px] font-mono text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white flex items-center gap-1 cursor-pointer transition-colors"
                 title="Clear current input"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -189,7 +189,7 @@ export default function AdminBroadcastPage() {
 
             {/* Quick Templates */}
             <div>
-              <label className="block text-[11px] font-mono text-[#C5A059] uppercase tracking-widest mb-2">
+              <label className="block text-[11px] font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-widest mb-2 font-bold">
                 Quick Announcement Templates:
               </label>
               <div className="flex flex-wrap gap-2 text-[11px] font-mono">
@@ -201,7 +201,7 @@ export default function AdminBroadcastPage() {
                       "Please be informed that the Supreme Court Bench sitting schedule and courtroom access registry for Hulftsdorp have been revised effective immediately. Please check the official portal notice board."
                     )
                   }
-                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                  className="px-2.5 py-1.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded transition cursor-pointer"
                 >
                   🏛️ Court Protocol
                 </button>
@@ -213,7 +213,7 @@ export default function AdminBroadcastPage() {
                       "Registrations are now open for the upcoming CLE Masterclass on Appellate Argumentation. CPD credits will be accredited. Reserve your seat via the CLS events calendar."
                     )
                   }
-                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                  className="px-2.5 py-1.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded transition cursor-pointer"
                 >
                   ⚖️ CLE Seminar
                 </button>
@@ -225,7 +225,7 @@ export default function AdminBroadcastPage() {
                       "Members of the Colombo Law Society are cordially requested to regularize their annual bar subscriptions for the upcoming judicial term. Online payments and verification are enabled on your member dashboard."
                     )
                   }
-                  className="px-2.5 py-1.5 bg-noir-800 border border-white/10 hover:border-[#C5A059] text-stone-300 hover:text-white rounded transition cursor-pointer"
+                  className="px-2.5 py-1.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/10 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded transition cursor-pointer"
                 >
                   💳 Subscription Due
                 </button>
@@ -235,7 +235,7 @@ export default function AdminBroadcastPage() {
             <form onSubmit={handleDispatchBroadcast} className="space-y-5 text-xs font-mono">
               {/* Target Tier Selection */}
               <div>
-                <label className="block text-stone-400 uppercase tracking-widest mb-1.5">
+                <label className="block text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-1.5 font-semibold">
                   1. Target Membership Tier:
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -246,8 +246,8 @@ export default function AdminBroadcastPage() {
                       onClick={() => setTargetTier(tier)}
                       className={`p-3 text-center border transition-all cursor-pointer ${
                         targetTier === tier
-                          ? "border-[#C5A059] bg-[#C5A059] text-noir-900 font-bold"
-                          : "border-white/10 text-stone-400 hover:border-white/30"
+                          ? "border-[#9E7D3B] dark:border-[#C5A059] bg-[#9E7D3B] dark:bg-[#C5A059] text-white dark:text-noir-900 font-bold shadow"
+                          : "border-stone-200 dark:border-white/10 bg-stone-50/50 dark:bg-transparent text-stone-600 dark:text-stone-400 hover:border-[#9E7D3B]/50 dark:hover:border-white/30"
                       }`}
                     >
                       <span className="block text-xs uppercase">{tier}</span>
@@ -258,7 +258,7 @@ export default function AdminBroadcastPage() {
 
               {/* Delivery Channel Selection */}
               <div>
-                <label className="block text-stone-400 uppercase tracking-widest mb-1.5">
+                <label className="block text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-1.5 font-semibold">
                   2. Delivery Channels:
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -275,8 +275,8 @@ export default function AdminBroadcastPage() {
                         onClick={() => setChannel(ch.key as any)}
                         className={`p-3 text-center border flex items-center justify-center space-x-2 transition-all cursor-pointer ${
                           channel === ch.key
-                            ? "border-[#C5A059] bg-[#C5A059]/15 text-[#C5A059] font-bold"
-                            : "border-white/10 text-stone-400 hover:border-white/30"
+                            ? "border-[#9E7D3B] dark:border-[#C5A059] bg-[#9E7D3B]/10 dark:bg-[#C5A059]/15 text-[#9E7D3B] dark:text-[#C5A059] font-bold shadow-sm"
+                            : "border-stone-200 dark:border-white/10 bg-stone-50/50 dark:bg-transparent text-stone-600 dark:text-stone-400 hover:border-[#9E7D3B]/50 dark:hover:border-white/30"
                         }`}
                       >
                         <Icon className="w-3.5 h-3.5" />
@@ -289,7 +289,7 @@ export default function AdminBroadcastPage() {
 
               {/* Message Title */}
               <div>
-                <label className="block text-stone-400 uppercase tracking-widest mb-1.5">
+                <label className="block text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-1.5 font-semibold">
                   3. Notice Title / Subject Line *
                 </label>
                 <input
@@ -298,18 +298,18 @@ export default function AdminBroadcastPage() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Notice: Supreme Court Vacation Roster & Library Hours"
-                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-[#C5A059]"
+                  className="w-full px-4 py-2.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/10 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059]"
                 />
               </div>
 
               {/* Message Content */}
               <div>
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="block text-stone-400 uppercase tracking-widest">
+                  <label className="block text-stone-600 dark:text-stone-400 uppercase tracking-widest font-semibold">
                     4. Message Body *
                   </label>
                   {(channel === "SMS" || channel === "BOTH") && (
-                    <span className="text-[10px] text-stone-400">
+                    <span className="text-[10px] text-stone-500 dark:text-stone-400">
                       Chars: {smsLength} | Segments: {smsSegments} SMS
                     </span>
                   )}
@@ -320,17 +320,17 @@ export default function AdminBroadcastPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Dear Member, Please be notified that..."
-                  className="w-full px-4 py-2.5 bg-noir-800 border border-white/10 text-stone-100 placeholder-stone-500 focus:outline-none focus:border-[#C5A059] font-sans text-xs leading-relaxed"
+                  className="w-full px-4 py-2.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/10 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#9E7D3B] dark:focus:border-[#C5A059] font-sans text-xs leading-relaxed"
                 />
               </div>
 
               {/* Audience Preview */}
-              <div className="p-3.5 bg-noir-800 border border-hairline-dark flex items-center justify-between text-stone-300">
+              <div className="p-3.5 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-hairline-dark flex items-center justify-between text-stone-700 dark:text-stone-300">
                 <div className="flex items-center space-x-2">
-                  <Users className="w-4 h-4 text-bronze" />
+                  <Users className="w-4 h-4 text-[#9E7D3B] dark:text-bronze" />
                   <span>Audience Reach:</span>
                 </div>
-                <span className="text-[#C5A059] font-bold text-sm">
+                <span className="text-[#9E7D3B] dark:text-[#C5A059] font-bold text-sm">
                   {getRecipientEstimate()} Enrolled Advocates ({targetTier})
                 </span>
               </div>
@@ -338,7 +338,7 @@ export default function AdminBroadcastPage() {
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full py-3 bg-[#C5A059] text-noir-900 font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#d6b168] transition-all shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
+                className="w-full py-3 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-noir-900 font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
               >
                 {isSending ? (
                   <span>Dispatching to Gateways...</span>
@@ -354,14 +354,14 @@ export default function AdminBroadcastPage() {
 
           {/* Right Live Preview Column */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-noir-900 border border-hairline-dark p-6 space-y-4">
-              <span className="text-xs font-mono text-bronze uppercase tracking-widest block border-b border-hairline-dark pb-2">
+            <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 space-y-4 shadow-sm">
+              <span className="text-xs font-mono text-[#9E7D3B] dark:text-bronze uppercase tracking-widest block border-b border-stone-200 dark:border-hairline-dark pb-2 font-bold">
                 LIVE DISPATCH PREVIEW
               </span>
 
               {/* Email Mock */}
               {(channel === "EMAIL" || channel === "BOTH") && (
-                <div className="bg-white text-stone-900 p-4 rounded text-xs font-sans shadow-lg">
+                <div className="bg-stone-50 dark:bg-white text-stone-900 p-4 rounded text-xs font-sans shadow-md border border-stone-200 dark:border-transparent">
                   <div className="border-b border-stone-200 pb-2 mb-3 font-mono text-[11px] text-stone-500">
                     <div><strong>From:</strong> notifications@colombolawsociety.com</div>
                     <div><strong>To:</strong> Member Advocate &lt;counsel@bar.lk&gt;</div>
@@ -383,11 +383,11 @@ export default function AdminBroadcastPage() {
 
               {/* SMS Mock */}
               {(channel === "SMS" || channel === "BOTH") && (
-                <div className="bg-emerald-950/40 border border-emerald-500/30 p-4 text-xs font-mono space-y-2">
-                  <span className="text-[10px] text-emerald-400 font-bold uppercase block">
+                <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 p-4 text-xs font-mono space-y-2">
+                  <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold uppercase block">
                     SMS Gateway (Text.lk - Sender: CLS)
                   </span>
-                  <p className="text-stone-200 bg-noir-800 p-3 border border-white/10 rounded font-sans text-xs">
+                  <p className="text-stone-800 dark:text-stone-200 bg-white dark:bg-noir-800 p-3 border border-emerald-100 dark:border-white/10 rounded font-sans text-xs shadow-sm">
                     {message || "SMS message preview as received on Sri Lankan mobile (+94)..."}
                   </p>
                 </div>
@@ -397,17 +397,17 @@ export default function AdminBroadcastPage() {
         </div>
 
         {/* Broadcast Audit History Log Table */}
-        <div className="bg-noir-900 border border-hairline-dark p-6 space-y-4">
-          <div className="flex items-center justify-between border-b border-hairline-dark pb-4">
+        <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 space-y-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-4">
             <div>
-              <h3 className="font-display text-2xl uppercase tracking-wider text-white">
+              <h3 className="font-display text-2xl uppercase tracking-wider text-stone-900 dark:text-white">
                 BROADCAST AUDIT HISTORY
               </h3>
-              <span className="text-xs font-mono text-stone-400">
+              <span className="text-xs font-mono text-stone-500 dark:text-stone-400">
                 Live dispatch records synchronized with Supabase
               </span>
             </div>
-            <span className="text-xs font-mono text-stone-400">
+            <span className="text-xs font-mono text-stone-500 dark:text-stone-400">
               {logs.length} Logged Dispatches
             </span>
           </div>
@@ -415,7 +415,7 @@ export default function AdminBroadcastPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="border-b border-white/10 bg-noir-800/80 text-stone-400 uppercase tracking-widest text-[10px]">
+                <tr className="border-b border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-noir-800/80 text-stone-500 dark:text-stone-400 uppercase tracking-widest text-[10px]">
                   <th className="py-3 px-3">Timestamp</th>
                   <th className="py-3 px-3">Notice Title</th>
                   <th className="py-3 px-3">Target Tier</th>
@@ -424,22 +424,22 @@ export default function AdminBroadcastPage() {
                   <th className="py-3 px-3 text-right">Delivery Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-stone-200 dark:divide-white/5">
                 {logs.map((log) => (
-                  <tr key={log.id} className="hover:bg-white/[0.02]">
-                    <td className="py-3.5 px-3 text-stone-400">{log.sentAt}</td>
-                    <td className="py-3.5 px-3 font-sans font-medium text-stone-200 max-w-xs truncate">
+                  <tr key={log.id} className="hover:bg-stone-50 dark:hover:bg-white/[0.02]">
+                    <td className="py-3.5 px-3 text-stone-500 dark:text-stone-400">{log.sentAt}</td>
+                    <td className="py-3.5 px-3 font-sans font-medium text-stone-900 dark:text-stone-200 max-w-xs truncate">
                       {log.title}
                     </td>
-                    <td className="py-3.5 px-3 text-stone-400">{log.targetTier}</td>
+                    <td className="py-3.5 px-3 text-stone-600 dark:text-stone-400">{log.targetTier}</td>
                     <td className="py-3.5 px-3">
-                      <span className="px-2 py-0.5 bg-noir-800 border border-white/10 text-bronze text-[10px] uppercase font-bold">
+                      <span className="px-2 py-0.5 bg-stone-100 dark:bg-noir-800 border border-stone-200 dark:border-white/10 text-[#9E7D3B] dark:text-bronze text-[10px] uppercase font-bold">
                         {log.channel}
                       </span>
                     </td>
-                    <td className="py-3.5 px-3 text-sand font-bold">{log.recipientsCount} Counsel</td>
+                    <td className="py-3.5 px-3 text-stone-900 dark:text-sand font-bold">{log.recipientsCount} Counsel</td>
                     <td className="py-3.5 px-3 text-right">
-                      <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">
+                      <span className="text-emerald-600 dark:text-emerald-400 text-[10px] uppercase tracking-wider font-bold">
                         ✓ {log.status}
                       </span>
                     </td>

@@ -113,27 +113,27 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#EDEDED] font-sans selection:bg-[#C5A059] selection:text-[#0A0A0A] overflow-x-hidden">
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0A0A0A] text-stone-900 dark:text-[#EDEDED] font-sans selection:bg-[#C5A059] selection:text-[#0A0A0A] overflow-x-hidden transition-colors duration-200">
       <Navbar />
 
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION (DARK OBSIDIAN — EXACT REPLICA OF TOP HERO IN IMAGE)      */}
+      {/* 1. HERO SECTION (ADAPTIVE LIGHT/DARK EDITORIAL MONUMENTAL ARCHITECTURE)   */}
       {/* ========================================================================= */}
-      <section className="relative pt-6 pb-16 px-6 lg:px-8 border-b border-white/10 overflow-hidden bg-[#0A0A0A]">
+      <section className="relative pt-6 pb-16 px-6 lg:px-8 border-b border-stone-200 dark:border-white/10 overflow-hidden bg-[#FDFBF7] dark:bg-[#0A0A0A] transition-colors">
         <div className="max-w-7xl mx-auto">
           {/* Top Label matching screenshot */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-stone-400 mb-6"
+            className="flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-stone-600 dark:text-stone-400 mb-6"
           >
             <span>COLOMBO LAW SOCIETY &bull; HULFTSDORP &bull; EST. 1890 / BASL 1975</span>
-            <span className="hidden sm:inline text-[#C5A059]">50 YEARS OF EXCELLENCE</span>
+            <span className="hidden sm:inline text-[#9E7D3B] dark:text-[#C5A059] font-bold">50 YEARS OF EXCELLENCE</span>
           </motion.div>
 
           {/* Monumental Hero Architecture Frame */}
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] lg:aspect-[2.4/1] rounded-sm overflow-hidden border border-white/15 bg-stone-900 group">
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] lg:aspect-[2.4/1] rounded-sm overflow-hidden border border-stone-300 dark:border-white/15 bg-stone-900 group shadow-md dark:shadow-2xl">
             <motion.div
               className="w-full h-[115%] -mt-[7%] bg-cover bg-center filter contrast-110 brightness-95"
               style={{
@@ -143,7 +143,7 @@ export default function Home() {
             />
 
             {/* Subtle Gradient Overlays matching warm golden dusk photography */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 to-black/20" />
 
             {/* Overlaid Giant Headline: "LEGAL" on Left, "CLARITY" on Right */}
             <div className="absolute inset-x-0 bottom-4 sm:bottom-8 lg:bottom-10 px-6 sm:px-10 lg:px-14 flex items-end justify-between select-none pointer-events-none">
@@ -190,19 +190,19 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-8 space-y-6"
             >
-              <div className="inline-flex items-center gap-3 px-3 py-1.5 bg-[#141414] border border-[#C5A059]/40 rounded-full text-xs font-mono text-[#C5A059] uppercase tracking-wider">
+              <div className="inline-flex items-center gap-3 px-3 py-1.5 bg-stone-100 dark:bg-[#141414] border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 rounded-full text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-wider shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/branding/cls-50th-anniversary.jpg"
                   alt="CLS 50th Anniversary"
-                  className="w-7 h-7 rounded-full object-cover border border-[#C5A059]/50"
+                  className="w-7 h-7 rounded-full object-cover border border-[#9E7D3B]/50 dark:border-[#C5A059]/50"
                 />
                 <span>1975 – 2025 &bull; 50 Years of Hulftsdorp Bar Excellence</span>
               </div>
 
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl uppercase tracking-wide leading-snug text-[#EDEDED] max-w-2xl">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl uppercase tracking-wide leading-snug text-stone-900 dark:text-[#EDEDED] max-w-2xl">
                 BUILT ON TRUST, DRIVEN BY{" "}
-                <span className="font-serif italic text-[#C5A059] lowercase text-3xl sm:text-4xl font-normal">
+                <span className="font-serif italic text-[#9E7D3B] dark:text-[#C5A059] lowercase text-3xl sm:text-4xl font-normal">
                   experience
                 </span>
                 . WE STAND AS YOUR — LONG-TERM PARTNER IN NAVIGATING COMPLEX LEGAL CHALLENGES.
@@ -211,36 +211,36 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/sign-up"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#EDEDED] hover:bg-white text-[#0A0A0A] font-mono text-xs uppercase tracking-widest font-bold transition rounded-sm shadow-lg"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 dark:bg-[#EDEDED] hover:bg-stone-800 dark:hover:bg-white text-stone-100 dark:text-[#0A0A0A] font-mono text-xs uppercase tracking-widest font-bold transition rounded-sm shadow-md"
                 >
                   Contact Us
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
                 <Link
                   href="/events"
-                  className="px-5 py-3 border border-white/20 hover:border-white text-stone-300 hover:text-white font-mono text-xs uppercase tracking-widest transition rounded-sm"
+                  className="px-5 py-3 border border-stone-300 dark:border-white/20 hover:border-stone-900 dark:hover:border-white text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white font-mono text-xs uppercase tracking-widest transition rounded-sm"
                 >
                   CLE Conferences →
                 </Link>
               </div>
 
               {/* Audience and micro-tags matching bottom row of screenshot */}
-              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-stone-400">
-                <span className="text-white/60">Audience:</span>
-                <span className="text-stone-300 underline underline-offset-4 decoration-[#C5A059]">
+              <div className="pt-6 border-t border-stone-200 dark:border-white/10 flex flex-wrap items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <span className="text-stone-700 dark:text-white/60">Audience:</span>
+                <span className="text-stone-800 dark:text-stone-300 underline underline-offset-4 decoration-[#9E7D3B] dark:decoration-[#C5A059]">
                   Attorneys-at-Law
                 </span>
-                <span className="text-stone-300 underline underline-offset-4 decoration-white/40">
+                <span className="text-stone-800 dark:text-stone-300 underline underline-offset-4 decoration-stone-400 dark:decoration-white/40">
                   Judicial Officers
                 </span>
-                <div className="h-3 w-px bg-white/20 mx-2" />
-                <span className="px-2.5 py-1 bg-[#141414] border border-white/10 rounded">
+                <div className="h-3 w-px bg-stone-300 dark:bg-white/20 mx-2" />
+                <span className="px-2.5 py-1 bg-stone-100 dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded">
                   500+ Members
                 </span>
-                <span className="px-2.5 py-1 bg-[#141414] border border-white/10 rounded">
+                <span className="px-2.5 py-1 bg-stone-100 dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded">
                   Superior Courts
                 </span>
-                <span className="px-2.5 py-1 bg-[#141414] border border-[#C5A059]/40 text-[#C5A059] rounded">
+                <span className="px-2.5 py-1 bg-stone-100 dark:bg-[#141414] border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 text-[#9E7D3B] dark:text-[#C5A059] rounded">
                   Est. 1890
                 </span>
               </div>
@@ -254,7 +254,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="lg:col-span-4"
             >
-              <div className="bg-[#141414] border border-white/15 p-2 rounded-sm group hover:border-[#C5A059]/50 transition duration-500 shadow-xl">
+              <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group hover:border-[#9E7D3B]/50 dark:hover:border-[#C5A059]/50 transition duration-500 shadow-md dark:shadow-xl">
                 <div className="relative aspect-[4/3] overflow-hidden bg-black rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700 opacity-90"
@@ -372,9 +372,9 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. SECTION 3: STRATEGIC LEGAL SUPPORT (DARK OBSIDIAN — EXACT MATCH)       */}
+      {/* 3. SECTION 3: STRATEGIC LEGAL SUPPORT (ADAPTIVE LIGHT & DARK MODES)        */}
       {/* ========================================================================= */}
-      <section id="practices" className="py-28 px-6 lg:px-8 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section id="practices" className="py-28 px-6 lg:px-8 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           {/* Header Row matching screenshot */}
           <motion.div
@@ -382,15 +382,15 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-10 border-b border-white/10 mb-16"
+            className="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-10 border-b border-stone-200 dark:border-white/10 mb-16"
           >
-            <p className="text-xs sm:text-sm text-stone-400 font-sans max-w-md leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-sans max-w-md leading-relaxed">
               Whether representing before the Supreme Court, arbitrating cross-border disputes, or defending the constitutional order, we provide strategic legal counsel that champions client rights and institutional dignity.
             </p>
             <div className="text-left md:text-right">
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white leading-[0.9]">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-stone-900 dark:text-white leading-[0.9]">
                 STRATEGIC LEGAL SUPPORT <br />
-                FOR BUSINESS — <span className="text-[#C5A059]">GROWTH</span>
+                FOR BUSINESS — <span className="text-[#9E7D3B] dark:text-[#C5A059]">GROWTH</span>
               </h2>
             </div>
           </motion.div>
@@ -398,7 +398,7 @@ export default function Home() {
           {/* Main Content Split: Left Numbered List | Right Dual Photos */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Numbered Discipline List */}
-            <div className="lg:col-span-7 divide-y divide-white/10">
+            <div className="lg:col-span-7 divide-y divide-stone-200 dark:divide-white/10">
               {disciplines.map((item, idx) => (
                 <motion.div
                   key={item.num}
@@ -411,14 +411,14 @@ export default function Home() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-6">
-                      <span className="font-mono text-xs sm:text-sm text-[#C5A059] font-bold">
+                      <span className="font-mono text-xs sm:text-sm text-[#9E7D3B] dark:text-[#C5A059] font-bold">
                         {item.num}
                       </span>
-                      <h3 className="font-display text-xl sm:text-2xl md:text-3xl uppercase tracking-wide text-stone-200 group-hover:text-[#E7E0D3] transition-colors">
+                      <h3 className="font-display text-xl sm:text-2xl md:text-3xl uppercase tracking-wide text-stone-800 dark:text-stone-200 group-hover:text-[#9E7D3B] dark:group-hover:text-[#E7E0D3] transition-colors">
                         {item.title}
                       </h3>
                     </div>
-                    <span className="text-xs font-mono text-stone-400 group-hover:text-white transition">
+                    <span className="text-xs font-mono text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition">
                       {activeDiscipline === idx ? "—" : "+"}
                     </span>
                   </div>
@@ -430,7 +430,7 @@ export default function Home() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-3 pl-12 text-xs sm:text-sm text-stone-400 font-sans leading-relaxed max-w-xl"
+                        className="mt-3 pl-12 text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-sans leading-relaxed max-w-xl"
                       >
                         {item.desc}
                       </motion.p>
@@ -449,8 +449,8 @@ export default function Home() {
               className="lg:col-span-5 grid grid-cols-2 gap-4 items-end"
             >
               {/* Photo 1: Stone arcade */}
-              <div className="bg-[#141414] border border-white/15 p-2 rounded-sm group hover:border-[#C5A059]/40 transition">
-                <div className="relative aspect-[3/4] overflow-hidden bg-black rounded-sm">
+              <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group hover:border-[#9E7D3B]/40 dark:hover:border-[#C5A059]/40 transition shadow-sm dark:shadow-md">
+                <div className="relative aspect-[3/4] overflow-hidden bg-stone-100 dark:bg-black rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     style={{
@@ -458,15 +458,15 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-[10px] font-mono text-stone-400 uppercase mt-2 px-1">
+                <div className="flex items-center justify-between text-[10px] font-mono text-stone-600 dark:text-stone-400 uppercase mt-2 px-1">
                   <span>Colombo Colonnade</span>
                   <span>004</span>
                 </div>
               </div>
 
               {/* Photo 2: Taller Neoclassical Monument */}
-              <div className="bg-[#141414] border border-white/15 p-2 rounded-sm group hover:border-[#C5A059]/40 transition">
-                <div className="relative aspect-[3/4.8] overflow-hidden bg-black rounded-sm">
+              <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group hover:border-[#9E7D3B]/40 dark:hover:border-[#C5A059]/40 transition shadow-sm dark:shadow-md">
+                <div className="relative aspect-[3/4.8] overflow-hidden bg-stone-100 dark:bg-black rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     style={{
@@ -474,7 +474,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-[10px] font-mono text-stone-400 uppercase mt-2 px-1">
+                <div className="flex items-center justify-between text-[10px] font-mono text-stone-600 dark:text-stone-400 uppercase mt-2 px-1">
                   <span>Constitutional Hall</span>
                   <span>005</span>
                 </div>
@@ -487,7 +487,7 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 4. SECTION 4: NAVIGATING COMPLEX CHALLENGES (TABS + BAR EXACT MATCH)      */}
       {/* ========================================================================= */}
-      <section className="py-28 px-6 lg:px-8 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section className="py-28 px-6 lg:px-8 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           {/* Header Title matching screenshot typography */}
           <motion.div
@@ -497,9 +497,9 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mb-14"
           >
-            <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-white leading-[0.88]">
+            <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-stone-900 dark:text-white leading-[0.88]">
               NAVIGATING{" "}
-              <span className="font-serif italic text-stone-400 font-normal lowercase text-4xl sm:text-6xl md:text-7xl">
+              <span className="font-serif italic text-stone-500 dark:text-stone-400 font-normal lowercase text-4xl sm:text-6xl md:text-7xl">
                 through
               </span>{" "}
               COMPLEX <br />
@@ -516,7 +516,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-8 bg-[#141414] border border-white/15 p-2 rounded-sm shadow-2xl"
+              className="lg:col-span-8 bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm shadow-md dark:shadow-2xl"
             >
               <div className="relative aspect-[16/8] overflow-hidden bg-black rounded-sm">
                 <div
@@ -524,7 +524,7 @@ export default function Home() {
                   style={{ backgroundImage: `url('${tabData[activeTab].image}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059]">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] font-semibold">
                     {tabData[activeTab].tag} &bull; CASE REF 2026
                   </span>
                 </div>
@@ -539,19 +539,19 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="lg:col-span-4 space-y-4 p-4"
             >
-              <div className="w-10 h-10 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059]">
+              <div className="w-10 h-10 rounded-full border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 flex items-center justify-center text-[#9E7D3B] dark:text-[#C5A059]">
                 <Scale className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-2xl uppercase tracking-wide text-white">
+              <h3 className="font-display text-2xl uppercase tracking-wide text-stone-900 dark:text-white">
                 {tabData[activeTab].title}
               </h3>
-              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+              <p className="text-xs text-stone-600 dark:text-stone-400 font-sans leading-relaxed">
                 {tabData[activeTab].description}
               </p>
               <div className="pt-2">
                 <Link
                   href="/events"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-white/20 hover:border-white text-xs font-mono uppercase tracking-widest text-[#EDEDED] transition rounded-sm"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-stone-300 dark:border-white/20 hover:border-stone-900 dark:hover:border-white text-xs font-mono uppercase tracking-widest text-stone-700 dark:text-[#EDEDED] hover:text-stone-900 dark:hover:text-white transition rounded-sm"
                 >
                   <span>Explore</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -561,7 +561,7 @@ export default function Home() {
           </div>
 
           {/* Bottom 4 Tabs with Sliding Underline Bar matching screenshot */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-white/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-stone-200 dark:border-white/10">
             {tabData.map((tab, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -574,18 +574,18 @@ export default function Home() {
                   {isActive ? (
                     <motion.div
                       layoutId="activeTabUnderline"
-                      className="absolute -top-[17px] inset-x-0 h-[2px] bg-[#EDEDED]"
+                      className="absolute -top-[17px] inset-x-0 h-[2px] bg-stone-900 dark:bg-[#EDEDED]"
                     />
                   ) : (
-                    <div className="absolute -top-[17px] inset-x-0 h-[1px] bg-transparent group-hover:bg-white/20 transition" />
+                    <div className="absolute -top-[17px] inset-x-0 h-[1px] bg-transparent group-hover:bg-stone-300 dark:group-hover:bg-white/20 transition" />
                   )}
 
-                  <span className="font-mono text-xs text-[#C5A059] block font-bold mb-1">
+                  <span className="font-mono text-xs text-[#9E7D3B] dark:text-[#C5A059] block font-bold mb-1">
                     {tab.id}
                   </span>
                   <span
                     className={`font-display text-sm sm:text-base uppercase tracking-wider block transition-colors ${
-                      isActive ? "text-white font-bold" : "text-stone-400 group-hover:text-stone-200"
+                      isActive ? "text-stone-900 dark:text-white font-bold" : "text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-200"
                     }`}
                   >
                     {tab.tabTitle}
@@ -600,7 +600,7 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 5. SECTION 5: THE EMINENT PEOPLE BEHIND (PORTRAITS MATCHING SCREENSHOT)   */}
       {/* ========================================================================= */}
-      <section id="committee" className="py-28 px-6 lg:px-8 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section id="committee" className="py-28 px-6 lg:px-8 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Heading & Introductory paragraph */}
@@ -611,13 +611,13 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-4 space-y-6"
             >
-              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+              <p className="text-xs text-stone-600 dark:text-stone-400 font-sans leading-relaxed">
                 Our distinguished council brings over a century of courtroom excellence, constitutional scholarship, and legal leadership across superior jurisdictions.
               </p>
 
-              <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-white leading-[0.88]">
+              <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-stone-900 dark:text-white leading-[0.88]">
                 THE{" "}
-                <span className="font-serif italic text-stone-400 font-normal lowercase text-4xl sm:text-5xl md:text-6xl">
+                <span className="font-serif italic text-stone-500 dark:text-stone-400 font-normal lowercase text-4xl sm:text-5xl md:text-6xl">
                   eminent
                 </span>{" "}
                 <br />
@@ -635,9 +635,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="bg-[#141414] border border-white/15 p-2 rounded-sm shadow-2xl relative group"
+                className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm shadow-md dark:shadow-2xl relative group"
               >
-                <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-900 rounded-sm">
+                <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-100 dark:bg-stone-900 rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                     style={{
@@ -645,8 +645,8 @@ export default function Home() {
                     }}
                   />
                 </div>
-                {/* Prominent White Name Card matching screenshot */}
-                <div className="mt-2 bg-white text-black p-3 rounded-sm">
+                {/* Prominent Name Card matching screenshot */}
+                <div className="mt-2 bg-stone-100 dark:bg-white text-stone-900 dark:text-black p-3 rounded-sm border border-stone-200 dark:border-transparent">
                   <h3 className="font-display text-lg uppercase tracking-wider leading-none">
                     SANDUN NAGAHAWATTA
                   </h3>
@@ -662,9 +662,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-[#141414] border border-white/15 p-2 rounded-sm group shadow-xl"
+                className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group shadow-md dark:shadow-xl"
               >
-                <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-900 rounded-sm">
+                <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-100 dark:bg-stone-900 rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                     style={{
@@ -673,10 +673,10 @@ export default function Home() {
                   />
                 </div>
                 <div className="mt-2 p-2">
-                  <h3 className="font-display text-base uppercase tracking-wider text-white">
+                  <h3 className="font-display text-base uppercase tracking-wider text-stone-900 dark:text-white">
                     LAHIRU WELGAMA
                   </h3>
-                  <p className="text-[10px] text-stone-400 font-sans uppercase">
+                  <p className="text-[10px] text-stone-500 dark:text-stone-400 font-sans uppercase">
                     Secretary &bull; Superior Courts Complex
                   </p>
                 </div>
@@ -690,8 +690,8 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="space-y-4"
               >
-                <div className="bg-[#141414] border border-white/15 p-2 rounded-sm group shadow-xl">
-                  <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-900 rounded-sm">
+                <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group shadow-md dark:shadow-xl">
+                  <div className="relative aspect-[3/3.8] overflow-hidden bg-stone-100 dark:bg-stone-900 rounded-sm">
                     <div
                       className="w-full h-full bg-cover bg-center filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
                       style={{
@@ -700,10 +700,10 @@ export default function Home() {
                     />
                   </div>
                   <div className="mt-2 p-2">
-                    <h3 className="font-display text-base uppercase tracking-wider text-white">
+                    <h3 className="font-display text-base uppercase tracking-wider text-stone-900 dark:text-white">
                       GAMALI AMARATHUNGA
                     </h3>
-                    <p className="text-[10px] text-stone-400 font-sans uppercase">
+                    <p className="text-[10px] text-stone-500 dark:text-stone-400 font-sans uppercase">
                       Treasurer &bull; Colombo Bar
                     </p>
                   </div>
@@ -721,13 +721,13 @@ export default function Home() {
                   <div className="flex gap-2">
                     <Link
                       href="/past-presidents"
-                      className="flex-1 text-center py-2 border border-white/20 hover:border-white text-[10px] font-mono uppercase tracking-wider text-stone-300 hover:text-white transition rounded-sm"
+                      className="flex-1 text-center py-2 border border-stone-300 dark:border-white/20 hover:border-stone-900 dark:hover:border-white text-[10px] font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition rounded-sm"
                     >
                       Past Presidents
                     </Link>
                     <Link
                       href="/vice-presidents"
-                      className="flex-1 text-center py-2 border border-white/20 hover:border-white text-[10px] font-mono uppercase tracking-wider text-stone-300 hover:text-white transition rounded-sm"
+                      className="flex-1 text-center py-2 border border-stone-300 dark:border-white/20 hover:border-stone-900 dark:hover:border-white text-[10px] font-mono uppercase tracking-wider text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition rounded-sm"
                     >
                       Vice Presidents
                     </Link>
@@ -742,7 +742,7 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 6. SECTION 6: FREQUENTLY ASKED QUESTIONS (ACCORDION MATCHING SCREENSHOT)  */}
       {/* ========================================================================= */}
-      <section id="faq" className="py-28 px-6 lg:px-8 border-b border-white/10 bg-[#0A0A0A] overflow-hidden">
+      <section id="faq" className="py-28 px-6 lg:px-8 border-b border-stone-200 dark:border-white/10 bg-[#FDFBF7] dark:bg-[#0A0A0A] overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Framed photo of classical cathedral / court dome over city */}
@@ -753,7 +753,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-4"
             >
-              <div className="bg-[#141414] border border-white/15 p-2 rounded-sm group shadow-2xl">
+              <div className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/15 p-2 rounded-sm group shadow-md dark:shadow-2xl">
                 <div className="relative aspect-[3/4] overflow-hidden bg-black rounded-sm">
                   <div
                     className="w-full h-full bg-cover bg-center filter contrast-110 group-hover:scale-105 transition-transform duration-700"
@@ -762,7 +762,7 @@ export default function Home() {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059]">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] font-bold">
                       Colombo Civic Palace • Hulftsdorp
                     </span>
                   </div>
@@ -779,11 +779,11 @@ export default function Home() {
               className="lg:col-span-8"
             >
               <div className="mb-10">
-                <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-white leading-[0.88]">
+                <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-stone-900 dark:text-white leading-[0.88]">
                   FREQUENTLY <br />
-                  ASKED <span className="font-serif italic text-stone-400 font-normal lowercase text-4xl sm:text-5xl md:text-6xl">&amp;</span> QUESTIONS
+                  ASKED <span className="font-serif italic text-stone-500 dark:text-stone-400 font-normal lowercase text-4xl sm:text-5xl md:text-6xl">&amp;</span> QUESTIONS
                 </h2>
-                <p className="mt-3 text-xs sm:text-sm text-stone-400 font-sans max-w-xl">
+                <p className="mt-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-sans max-w-xl">
                   Essential inquiries regarding enrollment, Supreme Court bar privileges, continuing legal education credits, and fee structures.
                 </p>
               </div>
@@ -799,17 +799,17 @@ export default function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
-                      className="bg-[#141414] border border-white/10 rounded-sm overflow-hidden transition"
+                      className="bg-white dark:bg-[#141414] border border-stone-200 dark:border-white/10 rounded-sm overflow-hidden transition shadow-sm dark:shadow-none"
                     >
                       <button
                         type="button"
                         onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        className="w-full p-5 flex items-center justify-between text-left group transition hover:bg-white/5"
+                        className="w-full p-5 flex items-center justify-between text-left group transition hover:bg-stone-50 dark:hover:bg-white/5"
                       >
-                        <span className="font-display text-lg sm:text-xl uppercase tracking-wider text-stone-200 group-hover:text-white transition-colors pr-4">
+                        <span className="font-display text-lg sm:text-xl uppercase tracking-wider text-stone-800 dark:text-stone-200 group-hover:text-stone-950 dark:group-hover:text-white transition-colors pr-4">
                           {faq.q}
                         </span>
-                        <div className="w-7 h-7 rounded border border-white/20 flex items-center justify-center shrink-0 text-stone-400 group-hover:text-white transition">
+                        <div className="w-7 h-7 rounded border border-stone-300 dark:border-white/20 flex items-center justify-center shrink-0 text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition">
                           {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                         </div>
                       </button>
@@ -822,7 +822,7 @@ export default function Home() {
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-stone-400 font-sans leading-relaxed border-t border-white/5">
+                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-sans leading-relaxed border-t border-stone-100 dark:border-white/5">
                               {faq.a}
                             </div>
                           </motion.div>
