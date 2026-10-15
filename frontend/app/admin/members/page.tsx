@@ -266,8 +266,8 @@ export default function MemberDirectoryPage() {
         {/* Page Title & Top Actions */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6 gap-4">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-bronze block mb-1">
-              [ HULFTSDORP SUPREME COURT BAR DIRECTORY ]
+            <span className="text-xs font-mono uppercase tracking-widest text-[#C5A059] block mb-1">
+              Supreme Court Bar Directory &bull; Hulftsdorp
             </span>
             <h1 className="font-display text-3xl md:text-5xl uppercase tracking-wider text-white">
               PRACTITIONER DIRECTORY &amp; TIERS

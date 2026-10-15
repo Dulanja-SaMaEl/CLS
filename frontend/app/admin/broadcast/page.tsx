@@ -154,8 +154,8 @@ export default function AdminBroadcastPage() {
             >
               <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-[#C5A059]" : ""}`} />
             </button>
-            <span className="text-xs font-mono text-stone-400">
-              GMAIL SMTP &amp; TEXT.LK GATEWAY
+            <span className="text-xs font-mono text-[#C5A059] uppercase tracking-wider">
+              SMS &amp; Email Dispatch
             </span>
           </div>
         </div>
@@ -170,7 +170,7 @@ export default function AdminBroadcastPage() {
                   COMPOSE DISPATCH NOTICE
                 </h3>
                 <p className="text-xs text-stone-400 font-sans mt-0.5">
-                  Targeted notices are dispatched asynchronously to prevent gateway timeouts.
+                  Official notices and circulars dispatched directly to registered advocates.
                 </p>
               </div>
               <button

@@ -100,10 +100,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <Scale className="w-8 h-8 text-[#C5A059] animate-pulse" />
         </div>
         <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A059] block mb-2">
-          [ HULFTSDORP BAR SECURITY GATEWAY ]
+          Colombo Law Society &bull; Established 1890
         </span>
         <h2 className="text-xl sm:text-2xl font-display text-white uppercase tracking-wider mb-2">
-          VERIFYING CHAMBERS EXECUTIVE CLEARANCE
+          Verifying Session Authorization
         </h2>
         <p className="text-xs font-mono text-stone-400 max-w-md mb-6">
           Access to the Colombo Law Society Administration Console requires verified credentials. Redirecting to authorization portal...
@@ -244,34 +244,23 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               })}
             </nav>
 
-            <div className="mt-10 pt-6 border-t border-hairline-dark">
-              <div className="text-[10px] font-mono uppercase tracking-widest text-stone-500 mb-3 px-3">
-                SYSTEM TELEMETRY
-              </div>
-              <div className="bg-noir-800 p-3 border border-hairline-dark text-[11px] font-mono space-y-2">
-                <div className="flex justify-between text-stone-400">
-                  <span>DB Status:</span>
-                  <span className="text-emerald-400 flex items-center space-x-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
-                    <span>Supabase Live</span>
-                  </span>
+            <div className="mt-10 pt-6 border-t border-white/10">
+              <div className="bg-[#141414] p-3.5 border border-white/5 rounded text-[11px] font-mono space-y-2">
+                <div className="text-stone-300 font-semibold uppercase tracking-wider text-[10px]">
+                  Chambers Secretariat
                 </div>
-                <div className="flex justify-between text-stone-400">
-                  <span>Logged In:</span>
-                  <span className="text-[#C5A059] text-[10px] truncate max-w-[120px]">
-                    admin@cls.com
-                  </span>
+                <div className="text-stone-400 text-[10px] truncate">
+                  {adminUser?.email || "admin@cls.com"}
                 </div>
-                <div className="flex justify-between text-stone-400">
-                  <span>Gateway:</span>
-                  <span className="text-stone-200">REST API Ready</span>
+                <div className="text-stone-500 text-[9px] pt-1.5 border-t border-white/5">
+                  Superior Courts Enclave, Colombo 12
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-hairline-dark text-[10px] font-mono text-stone-500 text-center">
-            CLS EXECUTIVE OS • v2.6
+          <div className="mt-6 pt-3 text-[10px] font-mono text-stone-500 text-center">
+            Colombo Law Society &bull; Est. 1890
           </div>
         </aside>
 

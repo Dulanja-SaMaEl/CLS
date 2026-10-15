@@ -54,8 +54,8 @@ export default function AdminDashboard() {
         {/* Top Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-dark pb-6">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-bronze block mb-1">
-              [ HULFTSDORP BAR ADMINISTRATION ]
+            <span className="text-xs font-mono uppercase tracking-widest text-[#C5A059] block mb-1">
+              Chambers Executive Governance &bull; Est. 1890
             </span>
             <h1 className="font-display text-4xl md:text-5xl uppercase tracking-wider text-white">
               EXECUTIVE OVERVIEW

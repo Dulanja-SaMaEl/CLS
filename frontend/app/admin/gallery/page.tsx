@@ -234,7 +234,7 @@ export default function AdminGalleryPage() {
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-mono text-[#C5A059] uppercase tracking-wider mb-1">
               <Camera className="w-3.5 h-3.5" />
-              <span>Hulftsdorp Media &amp; Public Showcase Console</span>
+              <span>Event Photo Archive &bull; Hulftsdorp</span>
             </div>
             <h1 className="text-2xl font-display uppercase tracking-wide text-white">
               Event Image Showcase Manager
@@ -314,15 +314,14 @@ export default function AdminGalleryPage() {
           </div>
 
           <div className="bg-[#141414] border border-white/10 p-4 rounded-lg">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 block">
-              Media Desk Status
+            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+              Archive Domains
             </span>
-            <span className="text-sm font-mono text-emerald-400 mt-2 block flex items-center gap-1.5 font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              API Online &bull; Cloud Upload Active
+            <span className="text-2xl font-display text-white mt-1 block">
+              {new Set(images.map((i) => i.category)).size || 4}
             </span>
-            <span className="text-[10px] text-stone-500 font-mono mt-1 block">
-              Direct /api/upload ready
+            <span className="text-[10px] text-stone-500 font-mono mt-0.5 block">
+              Active society categories
             </span>
           </div>
         </div>

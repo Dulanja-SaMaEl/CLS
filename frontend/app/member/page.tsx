@@ -135,10 +135,10 @@ export default function MemberDashboardPage() {
           <Scale className="w-8 h-8 text-[#C5A059] animate-pulse" />
         </div>
         <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A059] block mb-2">
-          [ HULFTSDORP BAR LIBRARY &bull; ADVOCATE CLEARANCE ]
+          Colombo Law Society &bull; Bar Library &amp; Advocate Hub
         </span>
         <h2 className="text-xl sm:text-2xl font-display text-white uppercase tracking-wider mb-2">
-          AUTHENTICATING PRACTITIONER SESSION
+          Verifying Advocate Membership
         </h2>
         <p className="text-xs font-mono text-stone-400 max-w-md mb-6">
           Access to the Bar Library and Advocate Hub requires an active Colombo Law Society membership session. Redirecting to sign in...
@@ -393,7 +393,7 @@ export default function MemberDashboardPage() {
               </div>
             </div>
 
-            {/* Right Telemetry & CPD Progression */}
+            {/* Right: Bar Privileges & CPD Progression */}
             <div className="lg:col-span-5 space-y-6">
               {/* CPD Progress Meter */}
               <div className="bg-[#141414] border border-white/10 p-6 rounded relative overflow-hidden">

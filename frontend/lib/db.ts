@@ -270,34 +270,21 @@ function mapSupabaseSettings(row: any): SocietySettings {
 // EVENTS API HELPERS
 // ============================================================================
 export async function getEvents(): Promise<CLSEvent[]> {
-  const db = loadDatabase();
-  const tombstoneSet = new Set(db.deletedIds?.events || []);
-
   try {
     const { data, error } = await supabase
       .from("events")
       .select("*")
       .order("start_date_time", { ascending: true });
 
-    if (!error && data && data.length > 0) {
-      const supabaseEvents = data
-        .filter((row: any) => !tombstoneSet.has(row.id))
-        .map(mapSupabaseEvent);
-
-      const supabaseIds = new Set(supabaseEvents.map((e) => e.id));
-      const localOnly = db.events.filter((e) => !tombstoneSet.has(e.id) && !supabaseIds.has(e.id));
-
-      const merged = supabaseEvents.map((sbEvt) => {
-        const localMatch = db.events.find((le) => le.id === sbEvt.id);
-        return localMatch ? { ...sbEvt, ...localMatch } : sbEvt;
-      });
-
-      return [...localOnly, ...merged];
+    if (!error && Array.isArray(data)) {
+      return data.map(mapSupabaseEvent);
     }
   } catch (err) {
     console.warn("Supabase fetch events failed, using local DB:", err);
   }
 
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.events || []);
   return db.events.filter((e) => !tombstoneSet.has(e.id));
 }
 
@@ -444,33 +431,25 @@ export async function deleteEvent(id: number): Promise<boolean> {
 // GALLERY SHOWCASE API HELPERS
 // ============================================================================
 export async function getGalleryImages(category?: string): Promise<GalleryImage[]> {
-  const db = loadDatabase();
-  const tombstoneSet = new Set(db.deletedIds?.gallery || []);
-
   try {
     let query = supabase.from("event_gallery").select("*").order("id", { ascending: false });
     if (category && category !== "All") {
       query = query.ilike("category", category);
     }
     const { data, error } = await query;
-    if (!error && data && data.length > 0) {
-      const supabaseImages = data
-        .filter((row: any) => !tombstoneSet.has(row.id))
-        .map(mapSupabaseGallery);
-
-      const supabaseIds = new Set(supabaseImages.map((g) => g.id));
-      const localOnly = db.gallery.filter((g) => !tombstoneSet.has(g.id) && !supabaseIds.has(g.id));
-
-      let allImages = [...localOnly, ...supabaseImages];
+    if (!error && Array.isArray(data)) {
+      let images = data.map(mapSupabaseGallery);
       if (category && category !== "All") {
-        allImages = allImages.filter((g) => g.category.toLowerCase() === category.toLowerCase());
+        images = images.filter((g) => g.category.toLowerCase() === category.toLowerCase());
       }
-      return allImages;
+      return images;
     }
   } catch (err) {
     console.warn("Supabase fetch gallery failed:", err);
   }
 
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.gallery || []);
   const localList = db.gallery.filter((g) => !tombstoneSet.has(g.id));
   if (category && category !== "All") {
     return localList.filter((g) => g.category.toLowerCase() === category.toLowerCase());
@@ -576,27 +555,12 @@ export async function toggleGalleryFeatured(id: number): Promise<GalleryImage | 
 // MEMBERS API HELPERS
 // ============================================================================
 export async function getMembers(): Promise<Member[]> {
-  const db = loadDatabase();
-  const tombstoneSet = new Set(db.deletedIds?.members || []);
-
   try {
     const { data, error } = await supabase.from("members").select("*").order("id", { ascending: true });
-    if (!error && data && data.length > 0) {
-      const supabaseMembers = data
-        .filter((row: any) => !tombstoneSet.has(row.id))
-        .map(mapSupabaseMember);
-
-      const supabaseIds = new Set(supabaseMembers.map((m) => m.id));
-      const localOnly = db.members.filter((m) => !tombstoneSet.has(m.id) && !supabaseIds.has(m.id));
-
-      const merged = supabaseMembers.map((sbM) => {
-        const localMatch = db.members.find((lm) => lm.id === sbM.id);
-        return localMatch ? { ...sbM, ...localMatch } : sbM;
-      });
-
-      let results = [...localOnly, ...merged];
+    if (!error && Array.isArray(data)) {
+      const results = data.map(mapSupabaseMember);
       const hasAdmin = results.some((m) => m.email.toLowerCase() === "admin@cls.com");
-      if (!hasAdmin && !tombstoneSet.has(ADMIN_MEMBER.id)) {
+      if (!hasAdmin) {
         results.unshift(ADMIN_MEMBER);
       }
       return results;
@@ -605,6 +569,8 @@ export async function getMembers(): Promise<Member[]> {
     console.warn("Supabase fetch members failed:", err);
   }
 
+  const db = loadDatabase();
+  const tombstoneSet = new Set(db.deletedIds?.members || []);
   let localMembers = db.members.filter((m) => !tombstoneSet.has(m.id));
   const hasAdmin = localMembers.some((m) => m.email.toLowerCase() === "admin@cls.com");
   if (!hasAdmin && !tombstoneSet.has(ADMIN_MEMBER.id)) {
