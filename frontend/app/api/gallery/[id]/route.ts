@@ -1,13 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { deleteGalleryImage, toggleGalleryFeatured } from "@/lib/db";
 
-interface RouteParams {
-  params: { id: string };
+async function parseId(req: NextRequest, params: any): Promise<number> {
+  const resolved = await Promise.resolve(params);
+  let id = parseInt(resolved?.id, 10);
+  if (isNaN(id)) {
+    const parts = req.nextUrl.pathname.split("/").filter(Boolean);
+    id = parseInt(parts[parts.length - 1], 10);
+  }
+  return isNaN(id) ? 0 : id;
 }
 
-export async function PUT(req: NextRequest, { params }: RouteParams) {
+export async function PUT(req: NextRequest, { params }: { params: any }) {
   try {
-    const id = parseInt(params.id, 10);
+    const id = await parseId(req, params);
     const updated = await toggleGalleryFeatured(id);
 
     if (!updated) {
@@ -20,9 +26,9 @@ export async function PUT(req: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: RouteParams) {
+export async function DELETE(req: NextRequest, { params }: { params: any }) {
   try {
-    const id = parseInt(params.id, 10);
+    const id = await parseId(req, params);
     const deleted = await deleteGalleryImage(id);
 
     if (!deleted) {

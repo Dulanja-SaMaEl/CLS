@@ -44,7 +44,7 @@ export default function AdminDashboard() {
       value: "148",
       sub: "Email & Text.lk SMS",
       icon: Radio,
-      trend: "100% gateway uptime",
+      trend: "Active Official Notices",
     },
   ];
 
