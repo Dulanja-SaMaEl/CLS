@@ -54,9 +54,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
       if (!isAdmin) {
         setIsAuthorized(false);
-        router.replace(`/sign-in?redirect=${encodeURIComponent(pathname)}`);
+        window.location.href = `/sign-in?redirect=${encodeURIComponent(pathname)}`;
       } else {
         setIsAuthorized(true);
+        const isSecure = window.location.protocol === "https:";
+        const secureFlag = isSecure ? "; Secure" : "";
+        if (!hasCookie) {
+          document.cookie = `cls_admin_session=true; path=/; max-age=604800; SameSite=Lax${secureFlag}`;
+        }
         if (userObj) {
           setAdminUser(userObj);
         } else {
@@ -72,8 +77,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       localStorage.removeItem("cls_token");
       localStorage.removeItem("cls_user");
       document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      router.push("/sign-in");
+      document.cookie = "cls_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "/sign-in";
     }
   };
 

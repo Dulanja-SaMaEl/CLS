@@ -27,9 +27,11 @@ export default function Navbar() {
       localStorage.removeItem("cls_admin_token");
       localStorage.removeItem("cls_user");
       document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       setCurrentUser(null);
-      router.push("/sign-in");
+      window.location.href = "/sign-in";
     }
   };
 

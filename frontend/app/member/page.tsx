@@ -65,9 +65,14 @@ export default function MemberDashboardPage() {
 
       if (!isAuthed) {
         setIsAuthorized(false);
-        router.replace("/sign-in?redirect=/member");
+        window.location.href = "/sign-in?redirect=/member";
       } else {
         setIsAuthorized(true);
+        const isSecure = window.location.protocol === "https:";
+        const secureFlag = isSecure ? "; Secure" : "";
+        if (!hasMemberCookie && !hasAdminCookie) {
+          document.cookie = `cls_member_session=true; path=/; max-age=604800; SameSite=Lax${secureFlag}`;
+        }
         if (storedUser) {
           try {
             const parsed = JSON.parse(storedUser);
@@ -92,8 +97,10 @@ export default function MemberDashboardPage() {
       localStorage.removeItem("cls_admin_token");
       localStorage.removeItem("cls_user");
       document.cookie = "cls_member_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "cls_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       document.cookie = "cls_admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      router.push("/sign-in");
+      document.cookie = "cls_admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "/sign-in";
     }
   };
 

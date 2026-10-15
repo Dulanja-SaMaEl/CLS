@@ -141,6 +141,23 @@ export default function SignUpPage() {
     e.preventDefault();
     if (validateStep(3)) {
       setIsSubmitted(true);
+      if (typeof window !== "undefined") {
+        const token = "cls_registered_token_" + Date.now();
+        const user = {
+          name: formData.fullName || (formData.title + " " + formData.callingName),
+          email: formData.email,
+          sc_en: formData.sc_en,
+          membershipTier: formData.membershipTier,
+          role: "member",
+          status: "Active",
+        };
+        localStorage.setItem("cls_token", token);
+        localStorage.setItem("cls_user", JSON.stringify(user));
+        const isSecure = window.location.protocol === "https:";
+        const secureFlag = isSecure ? "; Secure" : "";
+        document.cookie = `cls_member_session=true; path=/; max-age=604800; SameSite=Lax${secureFlag}`;
+        document.cookie = `cls_token=${token}; path=/; max-age=604800; SameSite=Lax${secureFlag}`;
+      }
     }
   };
 
