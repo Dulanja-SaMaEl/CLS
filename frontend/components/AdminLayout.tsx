@@ -117,15 +117,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] dark:bg-noir-900 text-stone-900 dark:text-stone-100 flex flex-col font-sans selection:bg-bronze selection:text-noir-900 transition-colors duration-200">
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0A0A0A] text-stone-900 dark:text-stone-100 flex flex-col font-sans selection:bg-bronze selection:text-noir-900 transition-colors duration-200">
       {/* Top Admin Bar */}
-      <header className="h-16 border-b border-stone-200 dark:border-hairline-dark bg-white/90 dark:bg-noir-800/80 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40 transition-colors">
+      <header className="h-16 border-b border-stone-200 dark:border-white/10 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40 transition-colors">
         <div className="flex items-center space-x-3 sm:space-x-6">
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-300 dark:border-white/10 rounded"
+            className="md:hidden p-2 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-300 dark:border-white/10 rounded cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -224,7 +224,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         )}
 
         {/* Desktop Sidebar Nav */}
-        <aside className="hidden md:flex w-64 border-r border-stone-200 dark:border-hairline-dark bg-white/80 dark:bg-noir-900 p-6 shrink-0 flex-col justify-between transition-colors">
+        <aside className="hidden md:flex w-64 border-r border-stone-200 dark:border-white/10 bg-white dark:bg-[#0E0E0E] p-6 shrink-0 flex-col justify-between transition-colors">
           <div>
             <div className="text-[10px] font-mono uppercase tracking-widest text-stone-500 mb-4 px-3">
               MANAGEMENT DOMAINS
@@ -240,7 +240,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     className={`flex items-center space-x-3 px-3.5 py-2.5 text-xs font-mono tracking-wider uppercase transition-all rounded-sm ${
                       isActive
                         ? "bg-[#C5A059] text-noir-900 font-bold shadow-md"
-                        : "text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-noir-800 hover:text-stone-900 dark:hover:text-white"
+                        : "text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-white/5 hover:text-stone-900 dark:hover:text-white"
                     }`}
                   >
                     <Icon className={`w-4 h-4 ${isActive ? "text-noir-900" : "text-[#9E7D3B] dark:text-[#C5A059]"}`} />
@@ -271,7 +271,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 bg-[#FAF8F5] dark:bg-noir-950 p-4 sm:p-6 lg:p-10 overflow-y-auto text-stone-900 dark:text-stone-100 transition-colors">
+        <main className="flex-1 bg-[#F5F2EB] dark:bg-[#0A0A0A] p-4 sm:p-6 lg:p-10 overflow-y-auto text-stone-900 dark:text-stone-100 transition-colors">
           {children}
         </main>
       </div>

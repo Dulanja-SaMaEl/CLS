@@ -73,25 +73,42 @@ export default function ThemeToggle({ variant = "pill", className = "" }: ThemeT
     );
   }
 
-  // Default 'pill' variant
+  // Default 'pill' variant: High-clarity Segmented Switcher
   return (
-    <button
-      onClick={toggleTheme}
-      type="button"
-      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      className={`group relative flex items-center gap-2 px-3 py-1.5 rounded-full border border-stone-300 dark:border-white/15 bg-stone-100/80 dark:bg-stone-900/80 hover:bg-stone-200 dark:hover:bg-stone-800/80 text-stone-800 dark:text-stone-200 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] transition-all shadow-sm active:scale-95 text-xs font-mono tracking-wider ${className}`}
+    <div
+      className={`inline-flex items-center p-0.5 rounded-full border border-stone-300 dark:border-white/20 bg-stone-100 dark:bg-[#161616] shadow-sm select-none ${className}`}
+      role="group"
+      aria-label="Theme selector"
     >
-      <div className="relative w-4 h-4 flex items-center justify-center">
-        {isDark ? (
-          <Sun className="w-3.5 h-3.5 text-[#C5A059] transition-transform duration-300 group-hover:rotate-45" />
-        ) : (
-          <Moon className="w-3.5 h-3.5 text-[#9E7D3B] transition-transform duration-300 group-hover:-rotate-12" />
-        )}
-      </div>
-      <span className="text-[10px] uppercase font-bold tracking-widest hidden sm:inline text-stone-600 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
-        {isDark ? "Light" : "Dark"}
-      </span>
-    </button>
+      <button
+        type="button"
+        onClick={() => isDark && toggleTheme()}
+        title="Switch to Light Mode"
+        aria-pressed={!isDark}
+        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold transition-all cursor-pointer ${
+          !isDark
+            ? "bg-white text-stone-900 shadow-sm border border-stone-200"
+            : "text-stone-400 hover:text-stone-200"
+        }`}
+      >
+        <Sun className={`w-3.5 h-3.5 ${!isDark ? "text-amber-600" : "text-stone-400"}`} />
+        <span className="hidden sm:inline">Light</span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => !isDark && toggleTheme()}
+        title="Switch to Dark Mode"
+        aria-pressed={isDark}
+        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold transition-all cursor-pointer ${
+          isDark
+            ? "bg-[#C5A059] text-noir-900 shadow-sm"
+            : "text-stone-500 hover:text-stone-800"
+        }`}
+      >
+        <Moon className={`w-3.5 h-3.5 ${isDark ? "text-noir-900" : "text-stone-400"}`} />
+        <span className="hidden sm:inline">Dark</span>
+      </button>
+    </div>
   );
 }

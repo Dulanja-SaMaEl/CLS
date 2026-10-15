@@ -52,9 +52,9 @@ export default function AdminDashboard() {
     <AdminLayout>
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Top Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-200 dark:border-hairline-dark pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-stone-200 dark:border-white/10 pb-6">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] block mb-1">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#9E7D3B] dark:text-[#C5A059] block mb-1 font-semibold">
               Chambers Executive Governance &bull; Est. 1890
             </span>
             <h1 className="font-display text-4xl md:text-5xl uppercase tracking-wider text-stone-900 dark:text-white">
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
           <div className="mt-4 md:mt-0 flex flex-wrap items-center gap-2.5">
             <Link
               href="/admin/events"
-              className="px-3.5 py-2 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-black text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5 shadow"
+              className="px-3.5 py-2 bg-[#9E7D3B] hover:bg-[#85682e] dark:bg-[#C5A059] dark:hover:bg-[#d6b168] text-white dark:text-noir-900 text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5 shadow-sm"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Calendar Scheduler</span>
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/gallery"
-              className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 border border-stone-300 dark:border-white/20 text-stone-900 dark:text-white text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5"
+              className="px-3.5 py-2 bg-white hover:bg-stone-50 dark:bg-[#161616] dark:hover:bg-[#222222] border border-stone-300 dark:border-white/15 text-stone-800 dark:text-stone-200 text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5 shadow-sm"
             >
               <ArrowUpRight className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
               <span>Showcase Media</span>
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/members"
-              className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-[#1F1F1F] dark:hover:bg-white/10 border border-stone-300 dark:border-white/10 text-stone-900 dark:text-white text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5"
+              className="px-3.5 py-2 bg-white hover:bg-stone-50 dark:bg-[#161616] dark:hover:bg-[#222222] border border-stone-300 dark:border-white/15 text-stone-800 dark:text-stone-200 text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5 shadow-sm"
             >
               <UserPlus className="w-3.5 h-3.5" />
               <span>Directory</span>
@@ -89,7 +89,7 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/broadcast"
-              className="px-3.5 py-2 border border-[#9E7D3B]/40 dark:border-bronze/40 text-[#9E7D3B] dark:text-bronze hover:bg-[#9E7D3B] hover:text-white dark:hover:bg-bronze dark:hover:text-noir-900 text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5"
+              className="px-3.5 py-2 bg-white hover:bg-stone-50 dark:bg-[#161616] dark:hover:bg-[#222222] border border-[#9E7D3B]/50 dark:border-[#C5A059]/40 text-[#9E7D3B] dark:text-[#C5A059] text-xs font-mono uppercase tracking-widest font-bold transition-all flex items-center space-x-1.5 shadow-sm"
             >
               <Radio className="w-3.5 h-3.5" />
               <span>Broadcast</span>
@@ -104,20 +104,20 @@ export default function AdminDashboard() {
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 relative overflow-hidden group hover:border-[#9E7D3B]/40 dark:hover:border-bronze/40 transition-all shadow-sm"
+                className="bg-white dark:bg-[#121212] border border-stone-200 dark:border-white/10 p-6 relative overflow-hidden group hover:border-[#9E7D3B]/50 dark:hover:border-[#C5A059]/50 transition-all shadow-sm rounded-sm"
               >
                 <div className="flex items-center justify-between text-stone-500 dark:text-stone-400 mb-4">
-                  <span className="text-[11px] font-mono tracking-widest uppercase">
+                  <span className="text-[11px] font-mono tracking-widest uppercase font-semibold">
                     {stat.title}
                   </span>
-                  <Icon className="w-4 h-4 text-[#9E7D3B] dark:text-bronze" />
+                  <Icon className="w-4 h-4 text-[#9E7D3B] dark:text-[#C5A059]" />
                 </div>
                 <div className="font-display text-4xl text-stone-900 dark:text-white tracking-wide">
                   {stat.value}
                 </div>
                 <div className="mt-2 text-xs font-mono text-stone-500 dark:text-stone-400 flex items-center justify-between">
                   <span>{stat.sub}</span>
-                  <span className="text-emerald-500 dark:text-emerald-400 text-[10px] font-semibold">{stat.trend}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 text-[10px] font-semibold">{stat.trend}</span>
                 </div>
               </div>
             );
@@ -127,8 +127,8 @@ export default function AdminDashboard() {
         {/* Two-Column Middle Section: Recent Registrations & Upcoming Events */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Recent Enrolled Members Table */}
-          <div className="lg:col-span-8 bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-4 mb-6">
+          <div className="lg:col-span-8 bg-white dark:bg-[#121212] border border-stone-200 dark:border-white/10 p-6 shadow-sm rounded-sm">
+            <div className="flex items-center justify-between border-b border-stone-200 dark:border-white/10 pb-4 mb-6">
               <div>
                 <h3 className="font-display text-2xl uppercase tracking-wider text-stone-900 dark:text-white">
                   RECENT ENROLLED PRACTITIONERS
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
               </div>
               <Link
                 href="/admin/members"
-                className="text-xs font-mono text-[#9E7D3B] dark:text-bronze hover:text-stone-900 dark:hover:text-white uppercase tracking-widest flex items-center space-x-1"
+                className="text-xs font-mono text-[#9E7D3B] dark:text-[#C5A059] hover:text-stone-900 dark:hover:text-white uppercase tracking-widest flex items-center space-x-1 font-semibold"
               >
                 <span>View All Directory</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -149,39 +149,39 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
                 <thead>
-                  <tr className="border-b border-stone-200 dark:border-white/10 text-stone-500 dark:text-stone-400 uppercase tracking-widest text-[10px]">
-                    <th className="pb-3">Advocate Name</th>
-                    <th className="pb-3">SC Enrolment</th>
-                    <th className="pb-3">Practice Area</th>
-                    <th className="pb-3">Tier</th>
-                    <th className="pb-3">Status</th>
-                    <th className="pb-3 text-right">Action</th>
+                  <tr className="border-b border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-white/[0.03] text-stone-500 dark:text-stone-400 uppercase tracking-widest text-[10px]">
+                    <th className="py-2.5 px-3">Advocate Name</th>
+                    <th className="py-2.5 px-3">SC Enrolment</th>
+                    <th className="py-2.5 px-3">Practice Area</th>
+                    <th className="py-2.5 px-3">Tier</th>
+                    <th className="py-2.5 px-3">Status</th>
+                    <th className="py-2.5 px-3 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-200 dark:divide-white/5">
                   {initialMembers.map((m) => (
                     <tr key={m.id} className="hover:bg-stone-50 dark:hover:bg-white/[0.02] transition-colors">
-                      <td className="py-3.5 font-sans font-medium text-stone-900 dark:text-stone-200">
+                      <td className="py-3.5 px-3 font-sans font-medium text-stone-900 dark:text-stone-200">
                         {m.name}
                       </td>
-                      <td className="py-3.5 text-stone-600 dark:text-stone-400">{m.sc_en}</td>
-                      <td className="py-3.5 text-stone-600 dark:text-stone-400 max-w-[180px] truncate">
+                      <td className="py-3.5 px-3 text-stone-600 dark:text-stone-400">{m.sc_en}</td>
+                      <td className="py-3.5 px-3 text-stone-600 dark:text-stone-400 max-w-[180px] truncate">
                         {m.practiceArea}
                       </td>
-                      <td className="py-3.5">
+                      <td className="py-3.5 px-3">
                         <span
                           className={`px-2 py-0.5 text-[10px] uppercase font-bold tracking-wider ${
                             m.membershipTier === "Life"
-                              ? "bg-amber-500/10 text-amber-600 dark:text-amber-300 border border-amber-500/30"
+                              ? "bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30"
                               : m.membershipTier === "Ordinary"
-                              ? "bg-blue-500/10 text-blue-600 dark:text-blue-300 border border-blue-500/30"
+                              ? "bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/30"
                               : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 border border-stone-300 dark:border-stone-700"
                           }`}
                         >
                           {m.membershipTier}
                         </span>
                       </td>
-                      <td className="py-3.5">
+                      <td className="py-3.5 px-3">
                         <span
                           className={`inline-flex items-center space-x-1 text-[10px] uppercase ${
                             m.status === "Active" ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-stone-500"
@@ -195,10 +195,10 @@ export default function AdminDashboard() {
                           <span>{m.status}</span>
                         </span>
                       </td>
-                      <td className="py-3.5 text-right">
+                      <td className="py-3.5 px-3 text-right">
                         <Link
                           href="/admin/members"
-                          className="text-stone-700 hover:text-[#9E7D3B] dark:text-stone-300 dark:hover:text-sand text-[11px] uppercase tracking-wider underline underline-offset-4"
+                          className="text-[#9E7D3B] dark:text-[#C5A059] hover:underline text-[11px] uppercase tracking-wider font-semibold"
                         >
                           Review
                         </Link>
@@ -213,14 +213,14 @@ export default function AdminDashboard() {
           {/* Right Column: Upcoming Events & System Reminders */}
           <div className="lg:col-span-4 space-y-8">
             {/* Upcoming CLE Conferences */}
-            <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 shadow-sm">
-              <div className="flex items-center justify-between border-b border-stone-200 dark:border-hairline-dark pb-3 mb-4">
+            <div className="bg-white dark:bg-[#121212] border border-stone-200 dark:border-white/10 p-6 shadow-sm rounded-sm">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-white/10 pb-3 mb-4">
                 <h3 className="font-display text-xl uppercase tracking-wider text-stone-900 dark:text-white">
                   CLE CALENDAR
                 </h3>
                 <Link
                   href="/admin/events"
-                  className="text-[10px] font-mono text-[#9E7D3B] dark:text-bronze hover:text-stone-900 dark:hover:text-white uppercase"
+                  className="text-[10px] font-mono text-[#9E7D3B] dark:text-[#C5A059] hover:text-stone-900 dark:hover:text-white uppercase font-bold"
                 >
                   Manage →
                 </Link>
@@ -228,8 +228,8 @@ export default function AdminDashboard() {
 
               <div className="space-y-4">
                 {initialEvents.slice(0, 2).map((evt) => (
-                  <div key={evt.id} className="p-3 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-bronze uppercase tracking-widest block font-medium">
+                  <div key={evt.id} className="p-3 bg-stone-50 dark:bg-[#161616] border border-stone-200 dark:border-white/5 space-y-1 rounded-sm">
+                    <span className="text-[10px] font-mono text-[#9E7D3B] dark:text-[#C5A059] uppercase tracking-widest block font-bold">
                       {evt.category}
                     </span>
                     <h4 className="text-xs font-sans font-semibold text-stone-900 dark:text-stone-200 line-clamp-1">
@@ -245,8 +245,8 @@ export default function AdminDashboard() {
             </div>
 
             {/* Scheduled Expiry Audit Engine */}
-            <div className="bg-white dark:bg-noir-900 border border-stone-200 dark:border-hairline-dark p-6 shadow-sm">
-              <div className="flex items-center space-x-2 text-[#9E7D3B] dark:text-bronze mb-3">
+            <div className="bg-white dark:bg-[#121212] border border-stone-200 dark:border-white/10 p-6 shadow-sm rounded-sm">
+              <div className="flex items-center space-x-2 text-[#9E7D3B] dark:text-[#C5A059] mb-3">
                 <Clock className="w-4 h-4" />
                 <h3 className="font-display text-lg uppercase tracking-wider text-stone-900 dark:text-white">
                   AUTOMATED EXPIRY AUDIT
@@ -256,15 +256,15 @@ export default function AdminDashboard() {
                 Spring `@Scheduled` automated renewal reminders running daily at 08:00 AM (Asia/Colombo).
               </p>
               <div className="space-y-2 text-[11px] font-mono">
-                <div className="flex justify-between p-2 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/5">
+                <div className="flex justify-between p-2 bg-stone-50 dark:bg-[#161616] border border-stone-200 dark:border-white/5 rounded-sm">
                   <span className="text-stone-700 dark:text-stone-300">30-Day Reminder:</span>
                   <span className="text-stone-500 dark:text-stone-400">42 Queued</span>
                 </div>
-                <div className="flex justify-between p-2 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/5">
+                <div className="flex justify-between p-2 bg-stone-50 dark:bg-[#161616] border border-stone-200 dark:border-white/5 rounded-sm">
                   <span className="text-stone-700 dark:text-stone-300">7-Day Urgent:</span>
                   <span className="text-amber-600 dark:text-amber-400 font-semibold">18 Queued</span>
                 </div>
-                <div className="flex justify-between p-2 bg-stone-50 dark:bg-noir-800 border border-stone-200 dark:border-white/5">
+                <div className="flex justify-between p-2 bg-stone-50 dark:bg-[#161616] border border-stone-200 dark:border-white/5 rounded-sm">
                   <span className="text-stone-700 dark:text-stone-300">1-Day Final Notice:</span>
                   <span className="text-red-600 dark:text-red-400 font-semibold">5 Final</span>
                 </div>
