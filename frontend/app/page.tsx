@@ -146,12 +146,12 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 to-black/20" />
 
             {/* Overlaid Giant Headline: "LEGAL" on Left, "CLARITY" on Right */}
-            <div className="absolute inset-x-0 bottom-4 sm:bottom-8 lg:bottom-10 px-6 sm:px-10 lg:px-14 flex items-end justify-between select-none pointer-events-none">
+            <div className="absolute inset-x-0 bottom-4 sm:bottom-8 lg:bottom-10 px-4 sm:px-8 lg:px-12 flex items-end justify-between select-none pointer-events-none gap-2">
               <motion.h1
-                initial={{ opacity: 0, x: -60 }}
+                initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="font-display text-[16vw] sm:text-[14vw] lg:text-[13vw] leading-[0.78] tracking-tight uppercase text-white font-extrabold drop-shadow-2xl"
+                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4.5rem,7.5vw,7.8rem)] xl:text-[8.5rem] leading-[0.78] tracking-tight uppercase text-white font-extrabold drop-shadow-2xl shrink-0"
               >
                 LEGAL
               </motion.h1>
@@ -161,19 +161,19 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="hidden md:flex flex-col items-center mb-4 text-center"
+                className="hidden lg:flex flex-col items-center mb-2 xl:mb-4 text-center shrink px-2"
               >
-                <span className="font-serif italic text-xs lg:text-sm text-[#C5A059] tracking-wider">
+                <span className="font-serif italic text-xs lg:text-sm text-[#C5A059] tracking-wider whitespace-nowrap">
                   for practitioners and society
                 </span>
                 <div className="w-12 h-px bg-[#C5A059]/40 mt-1" />
               </motion.div>
 
               <motion.h1
-                initial={{ opacity: 0, x: 60 }}
+                initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="font-display text-[16vw] sm:text-[14vw] lg:text-[13vw] leading-[0.78] tracking-tight uppercase text-[#E7E0D3] font-extrabold drop-shadow-2xl"
+                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4.5rem,7.5vw,7.8rem)] xl:text-[8.5rem] leading-[0.78] tracking-tight uppercase text-[#E7E0D3] font-extrabold drop-shadow-2xl shrink-0"
               >
                 CLARITY
               </motion.h1>
@@ -320,7 +320,7 @@ export default function Home() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mt-12 select-none"
           >
-            <h2 className="font-display text-6xl sm:text-8xl md:text-9xl lg:text-[10.5vw] uppercase tracking-tighter leading-[0.84] text-[#0A0A0A] font-extrabold">
+            <h2 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(3.8rem,6.8vw,6.5rem)] xl:text-[7rem] uppercase tracking-tighter leading-[0.84] text-[#0A0A0A] font-extrabold">
               HOW WE HELP YOUR <br />
               BUSINESS ADVANCE
             </h2>

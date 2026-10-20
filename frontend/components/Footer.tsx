@@ -118,13 +118,13 @@ export default function Footer() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/60 pointer-events-none" />
 
-        <div className="relative z-10 max-w-[98vw] mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-[11vw] sm:text-[12vw] lg:text-[13vw] leading-none tracking-tight uppercase text-[#E7E0D3]/95 font-extrabold drop-shadow-2xl"
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.8rem,7.5vw,6.8rem)] xl:text-[7.5rem] leading-none tracking-tight uppercase text-[#E7E0D3]/95 font-extrabold drop-shadow-2xl"
           >
             COLOMBO LAW SOCIETY
           </motion.h1>

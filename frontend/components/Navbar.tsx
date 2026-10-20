@@ -55,10 +55,10 @@ export default function Navbar() {
       </div>
 
       {/* Main Bar */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand / Logo (Left) */}
-        <Link href="/" className="flex items-center space-x-3 group shrink-0">
-          <div className="w-10 h-10 rounded-full border border-[#9E7D3B]/40 dark:border-[#C5A059]/60 p-0.5 flex items-center justify-center bg-stone-100 dark:bg-[#141414] overflow-hidden group-hover:border-[#9E7D3B] dark:group-hover:border-[#C5A059] transition-all shadow-sm">
+        <Link href="/" className="flex items-center space-x-2.5 sm:space-x-3 group shrink-0">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#9E7D3B]/40 dark:border-[#C5A059]/60 p-0.5 flex items-center justify-center bg-stone-100 dark:bg-[#141414] overflow-hidden group-hover:border-[#9E7D3B] dark:group-hover:border-[#C5A059] transition-all shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/branding/cls-crest-gold.png"
@@ -67,17 +67,17 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-display text-xl sm:text-2xl tracking-wider text-stone-900 dark:text-white leading-none">
+            <span className="font-display text-lg sm:text-xl xl:text-2xl tracking-wider text-stone-900 dark:text-white leading-none">
               COLOMBO LAW SOCIETY
             </span>
-            <span className="text-[9px] tracking-widest font-mono text-stone-500 dark:text-[#A0A0A0] uppercase mt-0.5">
+            <span className="text-[8px] sm:text-[9px] tracking-widest font-mono text-stone-500 dark:text-[#A0A0A0] uppercase mt-0.5">
               HULFTSDORP &bull; SRI LANKA
             </span>
           </div>
         </Link>
 
         {/* Center Multi-column Navigation */}
-        <div className="hidden lg:flex items-start space-x-12 text-[11px] font-mono tracking-wider">
+        <div className="hidden lg:flex items-start space-x-6 xl:space-x-10 2xl:space-x-12 text-[10px] xl:text-[11px] font-mono tracking-wider shrink min-w-0">
           {/* Column 1: Society & Leadership */}
           <div>
             <span className="text-stone-900 dark:text-white font-bold uppercase tracking-widest block mb-1">
@@ -169,7 +169,7 @@ export default function Navbar() {
         </div>
 
         {/* Action Buttons (Right) */}
-        <div className="hidden sm:flex items-center space-x-3 shrink-0">
+        <div className="hidden sm:flex items-center space-x-2 xl:space-x-3 shrink-0">
           {/* Theme Toggle Button */}
           <ThemeToggle variant="pill" />
 
@@ -178,7 +178,7 @@ export default function Navbar() {
               {currentUser.role === "admin" || currentUser.email === "admin@cls.com" ? (
                 <Link
                   href="/admin"
-                  className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase bg-[#C5A059] text-black font-bold border border-[#C5A059] hover:bg-[#d6b168] transition-all font-mono flex items-center gap-1.5 rounded-sm shadow-sm"
+                  className="px-2.5 py-1.5 xl:px-3.5 xl:py-1.5 text-[10px] xl:text-[11px] tracking-wider xl:tracking-widest uppercase bg-[#C5A059] text-black font-bold border border-[#C5A059] hover:bg-[#d6b168] transition-all font-mono flex items-center gap-1.5 rounded-sm shadow-sm"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>Admin Console</span>
@@ -186,7 +186,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   href="/member"
-                  className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-white border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] bg-stone-100 dark:bg-[#141414] transition-all font-mono flex items-center gap-1.5 rounded-sm"
+                  className="px-2.5 py-1.5 xl:px-3.5 xl:py-1.5 text-[10px] xl:text-[11px] tracking-wider xl:tracking-widest uppercase text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-white border border-[#9E7D3B]/40 dark:border-[#C5A059]/40 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] bg-stone-100 dark:bg-[#141414] transition-all font-mono flex items-center gap-1.5 rounded-sm"
                 >
                   <User className="w-3.5 h-3.5 text-[#9E7D3B] dark:text-[#C5A059]" />
                   <span>Advocate Hub</span>
@@ -196,7 +196,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="px-3 py-1.5 text-[11px] tracking-widest uppercase text-stone-500 dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 border border-stone-200 dark:border-white/10 hover:border-red-500/30 transition-all font-mono flex items-center gap-1 rounded-sm"
+                className="px-2.5 py-1.5 xl:px-3 xl:py-1.5 text-[10px] xl:text-[11px] tracking-wider xl:tracking-widest uppercase text-stone-500 dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 border border-stone-200 dark:border-white/10 hover:border-red-500/30 transition-all font-mono flex items-center gap-1 rounded-sm"
                 title="Log Out"
               >
                 <LogOut className="w-3 h-3" />
@@ -207,13 +207,13 @@ export default function Navbar() {
             <>
               <Link
                 href="/sign-in"
-                className="px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-300 dark:border-white/20 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] transition-all font-mono rounded-sm"
+                className="px-2.5 py-1.5 xl:px-3.5 xl:py-1.5 text-[10px] xl:text-[11px] tracking-wider xl:tracking-widest uppercase text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-300 dark:border-white/20 hover:border-[#9E7D3B] dark:hover:border-[#C5A059] transition-all font-mono rounded-sm"
               >
                 Portal Sign In
               </Link>
               <Link
                 href="/sign-up"
-                className="px-4 py-2 text-[11px] tracking-widest uppercase bg-stone-900 dark:bg-[#E7E0D3] text-stone-100 dark:text-black hover:bg-stone-800 dark:hover:bg-white transition-all font-mono font-bold rounded-sm shadow-sm"
+                className="px-3 py-1.5 xl:px-4 xl:py-2 text-[10px] xl:text-[11px] tracking-wider xl:tracking-widest uppercase bg-stone-900 dark:bg-[#E7E0D3] text-stone-100 dark:text-black hover:bg-stone-800 dark:hover:bg-white transition-all font-mono font-bold rounded-sm shadow-sm"
               >
                 Get In Touch
               </Link>
